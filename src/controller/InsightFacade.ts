@@ -25,12 +25,12 @@ export default class InsightFacade implements IInsightFacade {
     public performQuery(query: any): Promise<any[]> {
 
         Log.trace(query);
-        // check query missing where, missing options, more than 2 fields
+        // TODO check query missing where, missing options, more than 2 fields
         let filter = query.WHERE;
         let options = query.OPTIONS;
-        let datasetID = "courses"; // TODO get id from dataset
+        let datasetID = options.COLUMNS[0].split("_")[0]; // TODO get id from dataset
 
-        // check filter, options' structure
+        // TODO check filter, options' structure
 
         // get dataset by id--use fs.readFileSync
         let sections = this.getDatasetById(datasetID); // let section store dataset id
@@ -54,10 +54,12 @@ export default class InsightFacade implements IInsightFacade {
             // read file sync return array.
             if (id === filename) {
                 const fileContent = fs.readFileSync("./data/" + filename, "utf8");
-                retval = JSON.parse(fileContent)["data"];
+                let fileID = JSON.parse(fileContent).id;
+                if (fileID === id) {
+                    retval = JSON.parse(fileContent)["data"];
+                }
             }
         });
-
         if (retval === []) {
             throw new InsightError("Nothing in dataset");
         } else {
@@ -79,7 +81,7 @@ export default class InsightFacade implements IInsightFacade {
 
     }
 
-    private isSatisfied(filter: any, section: any, id: string) {
+    private isSatisfied(filter: any, section: any, id: string): boolean {
 
         let result = false;
         let operationArr = Object.keys(filter);
@@ -88,6 +90,7 @@ export default class InsightFacade implements IInsightFacade {
         } else {
             switch (operationArr[0]) {
                 case "NOT":
+                    return !this.isSatisfied(filter.NOT, section, id);
 
                 case "AND":
                     let resultAND = true;
@@ -105,20 +108,104 @@ export default class InsightFacade implements IInsightFacade {
                         }
                     }
                     return resultOR;
-                case "IS":
-                    return this.mcomparator(filter, section, id);
+                case "IS"  :
+                    return true;
                 case "LT":
-                    return this.mcomparator(filter, section, id);
+                    return this.LTcomparator(filter, section, id);
                 case "GT":
-                    return this.mcomparator(filter, section, id);
+                    return this.GTcomparator(filter, section, id);
                 case "EQ":
-                    return this.mcomparator(filter, section, id);
+                    return this.EQcomparator(filter, section, id);
+                default:
+                     throw new InsightError("Invalid comparator name");
 
             }
         }
     }
+    private mkeys = ["avg", "pass", "fail", "audit", "year"];
+    private skeys = ["dept", "id", "instructor", "title", "uuid"];
 
-    private mcomparator(filter: any, section: any, id: string) {
-        return false;
+    private LTcomparator(filter: any, section: any, id: string) {
+        let filterKey: string = "";
+        let datasetID: string = "";
+        let key: string = "";
+
+        try {
+            filterKey = Object.keys(filter.LT)[0];
+            datasetID = filterKey.split("_")[0];
+            key = filterKey.split("_")[1];
+        } catch (e) {
+            throw new InsightError("LT key number is not 1");
+        }
+        if (datasetID !== id) {
+            throw new InsightError("Cross dataset");
+        }
+        const queryValue = filter.LT[filterKey];
+        const sectionValue = section[key];
+        if (this.mkeys.indexOf(filterKey) === -1) {
+            throw new InsightError("filter  key is not a m key");
+        }
+
+        if (typeof queryValue === "number") {
+            return (sectionValue < queryValue);
+        } else {
+            throw new InsightError("compared value is not number");
+        }
+    }
+
+    private GTcomparator(filter: any, section: any, id: string) {
+        let filterKey: string = "";
+        let datasetID: string = "";
+        let key: string = "";
+
+        try {
+            filterKey = Object.keys(filter.GT)[0];
+            datasetID = filterKey.split("_")[0];
+            key = filterKey.split("_")[1];
+        } catch (e) {
+            throw new InsightError("GT key number is not 1");
+        }
+        if (datasetID !== id) {
+            throw new InsightError("Cross dataset");
+        }
+        const queryValue = filter.GT[filterKey];
+        const sectionValue = section[key];
+        if (this.mkeys.indexOf(filterKey) === -1) {
+            throw new InsightError("filter  key is not a m key");
+        }
+
+        if (typeof queryValue === "number") {
+            return (sectionValue > queryValue);
+        } else {
+            throw new InsightError("compared value is not number");
+        }
+    }
+
+    private EQcomparator(filter: any, section: any, id: string) {
+        let filterKey: string = "";
+        let datasetID: string = "";
+        let key: string = "";
+
+        try {
+            filterKey = Object.keys(filter.EQ)[0];
+            datasetID = filterKey.split("_")[0];
+            key = filterKey.split("_")[1];
+        } catch (e) {
+            throw new InsightError("EQ key number is not 1");
+        }
+        if (datasetID !== id) {
+            throw new InsightError("Cross dataset");
+        }
+        const queryValue = filter.EQ[filterKey];
+        const sectionValue = section[key];
+        if (this.mkeys.indexOf(filterKey) === -1) {
+            throw new InsightError("filter  key is not a m key");
+        }
+
+        if (typeof queryValue === "number") {
+            return (sectionValue === queryValue);
+        } else {
+            throw new InsightError("compared value is not number");
+        }
     }
 }
