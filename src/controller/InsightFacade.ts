@@ -2,6 +2,8 @@ import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFacade";
 import {InsightError, NotFoundError} from "./IInsightFacade";
 import * as fs from "fs";
+import {isArray} from "util";
+
 
 /**
  * This is the main programmatic entry point for the project.
@@ -23,14 +25,16 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
-
-        Log.trace(query);
-        // TODO check query missing where, missing options, more than 2 fields
+        // To fix the max 50 line, I removed options = query.OPTIONS
         let filter = query.WHERE;
-        let options = query.OPTIONS;
-        let datasetID = options.COLUMNS[0].split("_")[0]; // TODO get id from dataset
+        // TODO check query missing where, missing options, more than 2 fields
+        let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
 
-        // TODO check filter, options' structure
+        if (!this.validQuery(query)) {
+            return Promise.reject(new InsightError("Invalid query"));
+        }
+
+        // TODO check filter, options' structure, columns empty array
 
         // get dataset by id--use fs.readFileSync
         let sections = this.getDatasetById(datasetID); // let section store dataset id
@@ -41,11 +45,61 @@ export default class InsightFacade implements IInsightFacade {
         } else if (Object.keys(filter).length === 1) {
             // pass dataset and filter and return sections
             filteredSections = this.performFilter(sections, filter, datasetID);
+            let columns = query.OPTIONS.COLUMNS;
+
+            const selectedSections = filteredSections.map((section: any) => {
+            let newSection: any = {};
+            columns.forEach((key: string) => {
+                const column = key.split("_")[1]; // TODO: check columns key has "_", check cross dataset
+                newSection[key] = section[column];
+                if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
+                    return Promise.reject(new InsightError("Cross dataset"));
+                }
+                });
+            return newSection;
+            });
+
+            const orderKey = query.OPTIONS.ORDER;
+
+            let sortedSections = selectedSections.sort((obj1, obj2) => {
+                if (obj1[orderKey] > obj2[orderKey]) {
+                    return 1;
+                }
+                if (obj1[orderKey] < obj2[orderKey]) {
+                    return -1;
+                }
+                return 0;
+            });
+            // TODO check length >5000
+            if (sortedSections.length < 5000) {
+                return Promise.resolve(sortedSections);
+            } else {
+                return Promise.reject(new InsightError("length > 5000"));
+            }
         } else {
             return Promise.reject(new InsightError(("More than one filter in WHERE")));
         }
+    }
 
-        return Promise.resolve(filteredSections);
+    private validQuery(query: any) {
+        let length: number = Object.keys(query).length;
+        if (!("WHERE" in query)) {
+            return false;
+        }
+        if (!("OPTIONS" in query)) {
+            return false;
+        }
+        if (!(length === 2)) {
+            return false;
+        }
+        if (!("COLUMNS" in query.OPTIONS)) {
+            return false;
+        }
+        let columns: any[] = query.OPTIONS["COLUMNS"];
+        if (columns.length === 0) {
+            return false;
+        }
+        // maybe check if it is array?
     }
 
     private getDatasetById (id: string): any[] {
@@ -71,10 +125,11 @@ export default class InsightFacade implements IInsightFacade {
         return Promise.reject("Not implemented.");
     }
 
+
     private performFilter(filter: object, sections: object[], id: string): object[] {
 
         let retval = sections.filter((section) => {
-            (this.isSatisfied(filter, section, id));
+            return this.isSatisfied(filter, section, id);
         });
 
         return retval;
@@ -83,8 +138,9 @@ export default class InsightFacade implements IInsightFacade {
 
     private isSatisfied(filter: any, section: any, id: string): boolean {
 
-        let result = false;
         let operationArr = Object.keys(filter);
+        let filterArr: any[] = filter[operationArr[0]];
+
         if (operationArr.length !== 1) {
             throw new InsightError("Number of filter key is not 1");
         } else {
@@ -92,7 +148,10 @@ export default class InsightFacade implements IInsightFacade {
                 case "NOT":
                     return !this.isSatisfied(filter.NOT, section, id);
 
-                case "AND":
+                case "AND": // TODO: check empty array
+                    if (filterArr.length === 0) {
+                        throw new InsightError("empty array");
+                    }
                     let resultAND = true;
                     for (let obj of filter.AND) {
                         if (this.isSatisfied(obj, section, id) === false) {
@@ -101,6 +160,9 @@ export default class InsightFacade implements IInsightFacade {
                     }
                     return resultAND;
                 case "OR":
+                    if (filterArr.length === 0) {
+                        throw new InsightError("empty array");
+                    }
                     let resultOR = false;
                     for (let obj of filter.OR) {
                         if (this.isSatisfied(obj, section, id) === true) {
@@ -109,7 +171,7 @@ export default class InsightFacade implements IInsightFacade {
                     }
                     return resultOR;
                 case "IS"  :
-                    return true;
+                    return this.IScomparator(filter, section, id);
                 case "LT":
                     return this.LTcomparator(filter, section, id);
                 case "GT":
@@ -207,5 +269,9 @@ export default class InsightFacade implements IInsightFacade {
         } else {
             throw new InsightError("compared value is not number");
         }
+    }
+
+    private IScomparator(filter: any, section: any, id: string) {
+        return false;
     }
 }
