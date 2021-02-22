@@ -115,7 +115,7 @@ describe("InsightFacade PerformQuery", () => {
              * for the purposes of seeing all your tests run.
              * TODO For C1, remove this catch block (but keep the Promise.all)
              */
-            return Promise.resolve("HACK TO LET QUERIES RUN");
+             return Promise.resolve("HACK TO LET QUERIES RUN");
         });
     });
 

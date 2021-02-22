@@ -33,7 +33,7 @@ export default class InsightFacade implements IInsightFacade {
         // check filter, options' structure
 
         // get dataset by id--use fs.readFileSync
-        let sections = this.getDatasetById("courses"); // let section store dataset id
+        let sections = this.getDatasetById(datasetID); // let section store dataset id
         let filteredSections = []; // applied filter sections
 
         if (!Object.keys(filter)) {
@@ -45,21 +45,24 @@ export default class InsightFacade implements IInsightFacade {
             return Promise.reject(new InsightError(("More than one filter in WHERE")));
         }
 
-        return Promise.reject("Not implemented.");
+        return Promise.resolve(filteredSections);
     }
 
     private getDatasetById (id: string): any[] {
         let retval: any[] = [];
         fs.readdirSync("./data/").forEach((filename) => {
+            // read file sync return array.
             if (id === filename) {
-                const fileContent = fs.readdirSync("./data/" + filename, "utf8");
-                let fileContentObj: any;
-                // fileContentObj = JSON.parse(fileContent).data;
-                Log.trace(test);
+                const fileContent = fs.readFileSync("./data/" + filename, "utf8");
+                retval = JSON.parse(fileContent)["data"];
             }
         });
 
-        return retval;
+        if (retval === []) {
+            throw new InsightError("Nothing in dataset");
+        } else {
+            return retval;
+        }
     }
 
     public listDatasets(): Promise<InsightDataset[]> {
@@ -87,27 +90,27 @@ export default class InsightFacade implements IInsightFacade {
                 case "NOT":
 
                 case "AND":
-
-                    let result2 = true;
+                    let resultAND = true;
                     for (let obj of filter.AND) {
-
                         if (this.isSatisfied(obj, section, id) === false) {
-                            result2 = false;
+                            resultAND = false;
                         }
                     }
-                    return result2;
+                    return resultAND;
                 case "OR":
                     let resultOR = false;
                     for (let obj of filter.OR) {
-
                         if (this.isSatisfied(obj, section, id) === true) {
                             resultOR = true;
                         }
                     }
                     return resultOR;
                 case "IS":
+                    return this.mcomparator(filter, section, id);
                 case "LT":
+                    return this.mcomparator(filter, section, id);
                 case "GT":
+                    return this.mcomparator(filter, section, id);
                 case "EQ":
                     return this.mcomparator(filter, section, id);
 
