@@ -1,9 +1,9 @@
+// eslint-disable-next-line max-lines
 import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFacade";
 import {InsightError, NotFoundError} from "./IInsightFacade";
 import * as fs from "fs";
-import {isArray} from "util";
-
+import Helper from "./Helper";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -11,6 +11,7 @@ import {isArray} from "util";
  *
  */
 export default class InsightFacade implements IInsightFacade {
+
 
     constructor() {
         Log.trace("InsightFacadeImpl::init()");
@@ -36,7 +37,6 @@ export default class InsightFacade implements IInsightFacade {
 
         // TODO check filter, options' structure, columns empty array
 
-        // get dataset by id--use fs.readFileSync
         let sections = this.getDatasetById(datasetID); // let section store dataset id
         let filteredSections = []; // applied filter sections
 
@@ -108,7 +108,7 @@ export default class InsightFacade implements IInsightFacade {
             // read file sync return array.
             if (id === filename) {
                 const fileContent = fs.readFileSync("./data/" + filename, "utf8");
-                let fileID = JSON.parse(fileContent).id;
+                let fileID = JSON.parse(fileContent).id; // REVIVER
                 if (fileID === id) {
                     retval = JSON.parse(fileContent)["data"];
                 }
@@ -140,6 +140,7 @@ export default class InsightFacade implements IInsightFacade {
 
         let operationArr = Object.keys(filter);
         let filterArr: any[] = filter[operationArr[0]];
+        let helper = new Helper();
 
         if (operationArr.length !== 1) {
             throw new InsightError("Number of filter key is not 1");
@@ -171,107 +172,19 @@ export default class InsightFacade implements IInsightFacade {
                     }
                     return resultOR;
                 case "IS"  :
-                    return this.IScomparator(filter, section, id);
+                    return helper.IScomparator(filter, section, id);
                 case "LT":
-                    return this.LTcomparator(filter, section, id);
+                    return helper.LTcomparator(filter, section, id);
                 case "GT":
-                    return this.GTcomparator(filter, section, id);
+                    return helper.GTcomparator(filter, section, id);
                 case "EQ":
-                    return this.EQcomparator(filter, section, id);
+                    return helper.EQcomparator(filter, section, id);
                 default:
                      throw new InsightError("Invalid comparator name");
 
             }
         }
     }
-    private mkeys = ["avg", "pass", "fail", "audit", "year"];
-    private skeys = ["dept", "id", "instructor", "title", "uuid"];
-
-    private LTcomparator(filter: any, section: any, id: string) {
-        let filterKey: string = "";
-        let datasetID: string = "";
-        let key: string = "";
-
-        try {
-            filterKey = Object.keys(filter.LT)[0];
-            datasetID = filterKey.split("_")[0];
-            key = filterKey.split("_")[1];
-        } catch (e) {
-            throw new InsightError("LT key number is not 1");
-        }
-        if (datasetID !== id) {
-            throw new InsightError("Cross dataset");
-        }
-        const queryValue = filter.LT[filterKey];
-        const sectionValue = section[key];
-        if (this.mkeys.indexOf(filterKey) === -1) {
-            throw new InsightError("filter  key is not a m key");
-        }
-
-        if (typeof queryValue === "number") {
-            return (sectionValue < queryValue);
-        } else {
-            throw new InsightError("compared value is not number");
-        }
-    }
-
-    private GTcomparator(filter: any, section: any, id: string) {
-        let filterKey: string = "";
-        let datasetID: string = "";
-        let key: string = "";
-
-        try {
-            filterKey = Object.keys(filter.GT)[0];
-            datasetID = filterKey.split("_")[0];
-            key = filterKey.split("_")[1];
-        } catch (e) {
-            throw new InsightError("GT key number is not 1");
-        }
-        if (datasetID !== id) {
-            throw new InsightError("Cross dataset");
-        }
-        const queryValue = filter.GT[filterKey];
-        const sectionValue = section[key];
-        if (this.mkeys.indexOf(filterKey) === -1) {
-            throw new InsightError("filter  key is not a m key");
-        }
-
-        if (typeof queryValue === "number") {
-            return (sectionValue > queryValue);
-        } else {
-            throw new InsightError("compared value is not number");
-        }
-    }
-
-    private EQcomparator(filter: any, section: any, id: string) {
-        let filterKey: string = "";
-        let datasetID: string = "";
-        let key: string = "";
-
-        try {
-            filterKey = Object.keys(filter.EQ)[0];
-            datasetID = filterKey.split("_")[0];
-            key = filterKey.split("_")[1];
-        } catch (e) {
-            throw new InsightError("EQ key number is not 1");
-        }
-        if (datasetID !== id) {
-            throw new InsightError("Cross dataset");
-        }
-        const queryValue = filter.EQ[filterKey];
-        const sectionValue = section[key];
-        if (this.mkeys.indexOf(filterKey) === -1) {
-            throw new InsightError("filter  key is not a m key");
-        }
-
-        if (typeof queryValue === "number") {
-            return (sectionValue === queryValue);
-        } else {
-            throw new InsightError("compared value is not number");
-        }
-    }
-
-    private IScomparator(filter: any, section: any, id: string) {
-        return false;
-    }
+    // private mkeys = ["avg", "pass", "fail", "audit", "year"];
+    // private skeys = ["dept", "id", "instructor", "title", "uuid"];
 }
