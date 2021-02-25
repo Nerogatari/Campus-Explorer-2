@@ -1,8 +1,9 @@
 import Log from "../Util";
-import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFacade";
+import {IInsightFacade, InsightDataset, InsightDatasetKind, ResultTooLargeError} from "./IInsightFacade";
 import {InsightError, NotFoundError} from "./IInsightFacade";
 import * as fs from "fs";
 import Helper from "./Helper";
+import * as JSZip from "jszip";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -17,7 +18,52 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-        return Promise.reject("Not implemented.");
+        let zip = new JSZip();
+        let dataToSave = [];
+        let coursesPromises: Array<Promise<any>> = [];
+        return zip.loadAsync(content, {base64: true}).then((zipObject) => {
+
+            const files = zipObject.folder("courses");
+
+            files.forEach((relativePath, file) => {
+                if (relativePath !== ".DS_Store") {
+                    coursesPromises.push(this.getSections(file)); }
+            });
+
+            Log.trace(coursesPromises);
+
+            return Promise.all(coursesPromises).then((results) => {
+                Log.trace(results);
+                return Promise.reject("not finished ye hehe");
+
+            });
+        });
+    }
+    private getSections(file: JSZip.JSZipObject): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+            let retval: object[] = [];
+            file.async("text").then((content) => {
+                try {
+                    const sections = JSON.parse(content).result;
+
+                    sections.forEach((section: { Subject: string, Course: string,
+                        Year: string,
+
+                    }) => {
+                        let sectionForDs = {
+                            dept: section.Subject.toString(),
+                            id: section.Course,
+                            year: Number(section.Year),
+                        };
+                        retval.push(sectionForDs);
+                    });
+                    resolve(retval);
+                } catch (e) {
+                    return;
+                }
+            });
+        });
     }
 
     public removeDataset(id: string): Promise<string> {
@@ -26,14 +72,13 @@ export default class InsightFacade implements IInsightFacade {
 
     public performQuery(query: any): Promise<any[]> {
         // To fix the max 50 line, I removed options = query.OPTIONS
-        let filter = query.WHERE;
-        // TODO check query missing where, missing options, more than 2 fields
-        let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
-
         if (!this.validQuery(query)) {
             return Promise.reject(new InsightError("Invalid query"));
         }
 
+        let filter = query.WHERE;
+        // TODO check query missing where, missing options, more than 2 fields
+        let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
         // TODO check filter, options' structure, columns empty array
 
         let sections = this.getDatasetById(datasetID); // let section store dataset id
@@ -73,14 +118,14 @@ export default class InsightFacade implements IInsightFacade {
             if (sortedSections.length < 5000) {
                 return Promise.resolve(sortedSections);
             } else {
-                return Promise.reject(new InsightError("length > 5000"));
+                return Promise.reject(new ResultTooLargeError("length > 5000"));
             }
         } else {
             return Promise.reject(new InsightError(("More than one filter in WHERE")));
         }
     }
 
-    private validQuery(query: any) {
+    private validQuery(query: any): boolean {
         let length: number = Object.keys(query).length;
         if (!("WHERE" in query)) {
             return false;
@@ -97,6 +142,8 @@ export default class InsightFacade implements IInsightFacade {
         let columns: any[] = query.OPTIONS["COLUMNS"];
         if (columns.length === 0) {
             return false;
+        } else {
+            return true;
         }
         // maybe check if it is array?
     }
@@ -127,7 +174,7 @@ export default class InsightFacade implements IInsightFacade {
 
     private performFilter(filter: object, sections: object[], id: string): object[] {
 
-        let retval = sections.filter((section) => {
+        let retval = Object.values(sections).filter((section) => {
             return this.isSatisfied(filter, section, id);
         });
 
@@ -136,13 +183,13 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     private isSatisfied(filter: any, section: any, id: string): boolean {
-
-        let operationArr = Object.keys(filter);
-        let filterArr: any[] = filter[operationArr[0]];
         let helper = new Helper();
-
-        if (operationArr.length !== 1) {
-            throw new InsightError("Number of filter key is not 1");
+        let operationArr: any[] = Object.keys(filter);
+        let filterArr: any[] = filter[operationArr[0]];
+        if (operationArr.length === 0) {
+            return true;
+        } else if (operationArr.length > 1) {
+            throw new InsightError("Number of filter key is greater than 1");
         } else {
             switch (operationArr[0]) {
                 case "NOT":
