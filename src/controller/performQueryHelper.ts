@@ -134,21 +134,21 @@ export default class PerformQueryHelper {
         }
 
     }
-    // public Sort(section: any, orderKey: any) {
-    //     let Sort: any[] = [];
-    //     if (!orderKey === null) {
-    //         if (typeof(orderKey) === "string") {Sort.sort((obj1, obj2) => {
-    //             if (obj1[orderKey] > obj2[orderKey]) {
-    //                 return 1;
-    //             }
-    //             if (obj1[orderKey] < obj2[orderKey]) {
-    //                 return -1;
-    //             }
-    //             return 0;
-    //         });
-    //         }
-    //     }
-    //     return Sort;
-    // }
+    public Sort(section: any, orderKey: any) {
+        let Sort: any[] = [];
+        if (!orderKey === null) {
+            if (typeof(orderKey) === "string") {Sort.sort((obj1, obj2) => {
+                if (obj1[orderKey] > obj2[orderKey]) {
+                    return 1;
+                }
+                if (obj1[orderKey] < obj2[orderKey]) {
+                    return -1;
+                }
+                return 0;
+            });
+            }
+        }
+        return Sort;
+    }
 }
 
