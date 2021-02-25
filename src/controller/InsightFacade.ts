@@ -80,7 +80,7 @@ export default class InsightFacade implements IInsightFacade {
         }
         for (let i = 0; i < this.addedMapsArr.length; i++) {
             if (this.addedMapsArr[i].id === id) {
-                this.addedMapsArr[i].splice(i, 1);
+                this.addedMapsArr.splice(i, 1);
                 let bool = this.existingDatasetID(id);
                 removedId = id;
             }
