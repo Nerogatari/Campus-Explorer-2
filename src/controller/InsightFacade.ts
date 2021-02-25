@@ -6,17 +6,14 @@ import { strict, throws } from "assert";
 import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
 // import * as fse from "fs-extra";
 export default class InsightFacade implements IInsightFacade {
-    // private addedMap: Map<string, string[]>;
     private addedMapsArr: any[];
     constructor() {
-        // this.addedMap = this.loadDiskDatasets();
-        // this.addedMap = new Map();
         this.addedMapsArr = [];
-        // this.loadDiskDatasets();
+        this.loadDiskDatasets();
         Log.trace("InsightFacadeImpl::init()");
     }
-
-    // }  https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
+    // https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
+    // https://stuk.github.io/jszip/documentation/examples.html
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
         let newZip = new JSZip();
         let dataSetArray: string[] = [];
@@ -30,7 +27,7 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
-        } // this.loadDiskDatasets();
+        }
         // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
         return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
             let promisesArr: Array<Promise<string>> = [];
@@ -139,35 +136,29 @@ export default class InsightFacade implements IInsightFacade {
         });
         return bool;
     }
-    // https://stackoverflow.com/questions/10049557/
-    // reading-all-files-in-a-directory-store-them-in-objects-and-send-the-object
+    // https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
     private loadDiskDatasets = () => {
-        // let resMap = new Map();
-        // function reviver(key: any, value: any) {
-        //     if (typeof value === "object" && value !== null) {
-        //       if (value.dataType === "Map") {
-        //         return new Map(value.value);
-        //       }
-        //     }
-        //     return value;
-        //   }
         readdir("./data/", (err: any, filenames: any)  => {
             if (err) {
                 Log.info("Failed directory read");
                 return;
             }
-            filenames.forEach(function (filename: any) {
-                let data = readlinkSync(filename);
+            filenames.forEach( (filename: any) => {
+                if (filename === ".DS_Store") {
+                    return;
+                }
+                let data = JSON.parse(readFileSync("./data/" + filename).toString());
+                if (this.existingDatasetID(data.id) === true) {
+                    Log.info("Skipped loading id:" + data.id + ", due to already existing id");
+                    return;
+                }
                 this.addedMapsArr.push(data);
-                // let name = filename.name.replace("courses/", "");
-                // const newMapValue = JSON.parse(data, this.reviver);
-                // resMap.set(name, newMapValue);
             });
         });
     }
+    // https://stackoverflow.com/questions/54905976/how-do-i-filter-keys-from-json-in-node-js
     // https://stackoverflow.com/questions/20059995/how-to-create-an-object-from-an-array-of-key-value-pairs/43682482
     private parseCourseData(id: string, content: string): any[] {
-        // Object.fromEntries = arr => Object.assign({}, ...Array.from(arr, ([k, v]) => ({[k]: v}) ));
         // how to check if all course keys needed are in the json, length?
         const courseKeys = [
             "Subject", // CPSC
@@ -182,7 +173,6 @@ export default class InsightFacade implements IInsightFacade {
             "Avg",
             "id"
         ];
-        // what to do with result/rank? do we keep it?
         let jsonObj = JSON.parse(content);
         let newYearKey = "";
         let newJSONArr: any = [];
@@ -195,9 +185,7 @@ export default class InsightFacade implements IInsightFacade {
             }
             Object.keys(ele).forEach((key) => {
                 if (courseKeys.indexOf(key) !== -1) {
-                    // Log.info(key);
                     if (key === "Section") {
-                        Log.info(ele[key]);
                         if (ele[key] === "overall") {
                             sectionOverall = true;
                         }
@@ -253,8 +241,9 @@ export default class InsightFacade implements IInsightFacade {
         }
         return id + "_" + newKey;
     }
-    // what happens if string can't be converted to num -> insight error?
+    // what happens if string can't be converted to num -> insight error? TODO, TOASK
     private enforceTypes(key: string, val: any): any {
+        // try catch and skip erroneous converts
         let newVal: any;
         switch (key) {
             case "Avg":
@@ -275,7 +264,7 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     private validateSections(data: any, keys: string[]): boolean {
-        // has all needed categories
+        // has all needed categories TODO TEST
         let bool: boolean = true;
         for (const key of keys) {
             if (!data.hasOwnProperty(key)) {
