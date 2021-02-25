@@ -1,0 +1,19 @@
+{
+    "title": "dept and average  with empty value for id",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_id": ""
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": []
+}

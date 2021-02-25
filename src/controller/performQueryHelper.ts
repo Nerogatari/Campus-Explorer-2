@@ -22,10 +22,13 @@ export default class PerformQueryHelper {
         }
         const queryValue = filter.LT[filterKey];
         const sectionValue = section[key];
+
         if (this.mkeys.indexOf(key) === -1) {
+            if (this.skeys.indexOf(key) === -1) {
+                throw new InsightError("invalid key type");
+            }
             throw new InsightError("filter  key is not a m key");
         }
-
         if (typeof queryValue === "number") {
             return (sectionValue < queryValue);
         } else {
@@ -51,6 +54,9 @@ export default class PerformQueryHelper {
         const queryValue = filter.GT[filterKey];
         const sectionValue = section[key];
         if (this.mkeys.indexOf(key) === -1) {
+            if (this.skeys.indexOf(key) === -1) {
+                throw new InsightError("invalid key type");
+            }
             throw new InsightError("filter  key is not a m key");
         }
 
@@ -79,6 +85,9 @@ export default class PerformQueryHelper {
         const queryValue = filter.EQ[filterKey];
         const sectionValue = section[key];
         if (this.mkeys.indexOf(key) === -1) {
+            if (this.skeys.indexOf(key) === -1) {
+                throw new InsightError("invalid key type");
+            }
             throw new InsightError("filter key is not a m key");
         }
 
@@ -107,6 +116,9 @@ export default class PerformQueryHelper {
         const queryValue = filter.IS[filterKey];
         const sectionValue = section[key];
         if (this.skeys.indexOf(key) === -1) {
+            if (this.mkeys.indexOf(key) === -1) {
+                throw new InsightError("invalid key type");
+            }
             throw new InsightError("filter key is not an s key");
         }
 
@@ -114,6 +126,9 @@ export default class PerformQueryHelper {
         if (typeof queryValue === "string") {
             let queryLength = queryValue.length;
             let sectLength = sectionValue.length;
+            if (sectionValue.substring(1, sectLength - 1).includes("*")) {
+                throw new InsightError("* in the middle");
+            }
             if (sectionValue === "*" || sectionValue === "**") {
                 return true;
             } else if (sectionValue.indexOf("*") === -1) {
@@ -134,21 +149,22 @@ export default class PerformQueryHelper {
         }
 
     }
-    public Sort(section: any, orderKey: any) {
-        let Sort: any[] = [];
-        if (!orderKey === null) {
-            if (typeof(orderKey) === "string") {Sort.sort((obj1, obj2) => {
-                if (obj1[orderKey] > obj2[orderKey]) {
-                    return 1;
-                }
-                if (obj1[orderKey] < obj2[orderKey]) {
-                    return -1;
-                }
-                return 0;
-            });
-            }
-        }
-        return Sort;
-    }
+    // public Sort(section: any, orderKey: any) {
+    //     let Sort: any[] = [];
+    //     if (!orderKey === null) {
+    //         if (typeof(orderKey) === "string") {Sort.sort((obj1, obj2) => {
+    //             if (obj1[orderKey] > obj2[orderKey]) {
+    //                 return 1;
+    //             }
+    //             if (obj1[orderKey] < obj2[orderKey]) {
+    //                 return -1;
+    //             }
+    //             return 0;
+    //         });
+    //         }
+    //     }
+    //     return Sort;
+    // }
 }
+
 

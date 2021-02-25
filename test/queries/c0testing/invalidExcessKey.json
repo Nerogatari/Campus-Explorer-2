@@ -1,0 +1,20 @@
+{
+    "title": "Excess keys in query.",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_id": "140"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        },
+        "EXTRA": 2
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

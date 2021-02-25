@@ -1,0 +1,68 @@
+{
+    "title": "courses with instructor mike",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_instructor": "*mike"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "lled",
+            "courses_avg": 57.79
+        },
+        {
+            "courses_dept": "lled",
+            "courses_avg": 59.43
+        },
+        {
+            "courses_dept": "lled",
+            "courses_avg": 59.53
+        },
+        {
+            "courses_dept": "lled",
+            "courses_avg": 60.28
+        },
+        {
+            "courses_dept": "lled",
+            "courses_avg": 65.94
+        },
+        {
+            "courses_dept": "lled",
+            "courses_avg": 68.28
+        },
+        {
+            "courses_dept": "comm",
+            "courses_avg": 78.55
+        },
+        {
+            "courses_dept": "bams",
+            "courses_avg": 81.3
+        },
+        {
+            "courses_dept": "civl",
+            "courses_avg": 82.27
+        },
+        {
+            "courses_dept": "baen",
+            "courses_avg": 82.4
+        },
+        {
+            "courses_dept": "apsc",
+            "courses_avg": 83
+        },
+        {
+            "courses_dept": "babs",
+            "courses_avg": 84.2
+        }
+    ]
+}

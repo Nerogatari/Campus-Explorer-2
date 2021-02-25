@@ -1,0 +1,172 @@
+{
+    "title": "course title with math",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_title": "math*"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.71
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.96
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.96
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 69.63
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 69.63
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 73.33
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.22
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.22
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.26
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 78.18
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 79.17
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 79.17
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.7
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.7
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.78
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 82.93
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 82.93
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 83.47
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 83.85
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.82
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.82
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 85.22
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 85.49
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 85.53
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 85.67
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 85.92
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 87.85
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 87.85
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 90
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 90
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 91.2
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 91.2
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 91.8
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 91.8
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 92.4
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 92.4
+        }
+    ]
+}

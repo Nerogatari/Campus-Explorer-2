@@ -1,0 +1,44 @@
+{
+    "title": "Select dept, year, ave with average < 60",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "EQ": {
+                        "courses_avg": 60
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_pass": 10
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_fail": 10
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_audit": 0
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_year": 2012
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_year",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": []
+}

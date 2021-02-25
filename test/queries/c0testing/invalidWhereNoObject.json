@@ -1,0 +1,16 @@
+{
+    "title": "WHERE must be object",
+    "query": {
+        "WHERE": 27,
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg",
+            "EXTRA": "nero"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

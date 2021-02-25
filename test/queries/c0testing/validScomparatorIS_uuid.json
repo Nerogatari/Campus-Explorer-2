@@ -1,0 +1,24 @@
+{
+    "title": "dept and avg of courses with uuid 133",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_uuid": "133"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "musc",
+            "courses_avg": 69.81
+        }
+    ]
+}

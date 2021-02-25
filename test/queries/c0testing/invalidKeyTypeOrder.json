@@ -1,0 +1,19 @@
+{
+    "title": "ORDER key must be in COLUMNS",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_avg": 90
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_nero"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

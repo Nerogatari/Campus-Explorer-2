@@ -1,0 +1,8004 @@
+{
+    "title": "dept and avg with department name a on it",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "*a*"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "asia",
+            "courses_avg": 57.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 61.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 62.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.09
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.09
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.83
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.83
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 64.99
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 65.29
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 65.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 65.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 65.78
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 65.78
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 65.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.75
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.75
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.82
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 66.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 67.16
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.17
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.17
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.26
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.26
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 67.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 67.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.42
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 67.43
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 67.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.49
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.49
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.81
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.81
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.92
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 67.92
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.09
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.09
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 68.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.19
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.19
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.7
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 68.72
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.74
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 68.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 68.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 68.86
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.89
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.89
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.95
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.95
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.96
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 68.96
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.06
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.13
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.21
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.23
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.26
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.45
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.45
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.45
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.45
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.54
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.54
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.62
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 69.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.89
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.89
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.92
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.92
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 69.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.24
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.36
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.36
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.41
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.8
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.8
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.91
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 70.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 70.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.03
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.06
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.06
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.1
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.11
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.16
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.16
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.23
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.25
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.25
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.26
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.26
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.28
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.32
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.38
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.64
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.66
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.66
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.67
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.71
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.71
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.75
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.81
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.81
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.81
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.87
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.87
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.9
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.9
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.91
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.91
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 71.92
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 71.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 71.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.02
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.02
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.12
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.22
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.22
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.23
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.23
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.26
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.26
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.34
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.35
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.39
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.39
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.55
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.55
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 72.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.57
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.62
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.62
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.62
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.63
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.63
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.65
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.65
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.83
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.84
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.84
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.89
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.92
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.96
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 72.96
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.97
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 72.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.07
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.16
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.16
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.17
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.17
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.23
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.23
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.32
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.39
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.39
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.53
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.55
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.64
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.68
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.68
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.68
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.69
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.69
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.74
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.79
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.82
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.84
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.84
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 73.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 73.98
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.01
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.03
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.03
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.05
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.08
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.1
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.17
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.17
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.2
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.22
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.24
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.24
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.27
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.31
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.35
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.35
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.35
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.39
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.39
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.41
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.41
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.42
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.43
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.43
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.45
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.51
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.51
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.55
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 74.57
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 74.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.57
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 74.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.58
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.61
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.66
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.66
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.67
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.67
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.67
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.7
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.71
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.72
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.72
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.9
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.94
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 74.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 74.98
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.02
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.02
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.02
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.02
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.06
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.07
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.1
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.11
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.14
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.17
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.19
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.19
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.2
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.25
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 75.27
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 75.27
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.3
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.31
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.32
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.43
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.43
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.45
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.45
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.55
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.57
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.58
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.62
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.62
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.63
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.63
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.63
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.66
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.66
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.67
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 75.7
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 75.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.7
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.79
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 75.8
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.86
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.86
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.87
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.92
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.95
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.95
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.95
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.95
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 75.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 75.98
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.03
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.03
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.04
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.04
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.05
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.06
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.07
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.07
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.07
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.07
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.07
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.11
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.11
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.11
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.13
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.14
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76.14
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.15
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76.15
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.19
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.22
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.22
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.24
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.29
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.29
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.34
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.36
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.38
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.38
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.39
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.41
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.45
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.51
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.51
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.53
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.54
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.55
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 76.55
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.55
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.57
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.58
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.59
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.59
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76.6
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 76.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.61
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 76.64
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 76.64
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.69
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 76.7
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 76.7
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 76.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.8
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.8
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.84
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.84
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.87
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.9
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.91
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.91
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.95
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 76.96
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.96
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.96
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.98
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 76.98
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.04
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.1
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.1
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.11
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.13
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.13
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.16
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.17
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.17
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.18
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.19
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.19
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.22
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.23
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.23
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.23
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.25
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.25
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.27
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.28
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.31
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.31
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.34
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.34
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.34
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.35
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.36
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.36
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.38
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.42
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.42
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.42
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.42
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.51
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.52
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.53
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.56
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 77.57
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.6
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.62
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 77.62
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.62
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.62
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.65
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.65
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.66
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.71
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.71
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.71
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.77
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 77.77
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.79
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 77.79
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 77.79
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 77.81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.84
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.86
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.87
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.87
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.92
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 77.92
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 77.95
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.08
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.09
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 78.09
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 78.09
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.1
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.12
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.12
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.12
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 78.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.16
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.16
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.17
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.17
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.19
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.2
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.2
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.22
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.24
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.24
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.28
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.29
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.29
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.33
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.36
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.39
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.4
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 78.4
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 78.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.41
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.41
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.43
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.43
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 78.43
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.49
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.5
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.51
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.53
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.53
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.53
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.55
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.57
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.57
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.58
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.59
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.66
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 78.67
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 78.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.69
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.7
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.74
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.75
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.75
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.76
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.77
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.79
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.8
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.84
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.84
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.86
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.88
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 78.88
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.89
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.89
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.9
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.9
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.9
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.91
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.91
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.94
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.94
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.95
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 78.96
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.97
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 78.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 78.97
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.03
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.03
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.05
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.1
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.11
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.11
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.13
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.14
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.19
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.19
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.22
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 79.23
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.23
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.24
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.25
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.26
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.27
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.27
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.27
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.28
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.28
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.3
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.31
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.35
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.35
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.35
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.35
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.37
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.38
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.42
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.42
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.42
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.42
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.43
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.44
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.44
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.5
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 79.51
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 79.51
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.52
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.52
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.54
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.56
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.58
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.58
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.58
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.62
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.62
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.62
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.63
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.63
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 79.65
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.65
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.66
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.66
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.67
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.67
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.67
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.68
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.71
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.72
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.72
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.76
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.79
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 79.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.79
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.8
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.8
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 79.82
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.87
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.87
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.88
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.9
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.92
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.92
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.93
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 79.93
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.94
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 79.94
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.96
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 79.98
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.02
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.02
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.03
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.03
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.03
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.05
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.06
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.06
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.09
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.09
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.11
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.12
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.12
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.13
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.13
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.15
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.16
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.16
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.18
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.2
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.21
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.22
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.24
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.25
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.26
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.3
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.32
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.32
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.33
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.33
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 80.33
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 80.33
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.34
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.34
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.34
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.36
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.36
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.36
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.36
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.38
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.39
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.39
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.39
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.39
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.39
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.39
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 80.4
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 80.4
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.4
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.41
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.42
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.43
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.44
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.46
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.46
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.46
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.46
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.47
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.47
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.47
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.47
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.48
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.5
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.51
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.53
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.55
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.55
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.55
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.55
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.57
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.57
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.57
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.57
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.58
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.58
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 80.58
+        },
+        {
+            "courses_dept": "rgla",
+            "courses_avg": 80.58
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.59
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.59
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.61
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.61
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.63
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.63
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.64
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.64
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.64
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.65
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.65
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.67
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.67
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.67
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.67
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.69
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.69
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.69
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.69
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.69
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.69
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.7
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.7
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.71
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.71
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.71
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.71
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.71
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.72
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.72
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.73
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.75
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.77
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.79
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.79
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.79
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.79
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.79
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.8
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.8
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.8
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.81
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.82
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.84
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.85
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.85
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 80.85
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 80.86
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.86
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.86
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 80.86
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.86
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.89
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.9
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.91
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.92
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.93
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.93
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.93
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.95
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.95
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.96
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.98
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 80.98
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.06
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.06
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.07
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.07
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.08
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.09
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.09
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.1
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.1
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.13
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.13
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.13
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.14
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.14
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.14
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.19
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.2
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.2
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.2
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.2
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.21
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.22
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.22
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.26
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.26
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.26
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.26
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.28
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.28
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.28
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.28
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.28
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.29
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.31
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.31
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.32
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.33
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.35
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.36
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.37
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.37
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.41
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.42
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.42
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.42
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.43
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.43
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.43
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.43
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.43
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.45
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.45
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.46
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.46
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.47
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.47
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.48
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.5
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.51
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.51
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.51
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.54
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.54
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.56
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.56
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.57
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.58
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.6
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.6
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.6
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.6
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.61
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.61
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.61
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.63
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.63
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.63
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.65
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.66
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.68
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.72
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.72
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.73
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.73
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.73
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.73
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.77
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.77
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.77
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.77
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.79
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.79
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.79
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.79
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.8
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.8
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.8
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.8
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.8
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 81.8
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.81
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.81
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.81
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.81
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.84
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.88
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.88
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.89
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.89
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 81.9
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 81.9
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.9
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.9
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.91
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.91
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.91
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.91
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.93
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 81.96
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.96
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 81.96
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 81.96
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.02
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.02
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.03
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.05
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.05
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.07
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.07
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.08
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.08
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.1
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.11
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.11
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.12
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.13
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.13
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.15
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.15
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.15
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.16
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.16
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.16
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.16
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.17
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.17
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.17
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.18
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.18
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.19
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.2
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.24
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.24
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.24
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.25
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.25
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.25
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.26
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 82.29
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 82.29
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.29
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.29
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.31
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.31
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.32
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.32
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 82.32
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.33
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.34
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.34
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.34
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.34
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.34
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.38
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.38
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.38
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.38
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.4
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.4
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.41
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.42
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.42
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.43
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.43
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.43
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.45
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.46
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.46
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.48
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.52
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.52
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.52
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.52
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.55
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.57
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.58
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.58
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.58
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.58
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.59
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.59
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.6
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.67
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.67
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.68
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.7
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.71
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.71
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.76
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.79
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.79
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.85
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.85
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.85
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.86
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.88
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.88
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 82.9
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 82.92
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.93
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 82.96
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 82.98
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.02
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.03
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.03
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 83.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 83.04
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.04
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.04
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 83.05
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.05
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.05
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.05
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.1
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.1
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.11
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.12
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.12
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.14
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.14
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.14
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.14
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.15
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.17
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.18
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.18
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.19
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.19
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.19
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.19
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 83.2
+        },
+        {
+            "courses_dept": "bala",
+            "courses_avg": 83.2
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.2
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.21
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.21
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.22
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.22
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.25
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.26
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.27
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.27
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.3
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.3
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.3
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.31
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.31
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.32
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.33
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.35
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.36
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.36
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.36
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.37
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.37
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.38
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.38
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.41
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 83.43
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 83.43
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.44
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.44
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.46
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.46
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.46
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.47
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.47
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.51
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.53
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.53
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.54
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.56
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.6
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.6
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.65
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.66
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.66
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.67
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.67
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 83.67
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.69
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.69
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.69
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.69
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.69
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.69
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.71
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.71
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.73
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.74
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.74
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.74
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 83.83
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 83.83
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.84
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.88
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.88
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.88
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.88
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.88
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.88
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.9
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.94
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 83.94
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 83.94
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.97
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 83.98
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 84
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 84
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.03
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.03
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.03
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.11
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.11
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.12
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.12
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.13
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.13
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 84.14
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 84.14
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 84.18
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.21
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.21
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.22
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.22
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 84.29
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.31
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 84.33
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.34
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.35
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.38
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.39
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.39
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.4
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.4
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.4
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.4
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.44
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.45
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.45
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.46
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84.46
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84.46
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.48
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84.5
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84.56
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 84.56
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.59
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.59
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.65
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.67
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.67
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.68
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.68
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.69
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.7
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.7
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.71
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.71
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.73
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.74
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.8
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.8
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.81
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.81
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.82
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.82
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.82
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.82
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 84.83
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 84.83
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.85
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.85
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.85
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.85
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 84.86
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 84.86
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.91
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.91
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 84.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.94
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.94
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.96
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 84.96
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.97
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 84.97
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.05
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.05
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.15
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.24
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.24
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 85.3
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 85.3
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.33
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.33
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.35
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.35
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.38
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.38
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.38
+        },
+        {
+            "courses_dept": "bapa",
+            "courses_avg": 85.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.4
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.4
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.41
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 85.49
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 85.49
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.5
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.5
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.53
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.53
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.73
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.73
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.76
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 85.76
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 85.77
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 85.79
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 85.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 85.83
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.83
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.83
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.84
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.84
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 85.9
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.97
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 85.97
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 86.05
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 86.05
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 86.11
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 86.11
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.15
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.18
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.18
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.18
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 86.18
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.21
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.21
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 86.24
+        },
+        {
+            "courses_dept": "asia",
+            "courses_avg": 86.24
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.25
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.27
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.3
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.3
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.31
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.31
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.33
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.33
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.33
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.38
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.38
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.4
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.4
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.46
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.46
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.53
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 86.53
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.54
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.57
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.57
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.59
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.59
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.6
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.62
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.62
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.73
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.73
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.8
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 86.82
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.86
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 86.86
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.92
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 86.92
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 87.08
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 87.08
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.17
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.21
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.21
+        },
+        {
+            "courses_dept": "ba",
+            "courses_avg": 87.24
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.4
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.4
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 87.51
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 87.51
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.55
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.55
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.6
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.6
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 87.69
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 87.69
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 87.7
+        },
+        {
+            "courses_dept": "bama",
+            "courses_avg": 87.7
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.75
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.75
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.78
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.83
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 87.83
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.96
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 87.96
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.33
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.45
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.45
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 88.47
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 88.47
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.5
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 88.67
+        },
+        {
+            "courses_dept": "visa",
+            "courses_avg": 89
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 89
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 89
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 89.05
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 89.05
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 89.76
+        },
+        {
+            "courses_dept": "spha",
+            "courses_avg": 89.76
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 90.71
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 90.71
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 91
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 91
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 92
+        },
+        {
+            "courses_dept": "bota",
+            "courses_avg": 92
+        }
+    ]
+}

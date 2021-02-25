@@ -1,0 +1,23 @@
+{
+    "title": "OR must be object.",
+    "query": {
+        "WHERE": {
+            "OR": [
+                "nero",
+                "is",
+                "tired",
+                123
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_id",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

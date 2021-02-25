@@ -1,0 +1,19 @@
+{
+    "title": "dept and avg with instructor Karen",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_instructor": "Karen"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": []
+}

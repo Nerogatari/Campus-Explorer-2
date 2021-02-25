@@ -189,7 +189,8 @@ export default class InsightFacade implements IInsightFacade {
         let operationArr: any[] = Object.keys(filter);
         let filterArr: any[] = filter[operationArr[0]];
         if (operationArr.length === 0) {
-            return true;
+            // return true;
+            throw new InsightError("Number of filter key should  not be 0");
         } else if (operationArr.length > 1) {
             throw new InsightError("Number of filter key is greater than 1");
         } else {
@@ -198,7 +199,7 @@ export default class InsightFacade implements IInsightFacade {
                     return !this.isSatisfied(section, filter.NOT, id);
 
                 case "AND": // TODO: check empty array
-                    if (filterArr.length === 0) {
+                    if (filterArr.length === 0 || filter.AND === 0)  {
                         throw new InsightError("empty array");
                     }
                     let resultAND = true;
