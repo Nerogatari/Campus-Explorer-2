@@ -1,6 +1,7 @@
 import {InsightError} from "./IInsightFacade";
+import {isString} from "util";
 
-export default class Helper {
+export default class PerformQueryHelper {
     private mkeys = ["avg", "pass", "fail", "audit", "year"];
     private skeys = ["dept", "id", "instructor", "title", "uuid"];
 
@@ -21,7 +22,7 @@ export default class Helper {
         }
         const queryValue = filter.LT[filterKey];
         const sectionValue = section[key];
-        if (this.mkeys.indexOf(filterKey) === -1) {
+        if (this.mkeys.indexOf(key) === -1) {
             throw new InsightError("filter  key is not a m key");
         }
 
@@ -49,7 +50,7 @@ export default class Helper {
         }
         const queryValue = filter.GT[filterKey];
         const sectionValue = section[key];
-        if (this.mkeys.indexOf(filterKey) === -1) {
+        if (this.mkeys.indexOf(key) === -1) {
             throw new InsightError("filter  key is not a m key");
         }
 
@@ -77,7 +78,7 @@ export default class Helper {
         }
         const queryValue = filter.EQ[filterKey];
         const sectionValue = section[key];
-        if (this.mkeys.indexOf(filterKey) === -1) {
+        if (this.mkeys.indexOf(key) === -1) {
             throw new InsightError("filter key is not a m key");
         }
 
@@ -94,18 +95,18 @@ export default class Helper {
         let key: string = "";
 
         try {
-            filterKey = Object.keys(filter.EQ)[0];
+            filterKey = Object.keys(filter.IS)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
         } catch (e) {
-            throw new InsightError("EQ key number is not 1");
+            throw new InsightError("IS key number is not 1");
         }
         if (datasetID !== id) {
             throw new InsightError("Cross dataset");
         }
         const queryValue = filter.IS[filterKey];
         const sectionValue = section[key];
-        if (this.skeys.indexOf(filterKey) === -1) {
+        if (this.skeys.indexOf(key) === -1) {
             throw new InsightError("filter key is not an s key");
         }
 
@@ -133,5 +134,21 @@ export default class Helper {
         }
 
     }
+    // public Sort(section: any, orderKey: any) {
+    //     let Sort: any[] = [];
+    //     if (!orderKey === null) {
+    //         if (typeof(orderKey) === "string") {Sort.sort((obj1, obj2) => {
+    //             if (obj1[orderKey] > obj2[orderKey]) {
+    //                 return 1;
+    //             }
+    //             if (obj1[orderKey] < obj2[orderKey]) {
+    //                 return -1;
+    //             }
+    //             return 0;
+    //         });
+    //         }
+    //     }
+    //     return Sort;
+    // }
 }
 
