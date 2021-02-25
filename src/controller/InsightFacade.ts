@@ -12,7 +12,7 @@ import {readdir, readFileSync, readlinkSync, writeFileSync} from 'fs-extra';
  *
  */
 export default class InsightFacade implements IInsightFacade {
-    private addedMap: Map<string, string>;
+    private addedMap: Map<string, Map<string, string>>;
 
     constructor() {
         // function reviver(key: any, value: any) {
@@ -31,20 +31,25 @@ export default class InsightFacade implements IInsightFacade {
     // }  https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
         let newZip = new JSZip();
-        let dataSetMap = new Map();
-        let fileName: string;
-        // this.parseCourseData("test");
+        let dataSetMap: Map<string, string> = new Map();
+        let fileName: string = "";
+        let addedIds: Array<string> = [];
+        // let str = this.parseCourseData("test", "tester");
+        // Log.info(str);
         // return Promise.reject(new InsightError());
         // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
-        return newZip.loadAsync(content, { base64: true }).then(function (zip: any) {
+        return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
             let promisesArr = [Promise];
             zip.folder("courses").forEach(function (relativePath: any, file: any) {
                 fileName = file.name.replace("courses/", "");
-                promisesArr.push(file.async("string"))
+                Log.info(file.name);
+                promisesArr.push(file.async("string"));
             });
             return Promise.all(promisesArr)              
                 .then((content: any) => {
-                    dataSetMap.set(fileName, content);
+                    let temp = "";
+                    temp = this.parseCourseData(id, content);
+                    dataSetMap.set(fileName, temp);
                     function replacer(key: any, value: any) {
                         if (value instanceof Map) {
                             return {
@@ -56,33 +61,21 @@ export default class InsightFacade implements IInsightFacade {
                         }
                     }
                     const str = JSON.stringify(dataSetMap, replacer);                  
-                    // (node:4405) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'addedMap' of undefined
-                    // at /Users/kevinhuang/Documents/project_team226/src/controller/InsightFacade.ts:131:26
-                    //(Use `node --trace-warnings ...` to show where the warning was created)
-                    // (node:4405) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by 
-                    // throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch().
-                    // To terminate the node process on unhandled promise rejection, use the CLI flag`--unhandled-rejections=strict`(see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 3)
-                    // but data still writes to disk??
                     writeFileSync("./data/" + id + ".txt", str);        
                     this.addedMap.set(id, dataSetMap);
-                    // Log.info(this.addedMap);
-                    // let addedIds: Array<string> = Array.from(this.addedMap.keys());
-                    // let addedIds: Array<string>;
-                    // addedIds.push(id);
-                    // let dupe = addedIds;
-                    Log.info("SUCCESS");
-                    return []; //diff between return the array vs Promise.resolve(arr)?
+                    addedIds.push(id);
+                    Log.info(addedIds);
+                    Log.info("Good push");
                 });
         }).then(() => {
             Log.info("MORE SUCCESS")
-            return ['1'];
+            return addedIds;
         })
-            .catch((err) => {
+          .catch((err) => {
                 Log.info(err);
                 Log.info("UH oH")
             return Promise.reject(new InsightError());
         })
-        // return Promise.reject(new InsightError()); //return Promise.resolve(addedIds);
     }
 
     public removeDataset(id: string): Promise<string> {
@@ -186,37 +179,37 @@ export default class InsightFacade implements IInsightFacade {
             "id"
         ]
         // what to do with result/rank? do we keep it?
-        let dummy = '{"result":[{"tier_eighty_five":1,"tier_ninety":8,"Title":"rsrch methdlgy","Section":"002","Detail":"","tier_seventy_two":0,"Other":1,"Low":89,"tier_sixty_four":0,"id":31379,"tier_sixty_eight":0,"tier_zero":0,"tier_seventy_six":0,"tier_thirty":0,"tier_fifty":0,"Professor":"","Audit":9,"tier_g_fifty":0,"tier_forty":0,"Withdrew":1,"Year":"2015","tier_twenty":0,"Stddev":2.65,"Enrolled":20,"tier_fifty_five":0,"tier_eighty":0,"tier_sixty":0,"tier_ten":0,"High":98,"Course":"504","Session":"w","Pass":"9…gy", "Section": "overall", "Detail": "", "tier_seventy_two": 0, "Other": 1, "Low": 89, "tier_sixty_four": 0, "id": 31380, "tier_sixty_eight": 0, "tier_zero": 0, "tier_seventy_six": 0, "tier_thirty": 0, "tier_fifty": 0, "Professor": "", "Audit": 9, "tier_g_fifty": 0, "tier_forty": 0, "Withdrew": 1, "Year": "2015", "tier_twenty": 0, "Stddev": 2.65, "Enrolled": 20, "tier_fifty_five": 0, "tier_eighty": 0, "tier_sixty": 0, "tier_ten": 0, "High": 98, "Course": "504", "Session": "w", "Pass": 9, "Fail": 0, "Avg": 94.44, "Campus": "ubc", "Subject": "aanb"}], "rank": 0}';
-        let obj = JSON.parse(dummy);
-        let sectionOverall = false;
+        // let dummy = '{"result":[{"tier_eighty_five":32,"tier_ninety":3,"Title":"intr sftwr eng","Section":"overall","Detail":"","tier_seventy_two":26,"Other":1,"Low":53,"tier_sixty_four":2,"id":1293,"tier_sixty_eight":14,"tier_zero":0,"tier_seventy_six":36,"tier_thirty":0,"tier_fifty":1,"Professor":"palyart-lamarche, marc","Audit":0,"tier_g_fifty":0,"tier_forty":0,"Withdrew":2,"Year":"2014","tier_twenty":0,"Stddev":6.78,"Enrolled":160,"tier_fifty_five":0,"tier_eighty":38,"tier_sixty":4,"tier_ten":0,"High":94,"Course":"310","Session":"w","Pass":156,"Fail":0,"Avg":78.69,"Campus":"ubc","Subject":"cpsc"}], "rank": 0}';
+        let jsonObj = JSON.parse(content[2]);
         let newYearKey = "";
-        let newJSON = {
-            // [key: String]: any //TOASKNEW2
-        };
-        Object.keys(obj.result[0]).forEach((key) => {
-            if (courseKeys.indexOf(key) !== -1) {
-                Log.info(key);
-                if (key == "Section") {
-                    if (obj.result[0][key] == "overall") {
-                        sectionOverall = true;
+        let newJSONArr: any = [];
+        jsonObj.result.forEach((ele: any) => {
+            let newJSON: any = {};
+            let sectionOverall: boolean = false;
+            Object.keys(ele).forEach((key) => {
+                if (courseKeys.indexOf(key) !== -1) {
+                    Log.info(key);
+                    if (key == "Section") {
+                        Log.info(ele[key]);
+                        if (ele[key] == "overall") {
+                            sectionOverall = true;
+                        }
+                        return;
                     }
-                    return;
+                    let newKey = this.convertKeysWithId(id, key);
+                    if (key == "Year") {
+                        newYearKey = newKey;
+                    }
+                    let newVal = this.enforceTypes(key, ele[key])
+                    newJSON[newKey] = ele[key];
                 }
-                //let newKey = this.convertKeysWithId(id, key);
-                // if (key == "Year") {
-                //     newYearKey = newKey;
-                // }
-                // let newVal = this.enforceTypes(key, obj.result[0][key])
-                // newJSON[key] = obj.result[0][key];
-                //Element implicitly has an 'any' type because index expression is not of type 'number'.
-            }
+                if (sectionOverall) {
+                    newJSON[newYearKey] = 1900;
+                }
+            });
+            newJSONArr.push(newJSON);
         })
-        // This condition will always return 'false' since the types 'false' and 'true' have no overlap.ts(2367)
-        // if (sectionOverall === true) {
-        //     newJSON[newYearKey] = 1900;
-        // }
-        
-        return "";
+        return newJSONArr;
     }
     convertKeysWithId(id: string, key: string): string {
         let newKey = "";
