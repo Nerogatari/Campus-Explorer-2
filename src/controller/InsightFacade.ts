@@ -2,7 +2,7 @@ import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFacade";
 import { InsightError, NotFoundError } from "./IInsightFacade";
 import * as JSZip from "jszip";
-import { strict } from "assert";
+import { strict, throws } from "assert";
 import {readdir, readFileSync, readlinkSync, writeFileSync} from "fs-extra";
 // import * as fse from "fs-extra";
 
@@ -28,6 +28,16 @@ export default class InsightFacade implements IInsightFacade {
         let dataSetArray: string[] = [];
         let fileName: string = "";
         let addedIds: string[] = [];
+        // need to check for valid json??? folder courses??
+        if (kind === InsightDatasetKind.Rooms) {
+            return Promise.reject(new InsightError("Invalid Kind"));
+        }
+        if (this.validId(id) === false) {
+            return Promise.reject(new InsightError("Invalid ID"));
+        }
+        if (this.existingDatasetID(id) === true) {
+            return Promise.reject(new InsightError("Existing ID"));
+        }
         // let str = this.parseCourseData("test", "tester");
         // Log.info(str);
         // return Promise.reject(new InsightError());
@@ -38,6 +48,9 @@ export default class InsightFacade implements IInsightFacade {
             let promisesArr = [Promise];
             zip.folder("courses").forEach(function (relativePath: any, file: any) {
                 fileName = file.name.replace("courses/", "");
+                if (fileName === ".DS_Store") {
+                    return;
+                }
                 Log.info(file.name);
                 promisesArr.push(file.async("string"));
             });
@@ -47,7 +60,7 @@ export default class InsightFacade implements IInsightFacade {
                     let tempString = ""; // how to properly get name??? Right now its all under same key.
                     // can put into array as for each and match but no guarantee of order by promise.all?
                     // Extract from naming convention in JSON but seems flawed
-                   // but whats the point of keeping the filename?? 
+                   // but whats the point of keeping the filename??
                     for (let i = 1; i < sectionData.length; i++) {
                         tempArr = this.parseCourseData(id, sectionData[i]);
                         dataSetArray.push(...tempArr);
@@ -56,23 +69,24 @@ export default class InsightFacade implements IInsightFacade {
                         // tempArr.push(tempString);
                     // dataSetMap.set(fileName, tempArr);
                     // dataSetArray = tempArr;
-                    Log.info(dataSetArray);
-                    Log.info(dataSetArray[0]);
-                    function replacer(key: any, value: any) {
-                        if (value instanceof Map) {
-                            return {
-                                dataType: "Map",
-                                value: Array.from(value.entries()),
-                            };
-                        } else {
-                            return value;
-                        }
-                    }
+                    // function replacer(key: any, value: any) {
+                    //     if (value instanceof Map) {
+                    //         return {
+                    //             dataType: "Map",
+                    //             value: Array.from(value.entries()),
+                    //         };
+                    //     } else {
+                    //         return value;
+                    //     }
+                    // }
                     // const str = JSON.stringify(dataSetMap, replacer);
+                    if (dataSetArray.length === 0) {
+                        return Promise.reject(new InsightError("No valid sections in file"));
+                    }
                     let newObj: any = {};
-                    newObj['id'] = id;
-                    newObj['kind'] = kind;
-                    newObj['data'] = dataSetArray;
+                    newObj["id"] = id;
+                    newObj["kind"] = kind;
+                    newObj["data"] = dataSetArray;
                     const str = JSON.stringify(newObj);
                     writeFileSync("./data/" + id + ".txt", str);
                     // this.addedMap.set(id, dataSetArray);
@@ -80,6 +94,7 @@ export default class InsightFacade implements IInsightFacade {
                     this.addedMapsArr.push(newObj);
                     Log.info(addedIds);
                     Log.info("Good push");
+                    // return something?
                 });
         }).then(() => {
             Log.info("MORE SUCCESS");
@@ -88,7 +103,7 @@ export default class InsightFacade implements IInsightFacade {
             .catch((err) => {
                 Log.info(err);
                 Log.info("UH oH");
-                return Promise.reject(new InsightError());
+                return Promise.reject(new InsightError(err));
             });
     }
 
@@ -140,13 +155,33 @@ export default class InsightFacade implements IInsightFacade {
 
     private validId(id: string): boolean {
         // https://stackoverflow.com/questions/2031085/how-can-i-check-if-string-contains-characters-whitespace-not-just-whitespace/6610847
-        if ((/\S/.test(id)) || (id.includes("_"))) {
-            // (this.addedMap.has(id)
+        if ((id === null) || (id === undefined) || (!/\S/.test(id)) || (id.includes("_"))) {
             return false;
             // string is not empty and not just whitespace, need to add more checks here
         } else {
             return true;
         }
+    }
+
+    private existingDatasetID(id: string): boolean {
+        // let test = [];
+        // let obj1 = {
+        //     id: "courses",
+        //     kind: "courses",
+        //     data: "['hello']"
+        // }
+        // let obj2 = {
+        //     id: "kevin",
+        //     kind: "courses",
+        //     data: "['not today']"
+        // }
+        // test.push(obj1);
+        // test.push(obj2);
+        let bool: boolean = false;
+        bool = this.addedMapsArr.some((ele) => {
+            return ele.id === id;
+        });
+        return bool;
     }
     // https://stackoverflow.com/questions/10049557/reading-all-files-in-a-directory-store-them-in-objects-and-send-the-object
     private loadDiskDatasets() {
@@ -284,12 +319,17 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     private validateSections(data: any, keys: string[]): boolean {
+        // has all needed categories
         let bool: boolean = true;
         for (let i = 0; i < keys.length; i++) {
             if (!data.hasOwnProperty(keys[i])) {
-                return bool = false;    
+                return bool = false;
             }
         }
         return bool;
-    } 
+    }
+
+    // private checkDataInFile(dataArr: string[]): boolean {
+    //     if (dataArr.length === 0)
+    // }
 }
