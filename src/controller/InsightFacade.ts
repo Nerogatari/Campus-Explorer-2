@@ -12,25 +12,28 @@ import {readdir, readFileSync, readlinkSync, writeFileSync} from "fs-extra";
  *
  */
 export default class InsightFacade implements IInsightFacade {
-    private addedMap: Map<string, Map<string, string[]>>;
-
+    // private addedMap: Map<string, string[]>;
+    private addedMapsArr: any[];
     constructor() {
         // this.addedMap = this.loadDiskDatasets();
-        this.addedMap = new Map();
+        // this.addedMap = new Map();
+        this.addedMapsArr = [];
         Log.trace("InsightFacadeImpl::init()");
     }
 
     // }  https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
         let newZip = new JSZip();
-        let dataSetMap: Map<string, string[]> = new Map();
+        // let dataSetMap: Map<string, string[]> = new Map();
+        let dataSetArray: string[] = [];
         let fileName: string = "";
         let addedIds: string[] = [];
         // let str = this.parseCourseData("test", "tester");
         // Log.info(str);
         // return Promise.reject(new InsightError());
         // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
-        // TODO figure out naming for keys, 2.do more validations for id/file format, 3.store kind 4.Skip sections w/ missing cats (done)
+        // TODO figure out naming for keys TOASK1, 2.do more validations for id/file format, 3.store kind TOASK2 4.Skip sections w/ missing cats (done)
+        // ask about what is all that extra stuff that comes in the promiseAll with some courses TOASK1
         return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
             let promisesArr = [Promise];
             zip.folder("courses").forEach(function (relativePath: any, file: any) {
@@ -44,13 +47,17 @@ export default class InsightFacade implements IInsightFacade {
                     let tempString = ""; // how to properly get name??? Right now its all under same key.
                     // can put into array as for each and match but no guarantee of order by promise.all?
                     // Extract from naming convention in JSON but seems flawed
-                    for (let i = 1; i < content.length; i++) {
-                        tempString = this.parseCourseData(id, sectionData[i]);
-                        tempArr.push(tempString);
+                   // but whats the point of keeping the filename?? 
+                    for (let i = 1; i < sectionData.length; i++) {
+                        tempArr = this.parseCourseData(id, sectionData[i]);
+                        dataSetArray.push(...tempArr);
                     }
                         // tempString = this.parseCourseData(id, sectionData[2]);
                         // tempArr.push(tempString);
-                    dataSetMap.set(fileName, tempArr);
+                    // dataSetMap.set(fileName, tempArr);
+                    // dataSetArray = tempArr;
+                    Log.info(dataSetArray);
+                    Log.info(dataSetArray[0]);
                     function replacer(key: any, value: any) {
                         if (value instanceof Map) {
                             return {
@@ -61,10 +68,16 @@ export default class InsightFacade implements IInsightFacade {
                             return value;
                         }
                     }
-                    const str = JSON.stringify(dataSetMap, replacer);
+                    // const str = JSON.stringify(dataSetMap, replacer);
+                    let newObj: any = {};
+                    newObj['id'] = id;
+                    newObj['kind'] = kind;
+                    newObj['data'] = dataSetArray;
+                    const str = JSON.stringify(newObj);
                     writeFileSync("./data/" + id + ".txt", str);
-                    this.addedMap.set(id, dataSetMap);
-                    addedIds.push(id);
+                    // this.addedMap.set(id, dataSetArray);
+                    // let addedIds: string[] = Array.from(this.addedMap.keys());
+                    this.addedMapsArr.push(newObj);
                     Log.info(addedIds);
                     Log.info("Good push");
                 });
@@ -154,14 +167,14 @@ export default class InsightFacade implements IInsightFacade {
             filenames.forEach(function (filename: any) {
                 let data = readlinkSync(filename);
                 let name = filename.name.replace("courses/", "");
-                const newMapValue = JSON.parse(data, this.reviver());
+                const newMapValue = JSON.parse(data, this.reviver);
                 resMap.set(name, newMapValue);
             });
         });
         return resMap;
     }
     // https://stackoverflow.com/questions/20059995/how-to-create-an-object-from-an-array-of-key-value-pairs/43682482
-    private parseCourseData(id: string, content: string): string {
+    private parseCourseData(id: string, content: string): any[] {
         // Object.fromEntries = arr => Object.assign({}, ...Array.from(arr, ([k, v]) => ({[k]: v}) ));
         // how to check if all course keys needed are in the json, length?
         const courseKeys = [
@@ -191,7 +204,7 @@ export default class InsightFacade implements IInsightFacade {
             }
             Object.keys(ele).forEach((key) => {
                 if (courseKeys.indexOf(key) !== -1) {
-                    Log.info(key);
+                    // Log.info(key);
                     if (key === "Section") {
                         Log.info(ele[key]);
                         if (ele[key] === "overall") {
@@ -206,10 +219,10 @@ export default class InsightFacade implements IInsightFacade {
                     let newVal = this.enforceTypes(key, ele[key]);
                     newJSON[newKey] = newVal;
                 }
-                if (sectionOverall) {
-                    newJSON[newYearKey] = 1900;
-                }
             });
+            if (sectionOverall) {
+                newJSON[newYearKey] = 1900;
+            }
             newJSONArr.push(newJSON);
         });
         return newJSONArr;
