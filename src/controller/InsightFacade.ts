@@ -30,7 +30,7 @@ export default class InsightFacade implements IInsightFacade {
         // Log.info(str);
         // return Promise.reject(new InsightError());
         // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
-        // TODO figure out naming for keys, 2.do more validations for id/file format, 3.store kind 4.Skip sections w/ missing cats
+        // TODO figure out naming for keys, 2.do more validations for id/file format, 3.store kind 4.Skip sections w/ missing cats (done)
         return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
             let promisesArr = [Promise];
             zip.folder("courses").forEach(function (relativePath: any, file: any) {
@@ -48,6 +48,8 @@ export default class InsightFacade implements IInsightFacade {
                         tempString = this.parseCourseData(id, sectionData[i]);
                         tempArr.push(tempString);
                     }
+                        // tempString = this.parseCourseData(id, sectionData[2]);
+                        // tempArr.push(tempString);
                     dataSetMap.set(fileName, tempArr);
                     function replacer(key: any, value: any) {
                         if (value instanceof Map) {
@@ -183,6 +185,10 @@ export default class InsightFacade implements IInsightFacade {
         jsonObj.result.forEach((ele: any) => {
             let newJSON: any = {};
             let sectionOverall: boolean = false;
+            Log.info(this.validateSections(ele, courseKeys));
+            if (this.validateSections(ele, courseKeys) === false) {
+                return;
+            }
             Object.keys(ele).forEach((key) => {
                 if (courseKeys.indexOf(key) !== -1) {
                     Log.info(key);
@@ -263,4 +269,14 @@ export default class InsightFacade implements IInsightFacade {
         }
         return newVal;
     }
+
+    private validateSections(data: any, keys: string[]): boolean {
+        let bool: boolean = true;
+        for (let i = 0; i < keys.length; i++) {
+            if (!data.hasOwnProperty(keys[i])) {
+                return bool = false;    
+            }
+        }
+        return bool;
+    } 
 }
