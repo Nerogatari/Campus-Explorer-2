@@ -3,14 +3,8 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFaca
 import { InsightError, NotFoundError } from "./IInsightFacade";
 import * as JSZip from "jszip";
 import { strict, throws } from "assert";
-import {readdir, readFileSync, readlinkSync, writeFileSync} from "fs-extra";
+import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
 // import * as fse from "fs-extra";
-
-/**
- * This is the main programmatic entry point for the project.
- * Method documentation is in IInsightFacade
- *
- */
 export default class InsightFacade implements IInsightFacade {
     // private addedMap: Map<string, string[]>;
     private addedMapsArr: any[];
@@ -18,17 +12,16 @@ export default class InsightFacade implements IInsightFacade {
         // this.addedMap = this.loadDiskDatasets();
         // this.addedMap = new Map();
         this.addedMapsArr = [];
+        // this.loadDiskDatasets();
         Log.trace("InsightFacadeImpl::init()");
     }
 
     // }  https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
         let newZip = new JSZip();
-        // let dataSetMap: Map<string, string[]> = new Map();
         let dataSetArray: string[] = [];
         let fileName: string = "";
         let addedIds: string[] = [];
-        // need to check for valid json??? folder courses??
         if (kind === InsightDatasetKind.Rooms) {
             return Promise.reject(new InsightError("Invalid Kind"));
         }
@@ -37,91 +30,65 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
-        }
-        // let str = this.parseCourseData("test", "tester");
-        // Log.info(str);
-        // return Promise.reject(new InsightError());
+        } // this.loadDiskDatasets();
         // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
-        // TODO figure out naming for keys TOASK1, 2.do more validations for id/file format, 3.store kind TOASK2 4.Skip sections w/ missing cats (done)
-        // ask about what is all that extra stuff that comes in the promiseAll with some courses TOASK1
         return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
-            let promisesArr = [Promise];
+            let promisesArr: Array<Promise<string>> = [];
             zip.folder("courses").forEach(function (relativePath: any, file: any) {
                 fileName = file.name.replace("courses/", "");
                 if (fileName === ".DS_Store") {
                     return;
                 }
-                Log.info(file.name);
                 promisesArr.push(file.async("string"));
             });
             return Promise.all(promisesArr)
                 .then((sectionData: any) => {
-                    let tempArr = []; // does this content array return them all at once? TOASK how to loop
-                    let tempString = ""; // how to properly get name??? Right now its all under same key.
-                    // can put into array as for each and match but no guarantee of order by promise.all?
-                    // Extract from naming convention in JSON but seems flawed
-                   // but whats the point of keeping the filename??
-                    for (let i = 1; i < sectionData.length; i++) {
-                        tempArr = this.parseCourseData(id, sectionData[i]);
+                    let tempArr = [];
+                    for (const section of sectionData) {
+                        tempArr = this.parseCourseData(id, section);
                         dataSetArray.push(...tempArr);
                     }
-                        // tempString = this.parseCourseData(id, sectionData[2]);
-                        // tempArr.push(tempString);
-                    // dataSetMap.set(fileName, tempArr);
-                    // dataSetArray = tempArr;
-                    // function replacer(key: any, value: any) {
-                    //     if (value instanceof Map) {
-                    //         return {
-                    //             dataType: "Map",
-                    //             value: Array.from(value.entries()),
-                    //         };
-                    //     } else {
-                    //         return value;
-                    //     }
-                    // }
-                    // const str = JSON.stringify(dataSetMap, replacer);
                     if (dataSetArray.length === 0) {
                         return Promise.reject(new InsightError("No valid sections in file"));
                     }
-                    let newObj: any = {};
-                    newObj["id"] = id;
-                    newObj["kind"] = kind;
-                    newObj["data"] = dataSetArray;
+                    let newObj: any = {id: id, kind: kind, data: dataSetArray};
                     const str = JSON.stringify(newObj);
                     writeFileSync("./data/" + id + ".txt", str);
-                    // this.addedMap.set(id, dataSetArray);
-                    // let addedIds: string[] = Array.from(this.addedMap.keys());
                     this.addedMapsArr.push(newObj);
-                    Log.info(addedIds);
-                    Log.info("Good push");
-                    // return something?
+                    Log.info("Good push"); // return something
                 });
         }).then(() => {
             Log.info("MORE SUCCESS");
+            this.addedMapsArr.forEach((ele: any) => {
+                addedIds.push(ele.id);
+            });
             return addedIds;
         })
             .catch((err) => {
-                Log.info(err);
                 Log.info("UH oH");
                 return Promise.reject(new InsightError(err));
             });
     }
 
     public removeDataset(id: string): Promise<string> {
-    
-        // if (this.validId(id) === false) {
-        //     return Promise.reject(new InsightError());
-        // }
-        // if (!this.addedMap.has(id)) {
-        //     return Promise.reject(new NotFoundError());
-        // }
-
-        // fs.removeSync()
+        let removedId = "";
+        if (this.validId(id) === false) {
+            return Promise.reject(new InsightError("Invalid ID"));
+        }
+        if (this.existingDatasetID(id) === false) {
+            return Promise.reject(new NotFoundError("ID not loaded"));
+        }
+        for (let i = 0; i < this.addedMapsArr.length; i++) {
+            if (this.addedMapsArr[i].id === id) {
+                this.addedMapsArr[i].splice(i, 1);
+                let bool = this.existingDatasetID(id);
+                removedId = id;
+            }
+        }
+        unlinkSync("./data/" + id + ".txt");
+        return Promise.resolve(removedId);
         // use unlink for async TODO if running time too long
         // fse.unlinkSync("./data/" + id + ".txt");
-        // this.addedMap.delete(id);
-        // let res = id;
-        return Promise.reject("Not implemented.");
     }
 
     public performQuery(query: any): Promise<any[]> {
@@ -130,32 +97,21 @@ export default class InsightFacade implements IInsightFacade {
 
     public listDatasets(): Promise<InsightDataset[]> {
         let emptyList: InsightDataset[] = [];
-        return Promise.reject("Not implemented.");
+        for (const ele of this.addedMapsArr) {
+            let obj: InsightDataset = {
+                id: ele.id, kind: ele.kind, numRows: ele.data.length
+            };
+            emptyList.push(obj);
+        }
+        return Promise.resolve(emptyList);
     }
 
-    // https://stackoverflow.com/questions/29085197/how-do-you-json-stringify-an-es6-map
-    // function replacer(key: any, value: any) {
-    //     if(value instanceof Map) {
-    //       return {
-    //         dataType: 'Map',
-    //         value: Array.from(value.entries()), // or with spread: value: [...value]
-    //       };
-    //     } else {
-    //       return value;
-    //     }
-    // }
-    private reviver(key: any, value: any) {
-        if (typeof value === "object" && value !== null) {
-          if (value.dataType === "Map") {
-            return new Map(value.value);
-          }
-        }
-        return value;
-      }
-
     private validId(id: string): boolean {
-        // https://stackoverflow.com/questions/2031085/how-can-i-check-if-string-contains-characters-whitespace-not-just-whitespace/6610847
-        if ((id === null) || (id === undefined) || (!/\S/.test(id)) || (id.includes("_"))) {
+        // TODO TEST regex more
+        // https://stackoverflow.com/questions/2031085/
+        // how-can-i-check-if-string-contains-characters-whitespace-not-just-whitespace/6610847
+        if ((id === null) || (id === undefined) || (!/\S/.test(id)) ||
+            (id.includes("_") || (!/^[^_]+$/.test(id)))) {
             return false;
             // string is not empty and not just whitespace, need to add more checks here
         } else {
@@ -168,12 +124,12 @@ export default class InsightFacade implements IInsightFacade {
         // let obj1 = {
         //     id: "courses",
         //     kind: "courses",
-        //     data: "['hello']"
+        //     data: ['hello']
         // }
         // let obj2 = {
         //     id: "kevin",
         //     kind: "courses",
-        //     data: "['not today']"
+        //     data: ['not today']
         // }
         // test.push(obj1);
         // test.push(obj2);
@@ -183,30 +139,31 @@ export default class InsightFacade implements IInsightFacade {
         });
         return bool;
     }
-    // https://stackoverflow.com/questions/10049557/reading-all-files-in-a-directory-store-them-in-objects-and-send-the-object
-    private loadDiskDatasets() {
-        let resMap = new Map();
-        function reviver(key: any, value: any) {
-            if (typeof value === "object" && value !== null) {
-              if (value.dataType === "Map") {
-                return new Map(value.value);
-              }
-            }
-            return value;
-          }
-        readdir("./data/", function (err: any, filenames: any) {
+    // https://stackoverflow.com/questions/10049557/
+    // reading-all-files-in-a-directory-store-them-in-objects-and-send-the-object
+    private loadDiskDatasets = () => {
+        // let resMap = new Map();
+        // function reviver(key: any, value: any) {
+        //     if (typeof value === "object" && value !== null) {
+        //       if (value.dataType === "Map") {
+        //         return new Map(value.value);
+        //       }
+        //     }
+        //     return value;
+        //   }
+        readdir("./data/", (err: any, filenames: any)  => {
             if (err) {
                 Log.info("Failed directory read");
                 return;
             }
             filenames.forEach(function (filename: any) {
                 let data = readlinkSync(filename);
-                let name = filename.name.replace("courses/", "");
-                const newMapValue = JSON.parse(data, this.reviver);
-                resMap.set(name, newMapValue);
+                this.addedMapsArr.push(data);
+                // let name = filename.name.replace("courses/", "");
+                // const newMapValue = JSON.parse(data, this.reviver);
+                // resMap.set(name, newMapValue);
             });
         });
-        return resMap;
     }
     // https://stackoverflow.com/questions/20059995/how-to-create-an-object-from-an-array-of-key-value-pairs/43682482
     private parseCourseData(id: string, content: string): any[] {
@@ -226,7 +183,6 @@ export default class InsightFacade implements IInsightFacade {
             "id"
         ];
         // what to do with result/rank? do we keep it?
-        // let dummy = '{"result":[{"tier_eighty_five":32,"tier_ninety":3,"Title":"intr sftwr eng","Section":"overall","Detail":"","tier_seventy_two":26,"Other":1,"Low":53,"tier_sixty_four":2,"id":1293,"tier_sixty_eight":14,"tier_zero":0,"tier_seventy_six":36,"tier_thirty":0,"tier_fifty":1,"Professor":"palyart-lamarche, marc","Audit":0,"tier_g_fifty":0,"tier_forty":0,"Withdrew":2,"Year":"2014","tier_twenty":0,"Stddev":6.78,"Enrolled":160,"tier_fifty_five":0,"tier_eighty":38,"tier_sixty":4,"tier_ten":0,"High":94,"Course":"310","Session":"w","Pass":156,"Fail":0,"Avg":78.69,"Campus":"ubc","Subject":"cpsc"}], "rank": 0}';
         let jsonObj = JSON.parse(content);
         let newYearKey = "";
         let newJSONArr: any = [];
@@ -321,15 +277,11 @@ export default class InsightFacade implements IInsightFacade {
     private validateSections(data: any, keys: string[]): boolean {
         // has all needed categories
         let bool: boolean = true;
-        for (let i = 0; i < keys.length; i++) {
-            if (!data.hasOwnProperty(keys[i])) {
+        for (const key of keys) {
+            if (!data.hasOwnProperty(key)) {
                 return bool = false;
             }
         }
         return bool;
     }
-
-    // private checkDataInFile(dataArr: string[]): boolean {
-    //     if (dataArr.length === 0)
-    // }
 }
