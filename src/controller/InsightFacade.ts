@@ -1,5 +1,5 @@
 import Log from "../Util";
-import {IInsightFacade, InsightDataset, InsightDatasetKind} from "./IInsightFacade";
+import {IInsightFacade, InsightDataset, InsightDatasetKind, ResultTooLargeError} from "./IInsightFacade";
 import { InsightError, NotFoundError } from "./IInsightFacade";
 import * as JSZip from "jszip";
 import DatasetHelper from "./DatasetHelpers";
@@ -137,7 +137,7 @@ export default class InsightFacade implements IInsightFacade {
             if (sortedSections.length < 5000) {
                 return Promise.resolve(sortedSections);
             } else {
-                return Promise.reject(new InsightError("length > 5000"));
+                return Promise.reject(new ResultTooLargeError("length > 5000"));
             }
         } else {
             return Promise.reject(new InsightError(("More than one filter in WHERE")));

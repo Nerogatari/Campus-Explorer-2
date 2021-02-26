@@ -127,17 +127,17 @@ export default class PerformQueryHelper {
         if (typeof queryValue === "string") {
             let queryLength = queryValue.length;
             let sectLength = sectionValue.length;
-            if (queryValue.substring(1, queryLength - 1).includes("*")) {
-                throw new InsightError("* in the middle");
-            }
             if (queryValue === "*" || queryValue === "**") {
                 return true;
+            }
+            if (queryValue.substring(1, queryLength - 1).includes("*")) {
+                throw new InsightError("* in the middle");
             } else if (queryValue.indexOf("*") === -1) {
                 return (sectionValue === queryValue);
             } else if (queryValue.startsWith("*") && (!queryValue.endsWith("*"))) {
-                return (sectionValue.substring(1).includes(queryValue.substring(1)));
+                return (sectionValue.substring(1, queryLength).includes(queryValue.substring(1)));
             } else if (queryValue.endsWith("*") && (!queryValue.startsWith("*"))) {
-                return (sectionValue.substring(0, sectLength - 1)).includes(queryValue.substring(0, queryLength - 1));
+                return (sectionValue.substring(0, sectLength - 1)).endsWith(queryValue.substring(0, queryLength - 1));
             } else if (queryValue.startsWith("*") && (queryValue.endsWith("*"))) {
                 return (sectionValue.substring(1, sectLength - 1)).includes(queryValue.substring(1, queryLength - 1));
             } else {
