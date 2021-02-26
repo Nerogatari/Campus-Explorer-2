@@ -3,8 +3,8 @@ import {isString} from "util";
 import Log from "../Util";
 
 export default class PerformQueryHelper {
-    private mkeys = ["avg", "pass", "fail", "audit", "year"];
-    private skeys = ["dept", "id", "instructor", "title", "uuid"];
+    public mkeys = ["avg", "pass", "fail", "audit", "year"];
+    public skeys = ["dept", "id", "instructor", "title", "uuid"];
 
     public LTcomparator(filter: any, section: any, id: string): boolean {
         let filterKey: string = "";

@@ -94,12 +94,8 @@ export default class InsightFacade implements IInsightFacade {
         if (!this.validQuery(query)) {
             return Promise.reject(new InsightError("Invalid query"));
         }
-
-        let filter = query.WHERE;
-        // TODO check query missing where, missing options, more than 2 fields
+        let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
         let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
-        // TODO check filter, options' structure, columns empty array
-
         let sections = this.getDatasetById(datasetID); // let section store dataset id
         let filteredSections = []; // applied filter sections
         if (!Object.keys(filter)) {
@@ -112,9 +108,13 @@ export default class InsightFacade implements IInsightFacade {
                 let newSection: any = {};
                 columns.forEach((key: string) => {
                     if (key.indexOf("_") !== -1) {
-                        const column = key.split("_")[1];
-                        newSection[column] = section[key];
-                        if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
+                        // const column = key.split("_")[1];
+                        // newSection[column] = section[key];
+                        // if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
+                        //     return Promise.reject(new InsightError("Cross dataset"));
+                        // }
+                        newSection[key] = section[key];
+                        if (!key === query.OPTIONS.COLUMNS[0]) {
                             return Promise.reject(new InsightError("Cross dataset"));
                         }
                     } else {
@@ -124,7 +124,6 @@ export default class InsightFacade implements IInsightFacade {
                 return newSection;
             });
             const orderKey = query.OPTIONS.ORDER;
-
             let sortedSections = selectedSections.sort((obj1, obj2) => {
                 if (obj1[orderKey] > obj2[orderKey]) {
                     return 1;
@@ -144,7 +143,6 @@ export default class InsightFacade implements IInsightFacade {
             return Promise.reject(new InsightError(("More than one filter in WHERE")));
         }
     }
-
     private validQuery(query: any): boolean {
         let length: number = Object.keys(query).length;
         if (!("WHERE" in query)) {
@@ -163,14 +161,8 @@ export default class InsightFacade implements IInsightFacade {
             return false;
         }
         let columns: any[] = query.OPTIONS["COLUMNS"];
-        if (columns.length === 0) {
-            return false;
-        } else {
-            return true;
-        }
-        // maybe check if it is array?
+        return columns.length !== 0;
     }
-
     private getDatasetById(id: string): any[] {
         let retval: any[] = [];
         fs.readdirSync("./data/").forEach((filename) => {
