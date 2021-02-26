@@ -3,8 +3,8 @@ import {isString} from "util";
 import Log from "../Util";
 
 export default class PerformQueryHelper {
-    private mkeys = ["avg", "pass", "fail", "audit", "year"];
-    private skeys = ["dept", "id", "instructor", "title", "uuid"];
+    public mkeys = ["avg", "pass", "fail", "audit", "year"];
+    public skeys = ["dept", "id", "instructor", "title", "uuid"];
 
     public LTcomparator(filter: any, section: any, id: string): boolean {
         let filterKey: string = "";
@@ -12,6 +12,9 @@ export default class PerformQueryHelper {
         let key: string = "";
 
         try {
+            if (Object.keys(filter.LT).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.LT)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -43,6 +46,9 @@ export default class PerformQueryHelper {
         let key: string = "";
 
         try {
+            if (Object.keys(filter.GT).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.GT)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -74,6 +80,9 @@ export default class PerformQueryHelper {
         let key: string = "";
 
         try {
+            if (Object.keys(filter.EQ).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.EQ)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -103,8 +112,10 @@ export default class PerformQueryHelper {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
-
         try {
+            if (Object.keys(filter.IS).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.IS)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -122,33 +133,31 @@ export default class PerformQueryHelper {
             }
             throw new InsightError("filter key is not an s key");
         }
-
-
         if (typeof queryValue === "string") {
             let queryLength = queryValue.length;
             let sectLength = sectionValue.length;
-            if (queryValue.substring(1, queryLength - 1).includes("*")) {
-                throw new InsightError("* in the middle");
-            }
+            let modifiedQuery1 = queryValue.substring(1, queryLength);
+            let modifiedQuery2 = queryValue.substring(0, queryLength - 1);
             if (queryValue === "*" || queryValue === "**") {
                 return true;
+            }
+            if (queryValue.substring(1, queryLength - 1).includes("*")) {
+                throw new InsightError("* in the middle");
             } else if (queryValue.indexOf("*") === -1) {
                 return (sectionValue === queryValue);
             } else if (queryValue.startsWith("*") && (!queryValue.endsWith("*"))) {
-                return (sectionValue.substring(1).includes(queryValue.substring(1)));
+                return (sectionValue.includes(modifiedQuery1) && sectionValue.endsWith(modifiedQuery1));
             } else if (queryValue.endsWith("*") && (!queryValue.startsWith("*"))) {
-                return (sectionValue.substring(0, sectLength - 1)).includes(queryValue.substring(0, queryLength - 1));
+                return (sectionValue.includes(modifiedQuery2) && sectionValue.startsWith(modifiedQuery2));
             } else if (queryValue.startsWith("*") && (queryValue.endsWith("*"))) {
                 return (sectionValue.substring(1, sectLength - 1)).includes(queryValue.substring(1, queryLength - 1));
             } else {
                 throw new InsightError("* is in the middle");
             }
             // TODO check * in the middle,
-
         } else {
             throw new InsightError("compared value is not string");
         }
-
     }
     // public Sort(section: any, orderKey: any) {
     //     let Sort: any[] = [];
