@@ -1,0 +1,19 @@
+{
+    "title": "dept and avg of the course title Calculus",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_title": "Calculus"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": []
+}

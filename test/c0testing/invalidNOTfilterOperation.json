@@ -1,0 +1,22 @@
+{
+    "title": "Invalid filter key: eq.",
+    "query": {
+        "WHERE": {
+            "NOT": {
+                "eq": {
+                    "courses_avg": 3
+                }
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_id",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

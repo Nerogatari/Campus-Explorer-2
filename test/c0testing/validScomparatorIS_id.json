@@ -1,0 +1,676 @@
+{
+    "title": "dept and avg of section 140",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_id": "140"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "educ",
+            "courses_avg": 60.83
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 62.75
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 63.5
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 64.45
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 66.22
+        },
+        {
+            "courses_dept": "arcl",
+            "courses_avg": 66.85
+        },
+        {
+            "courses_dept": "arcl",
+            "courses_avg": 66.85
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 67.72
+        },
+        {
+            "courses_dept": "engl",
+            "courses_avg": 68.33
+        },
+        {
+            "courses_dept": "engl",
+            "courses_avg": 68.33
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 68.4
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 68.74
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.33
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.41
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.48
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.49
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.5
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.54
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 69.63
+        },
+        {
+            "courses_dept": "arcl",
+            "courses_avg": 69.88
+        },
+        {
+            "courses_dept": "arcl",
+            "courses_avg": 69.88
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.06
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.06
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.19
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.32
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.34
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.38
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.44
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.48
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.51
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.61
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.75
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 70.8
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.17
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.19
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.22
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.24
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.29
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 71.36
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.44
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.44
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.5
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.68
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.74
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.79
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.92
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 71.96
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.01
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.02
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.06
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.09
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.1
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.2
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.2
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.23
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.26
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.26
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.27
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.28
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.29
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.31
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.32
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.35
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.38
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 72.42
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 72.42
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.45
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 72.47
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.5
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.55
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.56
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.57
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.61
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.62
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.64
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.65
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.66
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.72
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.75
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.75
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.76
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.81
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.83
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.84
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.85
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.86
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.86
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.88
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.92
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.92
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 72.93
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.08
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.09
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.12
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.14
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.19
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.26
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.26
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.29
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.3
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 73.31
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.36
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.37
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.37
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.37
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 73.38
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.41
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.48
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.49
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.52
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.54
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.65
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.65
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.66
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.75
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.75
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.77
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.78
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.81
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 73.82
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.04
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.12
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.15
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.17
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.29
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.53
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.54
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.63
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.85
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.87
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.88
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.97
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 74.97
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 75.04
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 75.13
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 75.16
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 75.32
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 75.39
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 76.38
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 76.39
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 76.43
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 76.53
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 76.66
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 76.69
+        },
+        {
+            "courses_dept": "ling",
+            "courses_avg": 77.28
+        },
+        {
+            "courses_dept": "ling",
+            "courses_avg": 77.28
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 77.48
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 78.32
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 78.43
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 78.82
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 79.4
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 80.21
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 80.34
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 80.67
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 80.99
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 81
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 81.11
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 81.42
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 82.5
+        },
+        {
+            "courses_dept": "biol",
+            "courses_avg": 82.57
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 84.32
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 87.6
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 89.33
+        }
+    ]
+}

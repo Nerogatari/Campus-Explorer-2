@@ -1,0 +1,13 @@
+{
+    "title": "OPTIONS must be object",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_avg": 97
+            }
+        },
+        "OPTIONS": 3
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}
