@@ -113,7 +113,7 @@ export default class InsightFacade implements IInsightFacade {
                 columns.forEach((key: string) => {
                     if (key.indexOf("_") !== -1) {
                         const column = key.split("_")[1];
-                        newSection[key] = section[column];
+                        newSection[column] = section[key];
                         if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
                             return Promise.reject(new InsightError("Cross dataset"));
                         }
@@ -233,7 +233,7 @@ export default class InsightFacade implements IInsightFacade {
     private performFilter(sections: object[], filter: object, id: string): object[] {
 
         let retval = sections.filter((section) => {
-            this.isSatisfied(section, filter, id);
+            return this.isSatisfied(section, filter, id);
         });
         return retval;
 

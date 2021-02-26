@@ -6,7 +6,7 @@ export default class PerformQueryHelper {
     private mkeys = ["avg", "pass", "fail", "audit", "year"];
     private skeys = ["dept", "id", "instructor", "title", "uuid"];
 
-    public LTcomparator(filter: any, section: any, id: string) {
+    public LTcomparator(filter: any, section: any, id: string): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -37,7 +37,7 @@ export default class PerformQueryHelper {
         }
     }
 
-    public GTcomparator(filter: any, section: any, id: string) {
+    public GTcomparator(filter: any, section: any, id: string): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -62,14 +62,13 @@ export default class PerformQueryHelper {
         }
 
         if (typeof queryValue === "number") {
-            Log.trace(sectionValue > queryValue);
             return (sectionValue > queryValue);
         } else {
             throw new InsightError("compared value is not number");
         }
     }
 
-    public EQcomparator(filter: any, section: any, id: string) {
+    public EQcomparator(filter: any, section: any, id: string): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -100,7 +99,7 @@ export default class PerformQueryHelper {
         }
     }
 
-    public IScomparator(filter: any, section: any, id: string) {
+    public IScomparator(filter: any, section: any, id: string): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
