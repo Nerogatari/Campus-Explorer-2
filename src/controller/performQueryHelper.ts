@@ -126,19 +126,19 @@ export default class PerformQueryHelper {
         if (typeof queryValue === "string") {
             let queryLength = queryValue.length;
             let sectLength = sectionValue.length;
-            if (sectionValue.substring(1, sectLength - 1).includes("*")) {
+            if (queryValue.substring(1, queryLength - 1).includes("*")) {
                 throw new InsightError("* in the middle");
             }
-            if (sectionValue === "*" || sectionValue === "**") {
+            if (queryValue === "*" || queryValue === "**") {
                 return true;
-            } else if (sectionValue.indexOf("*") === -1) {
+            } else if (queryValue.indexOf("*") === -1) {
                 return (sectionValue === queryValue);
-            } else if (sectionValue.startsWith("*") && (!sectionValue.endsWith("*"))) {
-                return (queryValue.substring(1).includes(sectionValue.substring(1)));
-            } else if (sectionValue.endsWith("*") && (!sectionValue.startsWith("*"))) {
-                return (queryValue.substring(0, queryLength - 1)).includes(sectionValue.substring(0, sectLength - 1));
-            } else if (sectionValue.startsWith("*") && (sectionValue.endsWith("*"))) {
-                return (queryValue.substring(1, queryLength - 1)).includes(sectionValue.substring(1, sectLength - 1));
+            } else if (queryValue.startsWith("*") && (!queryValue.endsWith("*"))) {
+                return (sectionValue.substring(1).includes(queryValue.substring(1)));
+            } else if (queryValue.endsWith("*") && (!queryValue.startsWith("*"))) {
+                return (sectionValue.substring(0, sectLength - 1)).includes(queryValue.substring(0, queryLength - 1));
+            } else if (queryValue.startsWith("*") && (queryValue.endsWith("*"))) {
+                return (sectionValue.substring(1, sectLength - 1)).includes(queryValue.substring(1, queryLength - 1));
             } else {
                 throw new InsightError("* is in the middle");
             }

@@ -121,7 +121,7 @@ export default class InsightFacade implements IInsightFacade {
             if (sortedSections.length < 5000) {
                 return Promise.resolve(sortedSections);
             } else {
-                return Promise.reject(new ResultTooLargeError("length > 5000"));
+                return Promise.reject(new InsightError("length > 5000"));
             }
         } else {
             return Promise.reject(new InsightError(("More than one filter in WHERE")));
@@ -134,6 +134,9 @@ export default class InsightFacade implements IInsightFacade {
             return false;
         }
         if (!("OPTIONS" in query)) {
+            return false;
+        }
+        if (Object.keys(query.OPTIONS).length > 2) {
             return false;
         }
         if (!(length === 2)) {
