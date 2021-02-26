@@ -12,6 +12,9 @@ export default class PerformQueryHelper {
         let key: string = "";
 
         try {
+            if (Object.keys(filter.LT).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.LT)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -43,6 +46,9 @@ export default class PerformQueryHelper {
         let key: string = "";
 
         try {
+            if (Object.keys(filter.GT).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.GT)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -74,6 +80,9 @@ export default class PerformQueryHelper {
         let key: string = "";
 
         try {
+            if (Object.keys(filter.EQ).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.EQ)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -103,8 +112,10 @@ export default class PerformQueryHelper {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
-
         try {
+            if (Object.keys(filter.IS).length > 1) {
+                throw new InsightError("should only have 1 key");
+            }
             filterKey = Object.keys(filter.IS)[0];
             datasetID = filterKey.split("_")[0];
             key = filterKey.split("_")[1];
@@ -144,11 +155,9 @@ export default class PerformQueryHelper {
                 throw new InsightError("* is in the middle");
             }
             // TODO check * in the middle,
-
         } else {
             throw new InsightError("compared value is not string");
         }
-
     }
     // public Sort(section: any, orderKey: any) {
     //     let Sort: any[] = [];

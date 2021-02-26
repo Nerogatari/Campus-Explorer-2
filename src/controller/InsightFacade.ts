@@ -109,11 +109,6 @@ export default class InsightFacade implements IInsightFacade {
                     let newSection: any = {};
                     columns.forEach((key: string) => {
                         if (key.indexOf("_") !== -1) {
-                            // const column = key.split("_")[1];
-                            // newSection[column] = section[key];
-                            // if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
-                            //     return Promise.reject(new InsightError("Cross dataset"));
-                            // }
                             newSection[key] = section[key];
                             if (!key === query.OPTIONS.COLUMNS[0]) {
                                 return Promise.reject(new InsightError("Cross dataset"));
@@ -138,7 +133,8 @@ export default class InsightFacade implements IInsightFacade {
                 if (sortedSections.length < 5000) {
                     return Promise.resolve(sortedSections);
                 } else {
-                    return Promise.reject(new ResultTooLargeError("length > 5000"));
+                    return Promise.reject(new ResultTooLargeError("length > 5000")); // TODO check whr
+                    // throw new ResultTooLargeError("length > 5000");
                 }
             } else {
                 return Promise.reject(new InsightError(("More than one filter in WHERE")));
@@ -163,6 +159,9 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (!("COLUMNS" in query.OPTIONS)) {
             return false;
+        }
+        if ("ORDER" in query) {
+            return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
         }
         let columns: any[] = query.OPTIONS["COLUMNS"];
         return columns.length !== 0;
