@@ -35,9 +35,9 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
         // This section runs once and loads all datasets specified in the datasetsToLoad object
         // into the datasets object
         Log.test(`Before all`);
-        // if (!fs.existsSync(cacheDir)) {
-        //     fs.mkdirSync(cacheDir);
-        // }
+        if (!fs.existsSync(cacheDir)) {
+            fs.mkdirSync(cacheDir);
+        }
         for (const id of Object.keys(datasetsToLoad)) {
             datasets[id] = fs.readFileSync(datasetsToLoad[id]).toString("base64");
         }
@@ -47,27 +47,27 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
             Log.error(err);
         }
     });
-    //
-    // beforeEach(function () {
-    //     Log.test(`BeforeTest: ${this.currentTest.title}`);
-    // });
-    //
-    // after(function () {
-    //     Log.test(`After: ${this.test.parent.title}`);
-    // });
-    //
-    // afterEach(function () {
-    //     // This section resets the data directory (removing any cached data) and resets the InsightFacade instance
-    //     // This runs after each test, which should make each test independent from the previous one
-    //     Log.test(`AfterTest: ${this.currentTest.title}`);
-    //     try {
-    //         fs.removeSync(cacheDir);
-    //         fs.mkdirSync(cacheDir);
-    //         insightFacade = new InsightFacade();
-    //     } catch (err) {
-    //         Log.error(err);
-    //     }
-    // });
+
+    beforeEach(function () {
+        Log.test(`BeforeTest: ${this.currentTest.title}`);
+    });
+
+    after(function () {
+        Log.test(`After: ${this.test.parent.title}`);
+    });
+
+    afterEach(function () {
+        // This section resets the data directory (removing any cached data) and resets the InsightFacade instance
+        // This runs after each test, which should make each test independent from the previous one
+        Log.test(`AfterTest: ${this.currentTest.title}`);
+        try {
+            fs.removeSync(cacheDir);
+            fs.mkdirSync(cacheDir);
+            insightFacade = new InsightFacade();
+        } catch (err) {
+            Log.error(err);
+        }
+    });
 
     // This is a unit test. You should create more like this!
     it("Should add a valid dataset", function () {
