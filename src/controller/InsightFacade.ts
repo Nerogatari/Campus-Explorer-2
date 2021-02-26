@@ -91,56 +91,60 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
-        if (!this.validQuery(query)) {
-            return Promise.reject(new InsightError("Invalid query"));
-        }
-        let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
-        let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
-        let sections = this.getDatasetById(datasetID); // let section store dataset id
-        let filteredSections = []; // applied filter sections
-        if (!Object.keys(filter)) {
-            filteredSections = sections;
-        } else if (Object.keys(filter).length === 1) {
-            // pass dataset and filter and return sections
-            filteredSections = this.performFilter(sections, filter, datasetID);
-            let columns = query.OPTIONS.COLUMNS;
-            let selectedSections = filteredSections.map((section: any) => {
-                let newSection: any = {};
-                columns.forEach((key: string) => {
-                    if (key.indexOf("_") !== -1) {
-                        // const column = key.split("_")[1];
-                        // newSection[column] = section[key];
-                        // if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
-                        //     return Promise.reject(new InsightError("Cross dataset"));
-                        // }
-                        newSection[key] = section[key];
-                        if (!key === query.OPTIONS.COLUMNS[0]) {
-                            return Promise.reject(new InsightError("Cross dataset"));
-                        }
-                    } else {
-                        return Promise.reject("columns key does not contain _");
-                    }
-                });
-                return newSection;
-            });
-            const orderKey = query.OPTIONS.ORDER;
-            let sortedSections = selectedSections.sort((obj1, obj2) => {
-                if (obj1[orderKey] > obj2[orderKey]) {
-                    return 1;
-                }
-                if (obj1[orderKey] < obj2[orderKey]) {
-                    return -1;
-                }
-                return 0;
-            });
-            // TODO check length >5000
-            if (sortedSections.length < 5000) {
-                return Promise.resolve(sortedSections);
-            } else {
-                return Promise.reject(new ResultTooLargeError("length > 5000"));
+        try {
+            if (!this.validQuery(query)) {
+                return Promise.reject(new InsightError("Invalid query"));
             }
-        } else {
-            return Promise.reject(new InsightError(("More than one filter in WHERE")));
+            let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
+            let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
+            let sections = this.getDatasetById(datasetID); // let section store dataset id
+            let filteredSections = []; // applied filter sections
+            if (!Object.keys(filter)) {
+                filteredSections = sections;
+            } else if (Object.keys(filter).length === 1) {
+                // pass dataset and filter and return sections
+                filteredSections = this.performFilter(sections, filter, datasetID);
+                let columns = query.OPTIONS.COLUMNS;
+                let selectedSections = filteredSections.map((section: any) => {
+                    let newSection: any = {};
+                    columns.forEach((key: string) => {
+                        if (key.indexOf("_") !== -1) {
+                            // const column = key.split("_")[1];
+                            // newSection[column] = section[key];
+                            // if (!column === query.OPTIONS.COLUMNS[0].split("_")[1]) {
+                            //     return Promise.reject(new InsightError("Cross dataset"));
+                            // }
+                            newSection[key] = section[key];
+                            if (!key === query.OPTIONS.COLUMNS[0]) {
+                                return Promise.reject(new InsightError("Cross dataset"));
+                            }
+                        } else {
+                            return Promise.reject("columns key does not contain _");
+                        }
+                    });
+                    return newSection;
+                });
+                const orderKey = query.OPTIONS.ORDER;
+                let sortedSections = selectedSections.sort((obj1, obj2) => {
+                    if (obj1[orderKey] > obj2[orderKey]) {
+                        return 1;
+                    }
+                    if (obj1[orderKey] < obj2[orderKey]) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                // TODO check length >5000
+                if (sortedSections.length < 5000) {
+                    return Promise.resolve(sortedSections);
+                } else {
+                    return Promise.reject(new ResultTooLargeError("length > 5000"));
+                }
+            } else {
+                return Promise.reject(new InsightError(("More than one filter in WHERE")));
+            }
+        } catch (e) {
+            return Promise.reject(e);
         }
     }
     private validQuery(query: any): boolean {
