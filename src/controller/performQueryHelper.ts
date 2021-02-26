@@ -1,5 +1,6 @@
 import {InsightError} from "./IInsightFacade";
 import {isString} from "util";
+import Log from "../Util";
 
 export default class PerformQueryHelper {
     private mkeys = ["avg", "pass", "fail", "audit", "year"];
@@ -21,7 +22,7 @@ export default class PerformQueryHelper {
             throw new InsightError("Cross dataset");
         }
         const queryValue = filter.LT[filterKey];
-        const sectionValue = section[key];
+        const sectionValue = section[filterKey];
 
         if (this.mkeys.indexOf(key) === -1) {
             if (this.skeys.indexOf(key) === -1) {
@@ -52,7 +53,7 @@ export default class PerformQueryHelper {
             throw new InsightError("Cross dataset");
         }
         const queryValue = filter.GT[filterKey];
-        const sectionValue = section[key];
+        const sectionValue = section[filterKey];
         if (this.mkeys.indexOf(key) === -1) {
             if (this.skeys.indexOf(key) === -1) {
                 throw new InsightError("invalid key type");
@@ -61,6 +62,7 @@ export default class PerformQueryHelper {
         }
 
         if (typeof queryValue === "number") {
+            Log.trace(sectionValue > queryValue);
             return (sectionValue > queryValue);
         } else {
             throw new InsightError("compared value is not number");
@@ -83,7 +85,7 @@ export default class PerformQueryHelper {
             throw new InsightError("Cross dataset");
         }
         const queryValue = filter.EQ[filterKey];
-        const sectionValue = section[key];
+        const sectionValue = section[filterKey];
         if (this.mkeys.indexOf(key) === -1) {
             if (this.skeys.indexOf(key) === -1) {
                 throw new InsightError("invalid key type");
@@ -114,7 +116,7 @@ export default class PerformQueryHelper {
             throw new InsightError("Cross dataset");
         }
         const queryValue = filter.IS[filterKey];
-        const sectionValue = section[key];
+        const sectionValue = section[filterKey];
         if (this.skeys.indexOf(key) === -1) {
             if (this.mkeys.indexOf(key) === -1) {
                 throw new InsightError("invalid key type");

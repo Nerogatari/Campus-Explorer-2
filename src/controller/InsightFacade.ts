@@ -179,7 +179,7 @@ export default class InsightFacade implements IInsightFacade {
                 const fileContent = fs.readFileSync("./data/" + filename, "utf8");
                 let fileID = JSON.parse(fileContent).id; // REVIVER
                 if (fileID === id) {
-                    retval = JSON.parse(fileContent)["data"];
+                    retval = JSON.parse(fileContent).data;
                 }
             }
         });
@@ -232,8 +232,8 @@ export default class InsightFacade implements IInsightFacade {
 
     private performFilter(sections: object[], filter: object, id: string): object[] {
 
-        let retval = Object.values(sections).filter((section) => {
-            return this.isSatisfied(section, filter, id);
+        let retval = sections.filter((section) => {
+            this.isSatisfied(section, filter, id);
         });
         return retval;
 
