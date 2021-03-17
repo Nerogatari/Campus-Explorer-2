@@ -1,3 +1,5 @@
+// eslint-disable-next-line max-lines
+// eslint-disable-next-line max-lines
 import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, ResultTooLargeError} from "./IInsightFacade";
 import { InsightError, NotFoundError } from "./IInsightFacade";
@@ -6,6 +8,8 @@ import DatasetHelper from "./DatasetHelpers";
 import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
 import PerformQueryHelper from "./performQueryHelper";
 import * as fs from "fs";
+import * as PerformFilter from "./PerformFilter";
+import { performTransform } from "./PerformTransform";
 // import * as fse from "fs-extra";
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
@@ -90,20 +94,23 @@ export default class InsightFacade implements IInsightFacade {
         // use unlink for async TODO if running time too long
     }
 
+    // eslint-disable-next-line @typescript-eslint/tslint/config
     public performQuery(query: any): Promise<any[]> {
+        if (!this.validQuery(query)) {
+            return Promise.reject(new InsightError("Invalid query!"));
+        }
         try {
-            if (!this.validQuery(query)) {
-                return Promise.reject(new InsightError("Invalid query"));
-            }
             let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
             let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
             let sections = this.getDatasetById(datasetID); // let section store dataset id
+            let transform = query.TRANSFORMATIONS;
             let filteredSections = []; // applied filter sections
             if (!Object.keys(filter)) {
                 filteredSections = sections;
             } else if (Object.keys(filter).length === 1) {
                 // pass dataset and filter and return sections
-                filteredSections = this.performFilter(sections, filter, datasetID);
+                filteredSections = PerformFilter.performFilter(sections, filter, datasetID);
+                let transformedSections = performTransform(filteredSections, transform, datasetID);
                 let columns = query.OPTIONS.COLUMNS;
                 let selectedSections = filteredSections.map((section: any) => {
                     let newSection: any = {};
@@ -120,17 +127,40 @@ export default class InsightFacade implements IInsightFacade {
                     return newSection;
                 });
                 const orderKey = query.OPTIONS.ORDER;
-                let sortedSections = selectedSections.sort((obj1, obj2) => {
-                    if (obj1[orderKey] > obj2[orderKey]) {
-                        return 1;
-                    }
-                    if (obj1[orderKey] < obj2[orderKey]) {
+                let sortedSections: [];
+                if (typeof orderKey === "string") {
+                    sortedSections = transformedSections.sort((obj1: any, obj2: any) => {
+                        if (obj1[orderKey] > obj2[orderKey]) {
+                           return 1;
+                        } else if (obj1[orderKey] < obj2[orderKey]) {
                         return -1;
-                    }
-                    return 0;
-                });
-                // TODO check length >5000
-                if (sortedSections.length < 5000) {
+                        }
+                        return 0;
+                    });
+                } else {
+                    sortedSections = transformedSections.sort((obj1: any, obj2: any) => {
+                        for (let key of orderKey.keys) {
+                            if (obj1[key] !== obj2[key]) {
+                                if (orderKey.dir === "UP") {
+                                    if (obj1[key] > obj2[key]) {
+                                        return 1;
+                                    } else if (obj1[key] < obj2[key]) {
+                                        return -1;
+                                    }
+                                } else if (orderKey.dir === "DOWN") {
+                                    if (obj1[key] > obj2[key]) {
+                                        return -1;
+                                    } else if (obj1[key] < obj2[key]) {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                        // return 0;
+                    });
+                }
+                // console.log(sortedSections);
+                if (sortedSections.length <= 5000) {
                     return Promise.resolve(sortedSections);
                 } else {
                     return Promise.reject(new ResultTooLargeError("length > 5000")); // TODO check whr
@@ -144,27 +174,29 @@ export default class InsightFacade implements IInsightFacade {
         }
     }
     private validQuery(query: any): boolean {
-        let length: number = Object.keys(query).length;
-        if (!("WHERE" in query)) {
-            return false;
-        }
-        if (!("OPTIONS" in query)) {
-            return false;
-        }
-        if (Object.keys(query.OPTIONS).length > 2) {
-            return false;
-        }
-        if (!(length === 2)) {
-            return false;
-        }
-        if (!("COLUMNS" in query.OPTIONS)) {
-            return false;
-        }
-        if ("ORDER" in query) {
-            return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
-        }
-        let columns: any[] = query.OPTIONS["COLUMNS"];
-        return columns.length !== 0;
+        // let length: number = Object.keys(query).length;
+        // if (!("WHERE" in query)) {
+        //     return false;
+        // }
+        // if (!("OPTIONS" in query)) {
+        //     return false;
+        // }
+        // if (Object.keys(query.OPTIONS).length > 2) {
+        //     return false;
+        // }
+        // if (!(length === 2)) {
+        //     return false;
+        // }
+        // if (!("COLUMNS" in query.OPTIONS)) {
+        //     return false;
+        // }
+        // if ("ORDER" in query) {
+        //     return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
+        // }
+        // let columns: any[] = query.OPTIONS["COLUMNS"];
+        // return columns.length !== 0;
+        // //  TODO sorting when order is empty?
+        return true; // remove this
     }
     private getDatasetById(id: string): any[] {
         let retval: any[] = [];
@@ -224,64 +256,4 @@ export default class InsightFacade implements IInsightFacade {
         });
     }
 
-
-    private performFilter(sections: object[], filter: object, id: string): object[] {
-
-        let retval = sections.filter((section) => {
-            return this.isSatisfied(section, filter, id);
-        });
-        return retval;
-
-    }
-
-    private isSatisfied(section: any, filter: any, id: string): boolean {
-        let helper = new PerformQueryHelper();
-        let operationArr: any[] = Object.keys(filter);
-        let filterArr: any[] = filter[operationArr[0]];
-        if (operationArr.length === 0) {
-            // return true;
-            throw new InsightError("Number of filter key should  not be 0");
-        } else if (operationArr.length > 1) {
-            throw new InsightError("Number of filter key is greater than 1");
-        } else {
-            switch (operationArr[0]) {
-                case "NOT":
-                    return !this.isSatisfied(section, filter.NOT, id);
-
-                case "AND": // TODO: check empty array
-                    if (filterArr.length === 0 || filter.AND === 0)  {
-                        throw new InsightError("empty array");
-                    }
-                    let resultAND = true;
-                    for (let obj of filter.AND) {
-                        if (this.isSatisfied(section, obj, id) === false) {
-                            resultAND = false;
-                        }
-                    }
-                    return resultAND;
-                case "OR":
-                    if (filterArr.length === 0) {
-                        throw new InsightError("empty array");
-                    }
-                    let resultOR = false;
-                    for (let obj of filter.OR) {
-                        if (this.isSatisfied(section, obj, id) === true) {
-                            resultOR = true;
-                        }
-                    }
-                    return resultOR;
-                case "IS"  :
-                    return helper.IScomparator(filter, section, id);
-                case "LT":
-                    return helper.LTcomparator(filter, section, id);
-                case "GT":
-                    return helper.GTcomparator(filter, section, id);
-                case "EQ":
-                    return helper.EQcomparator(filter, section, id);
-                default:
-                    throw new InsightError("Invalid comparator name");
-
-            }
-        }
-    }
 }
