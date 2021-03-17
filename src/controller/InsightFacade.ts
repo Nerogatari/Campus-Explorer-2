@@ -1,5 +1,3 @@
-// eslint-disable-next-line max-lines
-// eslint-disable-next-line max-lines
 import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, ResultTooLargeError} from "./IInsightFacade";
 import { InsightError, NotFoundError } from "./IInsightFacade";
