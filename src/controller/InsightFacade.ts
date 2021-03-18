@@ -4,11 +4,15 @@ import { InsightError, NotFoundError } from "./IInsightFacade";
 import * as JSZip from "jszip";
 import DatasetHelper from "./DatasetHelpers";
 import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
-import PerformQueryHelper from "./performQueryHelper";
 import * as fs from "fs";
 import * as PerformFilter from "./PerformFilter";
 import { performTransform } from "./PerformTransform";
-// import * as fse from "fs-extra";
+import {isArray, isObject} from "util";
+
+let mKeys: string[] = ["avg", "pass", "fail", "audit", "year", "lat", "lon", "seats"];
+let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", "shortname", "number", "name"
+    , "address", "type", "furniture", "href"];
+
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
     private datasetHelper: DatasetHelper;
@@ -119,12 +123,15 @@ export default class InsightFacade implements IInsightFacade {
                                 return Promise.reject(new InsightError("Cross dataset"));
                             }
                         } else {
-                            return Promise.reject("columns key does not contain _");
+                            return Promise.reject(new InsightError("columns key does not contain _"));
                         }
                     });
                     return newSection;
                 });
                 const orderKey = query.OPTIONS.ORDER;
+                if (orderKey.length === 0) {
+                    throw new InsightError("keys must not be empty");
+                }
                 let sortedSections: [];
                 if (typeof orderKey === "string") {
                     sortedSections = transformedSections.sort((obj1: any, obj2: any) => {
@@ -154,10 +161,8 @@ export default class InsightFacade implements IInsightFacade {
                                 }
                             }
                         }
-                        // return 0;
                     });
                 }
-                // console.log(sortedSections);
                 if (sortedSections.length <= 5000) {
                     return Promise.resolve(sortedSections);
                 } else {
@@ -172,29 +177,66 @@ export default class InsightFacade implements IInsightFacade {
         }
     }
     private validQuery(query: any): boolean {
-        // let length: number = Object.keys(query).length;
-        // if (!("WHERE" in query)) {
-        //     return false;
-        // }
-        // if (!("OPTIONS" in query)) {
-        //     return false;
-        // }
-        // if (Object.keys(query.OPTIONS).length > 2) {
-        //     return false;
-        // }
-        // if (!(length === 2)) {
-        //     return false;
-        // }
-        // if (!("COLUMNS" in query.OPTIONS)) {
-        //     return false;
-        // }
-        // if ("ORDER" in query) {
-        //     return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
-        // }
-        // let columns: any[] = query.OPTIONS["COLUMNS"];
-        // return columns.length !== 0;
-        // //  TODO sorting when order is empty?
+        let length: number = Object.keys(query).length;
+        let keys: any[] = Object.keys(query);
+        if (!("WHERE" in query)) {
+            return false;
+        }
+        if (!("OPTIONS" in query)) {
+            return false;
+        }
+        if (Object.keys(query.OPTIONS).length > 2) {
+            return false;
+        }
+        if (!(length === 2 || length === 3)) {
+            return false;
+        }
+        if (!("COLUMNS" in query.OPTIONS)) {
+            return false;
+        }
+        if ("ORDER" in query) {
+            return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
+        }
+        let columns: any[] = query.OPTIONS["COLUMNS"];
+        return columns.length !== 0;
+        if (keys.includes("TRANSFORMATIONS")) {
+            let transformations: any = query.TRANSFORMATIONS;
+            if (!(isObject(transformations))) {
+                return false;
+            }
+            if (!this.validTransformations(transformations)) {
+                return false;
+            }
+        }
+        //  TODO sorting when order is empty?
         return true; // remove this
+    }
+
+    private validTransformations(transformations: any) {
+        let keys: any[] = Object.keys(transformations);
+        let groups: any[] = transformations["GROUP"];
+        if (keys.length === 0) {
+            return false;
+        }
+        if (keys.length > 2) {
+            return false;
+        }
+        if (!("GROUP" in transformations)) {
+            return false;
+        }
+        if (groups.length === 0) {
+            return false;
+        }
+        for (let groupKey of groups) {
+            let checkKey = groupKey.split("_")[1];
+            if ((!(mKeys.includes(checkKey))) && (!(sKeys.includes(checkKey)))) {
+                return false;
+            }
+        }
+        if (!("APPLY" in transformations)) {
+            return false;
+        }
+        return true;
     }
     private getDatasetById(id: string): any[] {
         let retval: any[] = [];
