@@ -1,20 +1,16 @@
 {
-    "title": "   order keys are not array  ",
+    "title": "apply rule is not an object",
     "query": {
         "WHERE": {
             "GT": {
-                "courses_avg": 97
+                "courses_avg": 96
             }
         },
         "OPTIONS": {
             "COLUMNS": [
                 "courses_title",
                 "overallAvg"
-            ],
-            "ORDER":{
-                "dir": "UP",
-                "keys":"courses_tile"
-            }
+            ]
         },
         "TRANSFORMATIONS": {
             "GROUP": [
@@ -22,13 +18,11 @@
             ],
             "APPLY": [
                 {
-                    "overallAvg": {
-                        "AVG": "courses_avg"
-                    }
+                    "overallAvg": []
                 }
             ]
         }
     },
     "isQueryValid": false,
-    "result": ""
+    "result":""
 }

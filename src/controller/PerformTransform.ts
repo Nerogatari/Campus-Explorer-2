@@ -51,15 +51,15 @@ export function performTransform(sections: object[], transform: any, id: string)
     return groupedSections;
 }
 const executeApply = (currGroup: any, applyRule: any): number => {
+    if ((Object.keys(applyRule).length) !== 1 || applyRule === undefined) {
+        throw new InsightError("invalid apply rule");
+    }
     let applyToken = Object.keys(applyRule)[0];
     let key = applyRule[applyToken];
     let mainKey = key.split("_")[1];
     let dataArray = currGroup.map((section: any) => {
         return section[key];
     });
-    if ((Object.keys(applyRule).length) !== 1) {
-        throw new InsightError("applyToken length should be 1");
-    }
     if ((!(mKeys.includes(mainKey))) && (!(sKeys.includes(mainKey)))) {
         throw new InsightError("target string is not valid");
     }

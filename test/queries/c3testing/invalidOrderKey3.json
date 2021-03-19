@@ -1,9 +1,9 @@
 {
-    "title": "   order keys are not array  ",
+    "title": "ORDER keys must be a non-empty array.",
     "query": {
         "WHERE": {
             "GT": {
-                "courses_avg": 97
+                "courses_avg": 96
             }
         },
         "OPTIONS": {
@@ -11,9 +11,9 @@
                 "courses_title",
                 "overallAvg"
             ],
-            "ORDER":{
+            "ORDER": {
                 "dir": "UP",
-                "keys":"courses_tile"
+                "keys": []
             }
         },
         "TRANSFORMATIONS": {
@@ -30,5 +30,5 @@
         }
     },
     "isQueryValid": false,
-    "result": ""
+    "result": "InsightError"
 }

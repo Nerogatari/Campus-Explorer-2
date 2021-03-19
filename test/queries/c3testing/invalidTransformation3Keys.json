@@ -1,20 +1,16 @@
 {
-    "title": "   order keys are not array  ",
+    "title": "transformations has more than two keys",
     "query": {
         "WHERE": {
             "GT": {
-                "courses_avg": 97
+                "courses_avg": 96
             }
         },
         "OPTIONS": {
             "COLUMNS": [
                 "courses_title",
                 "overallAvg"
-            ],
-            "ORDER":{
-                "dir": "UP",
-                "keys":"courses_tile"
-            }
+            ]
         },
         "TRANSFORMATIONS": {
             "GROUP": [
@@ -26,7 +22,8 @@
                         "AVG": "courses_avg"
                     }
                 }
-            ]
+            ],
+            "NERO":[]
         }
     },
     "isQueryValid": false,

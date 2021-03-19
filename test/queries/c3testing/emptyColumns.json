@@ -1,19 +1,15 @@
 {
-    "title": "   order keys are not array  ",
+    "title": "  no columns ",
     "query": {
         "WHERE": {
             "GT": {
-                "courses_avg": 97
+                "courses_avg": 96
             }
         },
         "OPTIONS": {
-            "COLUMNS": [
-                "courses_title",
-                "overallAvg"
-            ],
             "ORDER":{
                 "dir": "UP",
-                "keys":"courses_tile"
+                "keys":["courses_title"]
             }
         },
         "TRANSFORMATIONS": {

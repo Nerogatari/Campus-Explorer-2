@@ -1,20 +1,16 @@
 {
-    "title": "   order keys are not array  ",
+    "title": "apply rule more than one token",
     "query": {
         "WHERE": {
             "GT": {
-                "courses_avg": 97
+                "courses_avg": 96
             }
         },
         "OPTIONS": {
             "COLUMNS": [
                 "courses_title",
                 "overallAvg"
-            ],
-            "ORDER":{
-                "dir": "UP",
-                "keys":"courses_tile"
-            }
+            ]
         },
         "TRANSFORMATIONS": {
             "GROUP": [
@@ -23,7 +19,8 @@
             "APPLY": [
                 {
                     "overallAvg": {
-                        "AVG": "courses_avg"
+                        "AVG": "courses_avg",
+                        "MIN": "courses_avg"
                     }
                 }
             ]

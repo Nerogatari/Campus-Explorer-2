@@ -107,7 +107,7 @@ export default class InsightFacade implements IInsightFacade {
         try {
             if (!Object.keys(filter)) {
                 filteredSections = sections;
-            } else if (Object.keys(filter).length === 1) {
+            } else if (Object.keys(filter).length <= 1) {
                 // pass dataset and filter and return sections
                 let columns = query.OPTIONS.COLUMNS;
                 filteredSections = PerformFilter.performFilter(sections, filter, datasetID, dataKind);

@@ -1,5 +1,5 @@
 {
-    "title": "   order keys are not array  ",
+    "title": "group key is not defined",
     "query": {
         "WHERE": {
             "GT": {
@@ -10,15 +10,11 @@
             "COLUMNS": [
                 "courses_title",
                 "overallAvg"
-            ],
-            "ORDER":{
-                "dir": "UP",
-                "keys":"courses_tile"
-            }
+            ]
         },
         "TRANSFORMATIONS": {
             "GROUP": [
-                "courses_title"
+                "courses_nero"
             ],
             "APPLY": [
                 {
@@ -30,5 +26,5 @@
         }
     },
     "isQueryValid": false,
-    "result": ""
+    "result":""
 }

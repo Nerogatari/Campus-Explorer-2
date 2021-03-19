@@ -6,7 +6,7 @@ import {sortOrder, sortTransform} from "./SortHelper";
 let mKeys: string[] = ["avg", "pass", "fail", "audit", "year", "lat", "lon", "seats"];
 let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", "shortname", "number", "name"
     , "address", "type", "furniture", "href"];
-
+let optionKeys: string [] = ["COLUMNS", "ORDER"];
 export function validQuery(query: any): boolean {
     let length: number = Object.keys(query).length;
     if (!("OPTIONS" in query)) {
@@ -30,6 +30,14 @@ export function validQuery(query: any): boolean {
     if ("ORDER" in query) {
         return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
     }
+    if (!isObject(query.OPTIONS)) {
+        return false;
+    }
+    Object.keys(query.OPTIONS).forEach((val: string) => {
+        if (!optionKeys.includes(val)) {
+            return false;
+        }
+    });
     let columns: any[] = query.OPTIONS["COLUMNS"];
     return columns.length !== 0;
     if (Object.keys(query).includes("TRANSFORMATIONS")) {
@@ -41,7 +49,6 @@ export function validQuery(query: any): boolean {
             return false;
         }
     }
-    //  TODO sorting when order is empty?
     return true; // remove this
 }
 
@@ -105,6 +112,12 @@ export function orderHelper(orderKey: any, selectedSections: any[], query: any):
         let orderkeys: any[] = orderKey["keys"];
         if (orderkeys === undefined) {
             throw new InsightError("invalid orderkey");
+        }
+        if (!(query.OPTIONS["COLUMNS"].includes(orderkeys[0]))) {
+            throw new InsightError("invalid orderkeys");
+        }
+        if (!(Array.isArray(orderkeys))) {
+            throw new InsightError("order keys not array");
         }
         let i: number = orderkeys.length;
         if (dir !== "UP" && dir !== "DOWN") {
