@@ -94,7 +94,6 @@ export default class InsightFacade implements IInsightFacade {
         return Promise.resolve(removedId);
         // use unlink for async TODO if running time too long
     }
-
     public performQuery(query: any): Promise<any[]> {
         let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
         let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
