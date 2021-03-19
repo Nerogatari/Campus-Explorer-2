@@ -21,7 +21,6 @@ export function isSatisfied(section: any, filter: any, id: string, dataKind: Ins
         switch (operationArr[0]) {
             case "NOT":
                 return !this.isSatisfied(section, filter.NOT, id, dataKind);
-
             case "AND": // TODO: check empty array
                 if (filterArr.length === 0 || filter.AND === 0 || !Array.isArray(filter.AND))  {
                     throw new InsightError("empty array");

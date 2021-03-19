@@ -15,6 +15,9 @@ export function validQuery(query: any): boolean {
     if (!("WHERE" in query)) {
         return false;
     }
+    if (!(isObject(query.WHERE))) {
+        return false;
+    }
     if (Object.keys(query.OPTIONS).length > 2) {
         return false;
     }
