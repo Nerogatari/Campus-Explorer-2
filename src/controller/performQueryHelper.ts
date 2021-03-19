@@ -1,12 +1,12 @@
-import {InsightError} from "./IInsightFacade";
-import {isString} from "util";
-import Log from "../Util";
+import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 
 export default class PerformQueryHelper {
-    public mkeys = ["avg", "pass", "fail", "audit", "year"];
-    public skeys = ["dept", "id", "instructor", "title", "uuid"];
+    public mkeysCourse = ["avg", "pass", "fail", "audit", "year", ];
+    public skeysCourse = ["dept", "id", "instructor", "title", "uuid"];
+    public mkeysRoom = ["lat", "lon", "seats"];
+    public skeysRoom = ["fullname", "shortname", "number", "name", "address", "type", "furniture", "href"];
 
-    public LTcomparator(filter: any, section: any, id: string): boolean {
+    public LTcomparator(filter: any, section: any, id: string, dataKind: InsightDatasetKind): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -26,12 +26,20 @@ export default class PerformQueryHelper {
         }
         const queryValue = filter.LT[filterKey];
         const sectionValue = section[filterKey];
-
-        if (this.mkeys.indexOf(key) === -1) {
-            if (this.skeys.indexOf(key) === -1) {
-                throw new InsightError("invalid key type");
+        if (dataKind === InsightDatasetKind.Courses) {
+            if (this.mkeysCourse.indexOf(key) === -1) {
+                if (this.skeysCourse.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
             }
-            throw new InsightError("filter  key is not a m key");
+        } else if (dataKind === InsightDatasetKind.Rooms) {
+            if (this.mkeysRoom.indexOf(key) === -1) {
+                if (this.skeysRoom.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
+            }
         }
         if (typeof queryValue === "number") {
             return (sectionValue < queryValue);
@@ -40,7 +48,7 @@ export default class PerformQueryHelper {
         }
     }
 
-    public GTcomparator(filter: any, section: any, id: string): boolean {
+    public GTcomparator(filter: any, section: any, id: string, dataKind: InsightDatasetKind): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -60,11 +68,21 @@ export default class PerformQueryHelper {
         }
         const queryValue = filter.GT[filterKey];
         const sectionValue = section[filterKey];
-        if (this.mkeys.indexOf(key) === -1) {
-            if (this.skeys.indexOf(key) === -1) {
-                throw new InsightError("invalid key type");
+
+        if (dataKind === InsightDatasetKind.Courses) {
+            if (this.mkeysCourse.indexOf(key) === -1) {
+                if (this.skeysCourse.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
             }
-            throw new InsightError("filter  key is not a m key");
+        } else if (dataKind === InsightDatasetKind.Rooms) {
+            if (this.mkeysRoom.indexOf(key) === -1) {
+                if (this.skeysRoom.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
+            }
         }
 
         if (typeof queryValue === "number") {
@@ -74,7 +92,7 @@ export default class PerformQueryHelper {
         }
     }
 
-    public EQcomparator(filter: any, section: any, id: string): boolean {
+    public EQcomparator(filter: any, section: any, id: string, dataKind: InsightDatasetKind): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -94,11 +112,20 @@ export default class PerformQueryHelper {
         }
         const queryValue = filter.EQ[filterKey];
         const sectionValue = section[filterKey];
-        if (this.mkeys.indexOf(key) === -1) {
-            if (this.skeys.indexOf(key) === -1) {
-                throw new InsightError("invalid key type");
+        if (dataKind === InsightDatasetKind.Courses) {
+            if (this.mkeysCourse.indexOf(key) === -1) {
+                if (this.skeysCourse.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
             }
-            throw new InsightError("filter key is not a m key");
+        } else if (dataKind === InsightDatasetKind.Rooms) {
+            if (this.mkeysRoom.indexOf(key) === -1) {
+                if (this.skeysRoom.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
+            }
         }
 
         if (typeof queryValue === "number") {
@@ -108,7 +135,7 @@ export default class PerformQueryHelper {
         }
     }
 
-    public IScomparator(filter: any, section: any, id: string): boolean {
+    public IScomparator(filter: any, section: any, id: string, dataKind: InsightDatasetKind): boolean {
         let filterKey: string = "";
         let datasetID: string = "";
         let key: string = "";
@@ -127,12 +154,7 @@ export default class PerformQueryHelper {
         }
         const queryValue = filter.IS[filterKey];
         const sectionValue = section[filterKey];
-        if (this.skeys.indexOf(key) === -1) {
-            if (this.mkeys.indexOf(key) === -1) {
-                throw new InsightError("invalid key type");
-            }
-            throw new InsightError("filter key is not an s key");
-        }
+        this.checkIsKey(datasetID, key, dataKind);
         if (typeof queryValue === "string") {
             let queryLength = queryValue.length;
             let sectLength = sectionValue.length;
@@ -159,22 +181,24 @@ export default class PerformQueryHelper {
             throw new InsightError("compared value is not string");
         }
     }
-    // public Sort(section: any, orderKey: any) {
-    //     let Sort: any[] = [];
-    //     if (!orderKey === null) {
-    //         if (typeof(orderKey) === "string") {Sort.sort((obj1, obj2) => {
-    //             if (obj1[orderKey] > obj2[orderKey]) {
-    //                 return 1;
-    //             }
-    //             if (obj1[orderKey] < obj2[orderKey]) {
-    //                 return -1;
-    //             }
-    //             return 0;
-    //         });
-    //         }
-    //     }
-    //     return Sort;
-    // }
+
+    private checkIsKey(datasetID: any, key: any, dataKind: InsightDatasetKind) {
+        if (dataKind === InsightDatasetKind.Courses) {
+            if (this.skeysCourse.indexOf(key) === -1) {
+                if (this.mkeysCourse.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
+            }
+        } else if (dataKind === InsightDatasetKind.Rooms) {
+            if (this.skeysRoom.indexOf(key) === -1) {
+                if (this.mkeysRoom.indexOf(key) === -1) {
+                    throw new InsightError("invalid key type");
+                }
+                throw new InsightError("filter  key is not a m key");
+            }
+        }
+    }
 }
 
 

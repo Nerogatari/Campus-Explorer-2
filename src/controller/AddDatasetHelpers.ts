@@ -38,7 +38,7 @@ export default class AddDatasetHelper {
             return Promise.resolve(bldgsArr);
         });
     }
-    
+
     public filterIndex(unzip: any): any {
         let index = unzip.filter((relativePath: any, fILE: any) => {
             let fileName = fILE.name.replace("rooms/", "");

@@ -5,9 +5,13 @@ import * as JSZip from "jszip";
 import DatasetHelper from "./DatasetHelpers";
 import AddDatasetHelper from "./AddDatasetHelpers";
 import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
-import PerformQueryHelper from "./performQueryHelper";
 import * as fs from "fs";
 import * as parse5 from "parse5";
+import * as PerformFilter from "./PerformFilter";
+import { performTransform } from "./PerformTransform";
+import {isArray, isObject} from "util";
+import {sortOrder, sortTransform} from "./SortHelper";
+import {performSelect, validQuery} from "./QueryHelper";
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
     private datasetHelper: DatasetHelper;
@@ -89,50 +93,47 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
+        let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
+        let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
+        let sections = this.getDatasetById(datasetID); // let section store dataset id
+        let dataKind = this.getKindById(datasetID);
+        let transform = query.TRANSFORMATIONS;
+        let sortedSections: any[];
+        let filteredSections = []; // applied filter sections
+        let transformedSection;
+        if (!validQuery(query)) {
+            return Promise.reject(new InsightError("Invalid query!"));
+        }
         try {
-            if (!this.validQuery(query)) {
-                return Promise.reject(new InsightError("Invalid query"));
-            }
-            let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
-            let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
-            let sections = this.getDatasetById(datasetID); // let section store dataset id
-            let filteredSections = []; // applied filter sections
             if (!Object.keys(filter)) {
                 filteredSections = sections;
             } else if (Object.keys(filter).length === 1) {
                 // pass dataset and filter and return sections
-                filteredSections = this.performFilter(sections, filter, datasetID);
                 let columns = query.OPTIONS.COLUMNS;
-                let selectedSections = filteredSections.map((section: any) => {
-                    let newSection: any = {};
-                    columns.forEach((key: string) => {
-                        if (key.indexOf("_") !== -1) {
-                            newSection[key] = section[key];
-                            if (!key === query.OPTIONS.COLUMNS[0]) {
-                                return Promise.reject(new InsightError("Cross dataset"));
-                            }
-                        } else {
-                            return Promise.reject("columns key does not contain _");
-                        }
-                    });
-                    return newSection;
-                });
-                const orderKey = query.OPTIONS.ORDER;
-                let sortedSections = selectedSections.sort((obj1, obj2) => {
-                    if (obj1[orderKey] > obj2[orderKey]) {
-                        return 1;
-                    }
-                    if (obj1[orderKey] < obj2[orderKey]) {
-                        return -1;
-                    }
-                    return 0;
-                });
-                // TODO check length >5000
-                if (sortedSections.length < 5000) {
-                    return Promise.resolve(sortedSections);
+                filteredSections = PerformFilter.performFilter(sections, filter, datasetID, dataKind);
+                if (transform) {
+                    transformedSection = performTransform(filteredSections, transform, datasetID);
                 } else {
-                    return Promise.reject(new ResultTooLargeError("length > 5000")); // TODO check whr
-                    // throw new ResultTooLargeError("length > 5000");
+                    transformedSection = filteredSections;
+                }
+                // select
+                let selectedSections = performSelect(transformedSection, columns, query);
+                if ("ORDER" in query.OPTIONS) {
+                    const orderKey = query.OPTIONS.ORDER;
+                    if (!(Array.isArray(orderKey.keys))) {
+                        throw new InsightError("order keys not array");
+                    }
+                    if (orderKey.keys.length === 0) {
+                        throw new InsightError("keys must not be empty");
+                    }
+                    sortedSections = sortTransform(selectedSections, orderKey);
+                } else {
+                    sortedSections = selectedSections;
+                }
+                if (sortedSections.length > 5000) {
+                    throw new ResultTooLargeError("Result exceeds 5000");
+                } else {
+                    return Promise.resolve(sortedSections);
                 }
             } else {
                 return Promise.reject(new InsightError(("More than one filter in WHERE")));
@@ -140,30 +141,6 @@ export default class InsightFacade implements IInsightFacade {
         } catch (e) {
             return Promise.reject(e);
         }
-    }
-    
-    private validQuery(query: any): boolean {
-        let length: number = Object.keys(query).length;
-        if (!("WHERE" in query)) {
-            return false;
-        }
-        if (!("OPTIONS" in query)) {
-            return false;
-        }
-        if (Object.keys(query.OPTIONS).length > 2) {
-            return false;
-        }
-        if (!(length === 2)) {
-            return false;
-        }
-        if (!("COLUMNS" in query.OPTIONS)) {
-            return false;
-        }
-        if ("ORDER" in query) {
-            return query.OPTIONS["COLUMNS"].includes(["ORDER"]);
-        }
-        let columns: any[] = query.OPTIONS["COLUMNS"];
-        return columns.length !== 0;
     }
 
     private getDatasetById(id: string): any[] {
@@ -196,8 +173,9 @@ export default class InsightFacade implements IInsightFacade {
         }
         return Promise.resolve(emptyList);
     }
- 
-    private existingDatasetID(id: string): boolean { // should stay
+    // should stay
+
+    private existingDatasetID(id: string): boolean {
         let bool: boolean = false;
         bool = this.addedMapsArr.some((ele) => {
             return ele.id === id;
@@ -206,6 +184,7 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     // https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
+
     private loadDiskDatasets = () => {
         readdir("./data/", (err: any, filenames: any) => {
             if (err) {
@@ -226,64 +205,18 @@ export default class InsightFacade implements IInsightFacade {
         });
     }
 
-
-    private performFilter(sections: object[], filter: object, id: string): object[] {
-
-        let retval = sections.filter((section) => {
-            return this.isSatisfied(section, filter, id);
-        });
-        return retval;
-
-    }
-
-    private isSatisfied(section: any, filter: any, id: string): boolean {
-        let helper = new PerformQueryHelper();
-        let operationArr: any[] = Object.keys(filter);
-        let filterArr: any[] = filter[operationArr[0]];
-        if (operationArr.length === 0) {
-            // return true;
-            throw new InsightError("Number of filter key should  not be 0");
-        } else if (operationArr.length > 1) {
-            throw new InsightError("Number of filter key is greater than 1");
-        } else {
-            switch (operationArr[0]) {
-                case "NOT":
-                    return !this.isSatisfied(section, filter.NOT, id);
-
-                case "AND": // TODO: check empty array
-                    if (filterArr.length === 0 || filter.AND === 0) {
-                        throw new InsightError("empty array");
-                    }
-                    let resultAND = true;
-                    for (let obj of filter.AND) {
-                        if (this.isSatisfied(section, obj, id) === false) {
-                            resultAND = false;
-                        }
-                    }
-                    return resultAND;
-                case "OR":
-                    if (filterArr.length === 0) {
-                        throw new InsightError("empty array");
-                    }
-                    let resultOR = false;
-                    for (let obj of filter.OR) {
-                        if (this.isSatisfied(section, obj, id) === true) {
-                            resultOR = true;
-                        }
-                    }
-                    return resultOR;
-                case "IS":
-                    return helper.IScomparator(filter, section, id);
-                case "LT":
-                    return helper.LTcomparator(filter, section, id);
-                case "GT":
-                    return helper.GTcomparator(filter, section, id);
-                case "EQ":
-                    return helper.EQcomparator(filter, section, id);
-                default:
-                    throw new InsightError("Invalid comparator name");
-
+    private getKindById(id: string): any {
+        let fileKind: any = "";
+        fs.readdirSync("./data/").forEach((filename) => {
+            if (id === filename.split(".")[0]) {
+                const fileContent = fs.readFileSync("./data/" + filename, "utf8");
+                fileKind = JSON.parse(fileContent).kind;
             }
+        });
+        if (fileKind === []) {
+            throw new InsightError("Nothing in dataset");
+        } else {
+            return fileKind;
         }
     }
 

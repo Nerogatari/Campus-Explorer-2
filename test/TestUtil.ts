@@ -22,7 +22,8 @@ export default class TestUtil {
      * Recursively searches for test query JSON files in the path and returns those matching the specified schema.
      * @param path The path to the sample query JSON files.
      */
-    public static readTestQueries(path: string = "test/queries"): ITestQuery[] {
+    // TODO change back to test/queries
+    public static readTestQueries(path: string = "test/queries/c3testing"): ITestQuery[] {
         const methodName: string = "TestUtil::readTestQueries --";
         const testQueries: ITestQuery[] = [];
         let files: string[];
