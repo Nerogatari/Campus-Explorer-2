@@ -32,35 +32,58 @@ export default class InsightFacade implements IInsightFacade {
         } // TODO check weird, illformed files, weird courses structure  
         if (kind === InsightDatasetKind.Rooms) {
             // validateRooms()
-            newZip.loadAsync(content, { base64: true }).then((zip: any) => {
-                let stuff = zip.folder("rooms");
-                let promisesArr: Array<Promise<string>> = [];
-                // stuff.forEach(function (relativePath: any, file: any) {
-                //     fileName = file.name.replace("rooms/", "");
-                //     if (fileName === "index.htm") {
-                //         promisesArr.push(file.async("string"));
-                //     }
-                // });
-                // let index = stuff.filter((file: any) => file.name.replace("rooms/", "") === "index.htm");
-                // Log.info(index);
-                stuff.forEach((relativePath: any, file: any) => {
-                    fileName = file.name.replace("rooms/", "");
-                    if (fileName === "index.htm") {
-                        file.async("string").then((indexData: any) => {
-                            this.parseIndex(indexData).then((bldgsPaths: any) => {
-                                for (const path of bldgsPaths) {
-                                    let rootPath = path.replace(".", "rooms");
-                                    zip.file(rootPath).async("string").then((fileData: any) => {
-                                        let res = parse5.parse(fileData);
-                                        this.parseBuilding(res).then((rooms) => {
-                                            dataSetArray.push(...rooms);
-                                        });
-                                    });
-                                }
-                            });
-                        });
+            // return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
+            //     let stuff = zip.folder("rooms");
+            //     let promisesArr: Array<Promise<string>> = [];
+
+            //     stuff.forEach((relativePath: any, file: any) => {
+            //         fileName = file.name.replace("rooms/", "");
+            //         if (fileName === "index.htm") {
+            //             file.async("string").then((indexData: any) => {
+            //                 this.parseIndex(indexData).then((bldgsPaths: any) => {
+            //                     for (const path of bldgsPaths) {
+            //                         let rootPath = path.replace(".", "rooms");
+            //                         zip.file(rootPath).async("string").then((fileData: any) => {
+            //                             let res = parse5.parse(fileData);
+            //                             this.parseBuilding(res).then((rooms) => {
+            //                                 dataSetArray.push(...rooms);
+            //                             });
+            //                         });
+            //                     }
+            //                 });
+            //             });
+            //         }
+            //     });
+            let outtieZip: any;
+            return newZip.loadAsync(content, { base64: true })
+                .then((zip: any) => {
+                    let stuff = zip.folder("rooms");
+                    let promisesArr: Array<Promise<string>> = [];
+                    outtieZip = zip;
+                    stuff.forEach((relativePath: any, file: any) => {
+                        fileName = file.name.replace("rooms/", "");
+                        if (fileName === "index.htm") {
+                            // return file.async("string");
+                            return "no";
+                        }
+                    });
+                })
+                .then((indexData: any) => {
+                        return this.parseIndex(indexData);
+                })
+                .then((bldgsPaths: any) => {
+                    for (const path of bldgsPaths) {
+                        let rootPath = path.replace(".", "rooms");
+                        return outtieZip.file(rootPath).async("string");
                     }
-                });
+                })
+                .then((fileData: any) => {
+                    let res = parse5.parse(fileData);
+                    return this.parseBuilding(res);
+                })
+                .then((rooms) => {
+                    dataSetArray.push(...rooms);
+                })
                     // stuff.filter((file: any) =>
                     // fileName = file.name.replace("rooms/", "");
                     // if (fileName === "index.htm") {
@@ -92,7 +115,16 @@ export default class InsightFacade implements IInsightFacade {
                 //         }
                 //     });
                 // });
-            });
+            .then(() => {
+                Log.info("MORE SUCCESS");
+                this.addedMapsArr.forEach((ele: any) => {
+                    addedIds.push(ele.id);
+                });
+                return addedIds;
+            })
+                .catch((err) => {
+                    return Promise.reject(new InsightError(err));
+                });
         }
         if (kind === InsightDatasetKind.Courses) {
             // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
