@@ -1,5 +1,5 @@
 import Log from "../Util";
-import Decimal from "decimal.js";
+import {Decimal} from "decimal.js";
 import {InsightError} from "./IInsightFacade";
 let mKeys: string[] = ["avg", "pass", "fail", "audit", "year", "lat", "lon", "seats"];
 let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", "shortname", "number", "name"
@@ -8,6 +8,9 @@ let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", 
 export function performTransform(sections: object[], transform: any, id: string): any {
 
     let mappedGroup: Map<string, any[]> = new Map<string, any[]>();
+    if (!("GROUP" in transform)) {
+        throw new InsightError("no group");
+    }
     let groupKeys = transform.GROUP;
     for (let section of sections) {
         let mapKey = "";
@@ -47,8 +50,6 @@ export function performTransform(sections: object[], transform: any, id: string)
     }
     return groupedSections;
 }
-
-// TODO: parameter of dataKind
 const executeApply = (currGroup: any, applyRule: any): number => {
     let applyToken = Object.keys(applyRule)[0];
     let key = applyRule[applyToken];
@@ -81,7 +82,8 @@ const executeApply = (currGroup: any, applyRule: any): number => {
                 return retval1.add(value1);
             });
             let avg = sum2 / dataArray.length;
-            return Number(avg.toFixed(2));
+            let returnNumber = Number(avg.toFixed(2));
+            return returnNumber;
         case "COUNT":
             // https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
             let unique = [...new Set(dataArray)];
