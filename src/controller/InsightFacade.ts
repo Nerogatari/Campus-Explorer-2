@@ -29,7 +29,7 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
-        } // TODO check weird, illformed files, weird courses structure    
+        } // TODO check weird, illformed files, weird courses structure  
         if (kind === InsightDatasetKind.Rooms) {
             // validateRooms()
             newZip.loadAsync(content, { base64: true }).then((zip: any) => {
@@ -39,7 +39,7 @@ export default class InsightFacade implements IInsightFacade {
                 //     fileName = file.name.replace("rooms/", "");
                 //     if (fileName === "index.htm") {
                 //         promisesArr.push(file.async("string"));
-                //     } 
+                //     }
                 // });
                 // let index = stuff.filter((file: any) => file.name.replace("rooms/", "") === "index.htm");
                 // Log.info(index);
@@ -54,12 +54,12 @@ export default class InsightFacade implements IInsightFacade {
                                         let res = parse5.parse(fileData);
                                         this.parseBuilding(res).then((rooms) => {
                                             dataSetArray.push(...rooms);
-                                        })
-                                    })
+                                        });
+                                    });
                                 }
-                            })
-                        })
-                    } 
+                            });
+                        });
+                    }
                 });
                     // stuff.filter((file: any) =>
                     // fileName = file.name.replace("rooms/", "");
@@ -473,7 +473,9 @@ export default class InsightFacade implements IInsightFacade {
                 }
                 let rawData = "";
                 let parsedData: any;
-                res.on("data", (chunk) => { rawData += chunk; });
+                res.on("data", (chunk) => {
+                    rawData += chunk;
+                });
                 res.on("end", () => {
                     try {
                         parsedData = JSON.parse(rawData);
