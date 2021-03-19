@@ -1,5 +1,5 @@
 {
-    "title": "Error: Invalid query string.",
+    "title": "The result is too big. ed by https://github.com/ianmah/310-bookmarklet. Pls gib star",
     "query": {
         "WHERE": {},
         "OPTIONS": {
@@ -11,5 +11,5 @@
         }
     },
     "isQueryValid": false,
-    "result": "InsightError"
+    "result": "ResultTooLargeError"
 }

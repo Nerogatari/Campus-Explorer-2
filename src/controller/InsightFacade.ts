@@ -3,19 +3,22 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, ResultTooLargeError}
 import { InsightError, NotFoundError } from "./IInsightFacade";
 import * as JSZip from "jszip";
 import DatasetHelper from "./DatasetHelpers";
+import AddDatasetHelper from "./AddDatasetHelpers";
 import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
 import * as fs from "fs";
+import * as parse5 from "parse5";
 import * as PerformFilter from "./PerformFilter";
 import { performTransform } from "./PerformTransform";
-import {isArray, isObject} from "util";
+import {isArray, isObject, isString} from "util";
 import {sortOrder, sortTransform} from "./SortHelper";
-import {performSelect, validQuery} from "./QueryHelper";
-
+import {orderHelper, performSelect, validQuery} from "./QueryHelper";
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
     private datasetHelper: DatasetHelper;
+    private addDatasetHelper: AddDatasetHelper;
     constructor() {
         this.datasetHelper = new DatasetHelper();
+        this.addDatasetHelper = new AddDatasetHelper();
         this.addedMapsArr = [];
         this.loadDiskDatasets();
         Log.trace("InsightFacadeImpl::init()");
@@ -26,54 +29,48 @@ export default class InsightFacade implements IInsightFacade {
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
         let newZip = new JSZip();
         let dataSetArray: string[] = [];
-        let fileName: string = "";
         let addedIds: string[] = [];
-        if (kind === InsightDatasetKind.Rooms) {
-            return Promise.reject(new InsightError("Invalid Kind"));
-        }
         if (this.datasetHelper.validId(id) === false) {
             return Promise.reject(new InsightError("Invalid ID"));
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
         } // TODO check weird, illformed files, weird courses structure
-        // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
-        return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
-            let promisesArr: Array<Promise<string>> = [];
-            zip.folder("courses").forEach(function (relativePath: any, file: any) {
-                fileName = file.name.replace("courses/", "");
-                if (fileName === ".DS_Store") {
-                    return;
-                }
-                promisesArr.push(file.async("string"));
-            });
-            return Promise.all(promisesArr)
-                .then((sectionData: any) => {
-                    let tempArr = [];
-                    for (const section of sectionData) {
-                        tempArr = this.datasetHelper.parseCourseData(id, section);
-                        dataSetArray.push(...tempArr);
+        let promisesArr: Array<Promise<string>> = [];
+        let promisesArr2: Array<Promise<any>> = [];
+        if (kind === InsightDatasetKind.Rooms) {
+            return this.addRoomsDataset(id, content, kind);
+        }
+        if (kind === InsightDatasetKind.Courses) {
+            // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
+            let fileName: string = "";
+            return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
+                zip.folder("courses").forEach(function (relativePath: any, filee: any) {
+                    fileName = filee.name.replace("courses/", "");
+                    if (fileName === ".DS_Store") {
+                        return;
                     }
-                    if (dataSetArray.length === 0) {
-                        return Promise.reject(new InsightError("No valid sections in file"));
-                    }
-                    let newObj: any = {id: id, kind: kind, data: dataSetArray};
-                    const str = JSON.stringify(newObj);
-                    writeFileSync("./data/" + id + ".txt", str);
-                    this.addedMapsArr.push(newObj);
-                    Log.info("Good push"); // return something
+                    promisesArr.push(filee.async("string"));
                 });
-        }).then(() => {
-            Log.info("MORE SUCCESS");
-            this.addedMapsArr.forEach((ele: any) => {
-                addedIds.push(ele.id);
-            });
-            return addedIds;
-        })
-            .catch((err) => {
-                Log.info("UH oH");
-                return Promise.reject(new InsightError(err));
-            });
+                return Promise.all(promisesArr)
+                    .then((sectionData: any) => {
+                        let tempArr = [];
+                        for (const section of sectionData) {
+                            tempArr = this.datasetHelper.parseCourseData(id, section);
+                            dataSetArray.push(...tempArr);
+                        }
+                        if (dataSetArray.length === 0) {
+                            return Promise.reject(new InsightError("No valid sections in file"));
+                        }
+                    });
+            }).then(() => {
+                this.writeToDisk(id, kind, dataSetArray, addedIds);
+                return addedIds;
+            })
+                .catch((err) => {
+                    return Promise.reject(new InsightError(err));
+                });
+        }
     }
 
     public removeDataset(id: string): Promise<string> {
@@ -94,7 +91,11 @@ export default class InsightFacade implements IInsightFacade {
         return Promise.resolve(removedId);
         // use unlink for async TODO if running time too long
     }
+
     public performQuery(query: any): Promise<any[]> {
+        if (!validQuery(query)) {
+            return Promise.reject( new InsightError("Invalid query!"));
+        }
         let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
         let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
         let sections = this.getDatasetById(datasetID); // let section store dataset id
@@ -103,13 +104,10 @@ export default class InsightFacade implements IInsightFacade {
         let sortedSections: any[];
         let filteredSections = []; // applied filter sections
         let transformedSection;
-        if (!validQuery(query)) {
-            return Promise.reject(new InsightError("Invalid query!"));
-        }
         try {
             if (!Object.keys(filter)) {
                 filteredSections = sections;
-            } else if (Object.keys(filter).length === 1) {
+            } else if (Object.keys(filter).length <= 1) {
                 // pass dataset and filter and return sections
                 let columns = query.OPTIONS.COLUMNS;
                 filteredSections = PerformFilter.performFilter(sections, filter, datasetID, dataKind);
@@ -118,17 +116,10 @@ export default class InsightFacade implements IInsightFacade {
                 } else {
                     transformedSection = filteredSections;
                 }
-                // select
                 let selectedSections = performSelect(transformedSection, columns, query);
                 if ("ORDER" in query.OPTIONS) {
                     const orderKey = query.OPTIONS.ORDER;
-                    if (!(Array.isArray(orderKey.keys))) {
-                        throw new InsightError("order keys not array");
-                    }
-                    if (orderKey.keys.length === 0) {
-                        throw new InsightError("keys must not be empty");
-                    }
-                    sortedSections = sortTransform(selectedSections, orderKey);
+                    sortedSections = orderHelper(orderKey, selectedSections, query);
                 } else {
                     sortedSections = selectedSections;
                 }
@@ -164,6 +155,7 @@ export default class InsightFacade implements IInsightFacade {
         }
     }
 
+    // check lists for Rooms counting rows
     public listDatasets(): Promise<InsightDataset[]> {
         let emptyList: InsightDataset[] = [];
         for (const ele of this.addedMapsArr) {
@@ -183,15 +175,16 @@ export default class InsightFacade implements IInsightFacade {
         });
         return bool;
     }
+
     // https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
 
     private loadDiskDatasets = () => {
-        readdir("./data/", (err: any, filenames: any)  => {
+        readdir("./data/", (err: any, filenames: any) => {
             if (err) {
                 Log.info("Failed directory read");
                 return;
             }
-            filenames.forEach( (filename: any) => {
+            filenames.forEach((filename: any) => {
                 if (filename === ".DS_Store") {
                     return;
                 }
@@ -219,4 +212,67 @@ export default class InsightFacade implements IInsightFacade {
             return fileKind;
         }
     }
+
+    private addRoomsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+        let newZip = new JSZip();
+        let outtieZip: any;
+        let promisesArr: Array<Promise<string>> = [];
+        let promisesArr2: Array<Promise<any>> = [];
+        let dataSetArray: string[] = [];
+        let addedIds: string[] = [];
+        return newZip.loadAsync(content, { base64: true })
+                .then((zip: any) => {
+                    let unzip = zip.folder("rooms");
+                    outtieZip = zip;
+                    let index = this.addDatasetHelper.filterIndex(unzip);
+                    if (index.length < 1) {
+                        return Promise.reject(new InsightError("No index for Rooms"));
+                    }
+                    return index[0].async("string");
+                })
+                .then((indexData: any) => {
+                        return this.addDatasetHelper.parseIndex(indexData);
+                })
+                .then((bldgsPaths: any) => {
+                    for (const path of bldgsPaths) {
+                        promisesArr.push(outtieZip.file(path.replace(".", "rooms")).async("string"));
+                    }
+                })
+                .then(() => {
+                    return Promise.all(promisesArr);
+                })
+                .then((fileData: any) => {
+                    for (const data of fileData) {
+                        let res = parse5.parse(data);
+                        promisesArr2.push(this.datasetHelper.parseBuilding(res));
+                    }
+                })
+                .then(() => {
+                    return Promise.all(promisesArr2);
+                })
+                .then((roomsAll) => {
+                    for (const rooms of roomsAll) {
+                        dataSetArray.push(...rooms);
+                    }
+                })
+                .then(() => {
+                    this.writeToDisk(id, kind, dataSetArray, addedIds);
+                    return addedIds;
+                })
+                .catch((err) => {
+                    return Promise.reject(new InsightError(err));
+                });
+    }
+
+    private writeToDisk(id: string, kind: InsightDatasetKind, dataSetArray: string[], addedIds: string[]) {
+        let newObj: any = { id: id, kind: kind, data: dataSetArray };
+        const str = JSON.stringify(newObj);
+        writeFileSync("./data/" + id + ".txt", str);
+        this.addedMapsArr.push(newObj);
+        // Log.info(dataSetArray);
+        this.addedMapsArr.forEach((ele: any) => {
+            addedIds.push(ele.id);
+        });
+    }
+
 }

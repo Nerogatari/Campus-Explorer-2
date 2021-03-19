@@ -1,5 +1,5 @@
 {
-    "title": "test transform",
+    "title": " ",
     "query": {
         "WHERE": {
             "AND": [
@@ -18,7 +18,8 @@
         "OPTIONS": {
             "COLUMNS": [
                 "rooms_shortname",
-                "maxSeats"
+                "maxSeats",
+                "noby"
             ],
             "ORDER": {
                 "dir": "DOWN",
@@ -36,6 +37,11 @@
                     "maxSeats": {
                         "MAX": "rooms_seats"
                     }
+                },
+                {
+                    "noby": {
+                        "COUNT": "rooms_seats"
+                    }
                 }
             ]
         }
@@ -44,15 +50,18 @@
     "result": [
         {
             "rooms_shortname": "OSBO",
-            "maxSeats": 442
+            "maxSeats": 442,
+            "noby": 1
         },
         {
             "rooms_shortname": "HEBB",
-            "maxSeats": 375
+            "maxSeats": 375,
+            "noby": 1
         },
         {
             "rooms_shortname": "LSC",
-            "maxSeats": 350
+            "maxSeats": 350,
+            "noby": 1
         }
     ]
 }

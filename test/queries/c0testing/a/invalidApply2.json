@@ -1,0 +1,28 @@
+{
+    "title": "apply rule is not an object",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_avg": 96
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_title",
+                "overallAvg"
+            ]
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_title"
+            ],
+            "APPLY": [
+                {
+                    "overallAvg": []
+                }
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result":""
+}

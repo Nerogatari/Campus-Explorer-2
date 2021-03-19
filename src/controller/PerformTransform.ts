@@ -6,7 +6,6 @@ let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", 
     , "address", "type", "furniture", "href"];
 
 export function performTransform(sections: object[], transform: any, id: string): any {
-
     let mappedGroup: Map<string, any[]> = new Map<string, any[]>();
     if (!("GROUP" in transform)) {
         throw new InsightError("no group");
@@ -44,6 +43,11 @@ export function performTransform(sections: object[], transform: any, id: string)
             if ((Object.keys(apply1).length) !== 1) {
                 throw new InsightError("apply key should only have 1 key");
             }
+            let arr = Object.values(applyRule);
+            let unique = [...new Set(arr)];
+            if (!(arr.length  === unique.length)) {
+                throw new InsightError("duplicated apply key");
+            }
             groupedSection[applyKey] = executeApply(currGroup, applyRule);
         }
         groupedSections.push(groupedSection);
@@ -51,15 +55,15 @@ export function performTransform(sections: object[], transform: any, id: string)
     return groupedSections;
 }
 const executeApply = (currGroup: any, applyRule: any): number => {
+    if ((Object.keys(applyRule).length) !== 1 || applyRule === undefined) {
+        throw new InsightError("invalid apply rule");
+    }
     let applyToken = Object.keys(applyRule)[0];
     let key = applyRule[applyToken];
     let mainKey = key.split("_")[1];
     let dataArray = currGroup.map((section: any) => {
         return section[key];
     });
-    if ((Object.keys(applyRule).length) !== 1) {
-        throw new InsightError("applyToken length should be 1");
-    }
     if ((!(mKeys.includes(mainKey))) && (!(sKeys.includes(mainKey)))) {
         throw new InsightError("target string is not valid");
     }

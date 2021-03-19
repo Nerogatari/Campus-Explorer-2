@@ -2,11 +2,14 @@ import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 import PerformQueryHelper from "./performQueryHelper";
 
 export function performFilter(sections: object[], filter: object, id: string, dataKind: InsightDatasetKind): object[] {
-
-    let retval = sections.filter((section) => {
-        return this.isSatisfied(section, filter, id, dataKind);
-    });
-    return retval;
+    if (Object.keys(filter).length === 0) {
+        return sections;
+    } else {
+        let retval = sections.filter((section) => {
+            return this.isSatisfied(section, filter, id, dataKind);
+        });
+        return retval;
+    }
 }
 export function isSatisfied(section: any, filter: any, id: string, dataKind: InsightDatasetKind): boolean {
     let helper = new PerformQueryHelper();
@@ -21,9 +24,8 @@ export function isSatisfied(section: any, filter: any, id: string, dataKind: Ins
         switch (operationArr[0]) {
             case "NOT":
                 return !this.isSatisfied(section, filter.NOT, id, dataKind);
-
             case "AND": // TODO: check empty array
-                if (filterArr.length === 0 || filter.AND === 0)  {
+                if (filterArr.length === 0 || filter.AND === 0 || !Array.isArray(filter.AND))  {
                     throw new InsightError("empty array");
                 }
                 let resultAND = true;
@@ -34,7 +36,7 @@ export function isSatisfied(section: any, filter: any, id: string, dataKind: Ins
                 }
                 return resultAND;
             case "OR":
-                if (filterArr.length === 0) {
+                if (filterArr.length === 0 || filter.OR === 0 || !Array.isArray(filter.OR)) {
                     throw new InsightError("empty array");
                 }
                 let resultOR = false;

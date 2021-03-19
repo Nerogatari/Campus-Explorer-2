@@ -1,3 +1,4 @@
+import * as http from "http";
 export default class DatasetHelper {
     public validateSections(data: any, keys: string[]): boolean {
         // has all needed categories TODO TEST
@@ -129,5 +130,117 @@ export default class DatasetHelper {
             newJSONArr.push(newJSON);
         });
         return newJSONArr;
+    }
+
+    // https://stackoverflow.com/questions/19539391/how-to-get-data-out-of-a-node-js-http-get-request
+    // https://stackoverflow.com/questions/38533580/nodejs-how-to-promisify-http-request-reject-got-called-two-times
+    public requestLatLon(address: string): Promise<any> {
+        let path = "http://cs310.students.cs.ubc.ca:11316/api/v1/project_team226/";
+        let reqAdd = address.replace(/ /g, "%20");
+        path = path + reqAdd;
+        return new Promise((resolve, reject) => {
+            let req = http.get(path, (res) => {
+                const { statusCode } = res;
+                if (statusCode !== 200) {
+                    return reject(new Error("Bad request"));
+                }
+                let rawData = "";
+                let parsedData: any;
+                res.on("data", (chunk) => {
+                    rawData += chunk;
+                });
+                res.on("end", () => {
+                    try {
+                        parsedData = JSON.parse(rawData);
+                    } catch (e) {
+                        reject(e.message);
+                    }
+                    resolve(parsedData);
+                });
+            });
+            req.on("error", (err) => {
+                reject(err);
+            });
+            req.end();
+        });
+    }
+
+    public parseBuilding(element: any): Promise<any[]> {
+        let buildingInfo: any = {};
+        let bldgsRoomsArr: any[] = [];
+        let stack: any[] = [];
+        stack.push(element);
+
+        while (stack.length > 0) {
+            let curr = stack.pop();
+            this.mapRoomValues(curr, buildingInfo, bldgsRoomsArr);
+            if (curr.childNodes) {
+                curr.childNodes?.reverse().forEach((child: any) => {
+                    stack.push(child);
+                });
+            }
+        }
+        if (bldgsRoomsArr.length > 0) {
+            return this.requestLatLon(buildingInfo["address"]).then((latlon: any) => {
+                bldgsRoomsArr.forEach((room) => {
+                    room["rooms_lat"] = latlon["lat"];
+                    room["rooms_lon"] = latlon["lon"];
+                });
+                return Promise.resolve(bldgsRoomsArr);
+            });
+        } else {
+            return Promise.resolve(bldgsRoomsArr);
+        }
+    }
+
+    private mapRoomValues(curr: any, buildingInfo: any, bldgsRoomsArr: any[]) {
+        if (curr.nodeName === "div" && curr.attrs.filter((e: any) => e.name === "id"
+            && e.value === "building-info").length > 0) {
+                if (curr.childNodes[1] && curr.childNodes[1].childNodes
+                    && curr.childNodes[1].childNodes[0].nodeName === "span") {
+                    buildingInfo["fullname"] = curr.childNodes[1].childNodes[0].childNodes[0].value;
+                }
+                if (curr.childNodes[3]
+                    && curr.childNodes[3].attrs.filter((e: any) => e.value === "building-field").length > 0) {
+                    buildingInfo["address"] = curr.childNodes[3].childNodes[0].childNodes[0].value;
+                }
+        }
+        if (curr.nodeName === "link" && curr.attrs.filter((e: any) => e.name === "rel"
+            && e.value === "canonical").length > 0 && curr.attrs.filter((e: any) => e.name === "href").length > 0) {
+                buildingInfo["shortname"] = curr.attrs[1].value;
+        }
+        if (curr.nodeName === "tbody") {
+            for (const child of curr.childNodes) {
+                let roomsInfo: any = {};
+                if (child.nodeName === "tr") {
+                    for (const innerChild of child.childNodes) {
+                        if (innerChild.attrs) {
+                            if (innerChild.attrs[0].value === "views-field views-field-field-room-number") {
+                                if (innerChild.childNodes[1].attrs[0].name === "href") {
+                                    roomsInfo["rooms_href"] = innerChild.childNodes[1].attrs[0].value;
+                                    roomsInfo["rooms_number"] = innerChild.childNodes[1].childNodes[0].value;
+                                }
+                            }
+                            if (innerChild.attrs[0].value === "views-field views-field-field-room-capacity") {
+                                roomsInfo["rooms_seats"] =
+                                    Number(innerChild.childNodes[0].value.replace("\n", "").trim());
+                            } // TODO weird 0 and check for thrown/all fields
+                            if (innerChild.attrs[0].value === "views-field views-field-field-room-furniture") {
+                                roomsInfo["rooms_furniture"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            }
+                            if (innerChild.attrs[0].value === "views-field views-field-field-room-type") {
+                                roomsInfo["rooms_type"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            }
+                        }
+                    }
+                }
+                if (Object.keys(roomsInfo).length > 0) {
+                    roomsInfo["rooms_fullname"] = buildingInfo["fullname"];
+                    roomsInfo["rooms_shortname"] = buildingInfo["shortname"];
+                    roomsInfo["rooms_name"] = buildingInfo["shortname"] + "_" + roomsInfo["rooms_number"];
+                    bldgsRoomsArr.push(roomsInfo);
+                }
+            }
+        }
     }
 }
