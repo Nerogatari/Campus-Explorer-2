@@ -81,6 +81,7 @@ export default class DatasetHelper {
             return true;
         }
     }
+    
     // https://stackoverflow.com/questions/54905976/how-do-i-filter-keys-from-json-in-node-js
     // https://stackoverflow.com/questions/20059995/how-to-create-an-object-from-an-array-of-key-value-pairs/43682482
     public parseCourseData(id: string, content: string): any[] {

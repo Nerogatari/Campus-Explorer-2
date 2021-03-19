@@ -30,6 +30,7 @@ export default class AddDatasetHelper {
         }
         return bldgs;
     }
+
     public async parseIndex(content: string): Promise<string[]> {
         let bldgsArr: string[] = [];
         return this.parseHTML(String(content)).then((parsedData: any) => {
@@ -37,6 +38,7 @@ export default class AddDatasetHelper {
             return Promise.resolve(bldgsArr);
         });
     }
+    
     public filterIndex(unzip: any): any {
         let index = unzip.filter((relativePath: any, fILE: any) => {
             let fileName = fILE.name.replace("rooms/", "");

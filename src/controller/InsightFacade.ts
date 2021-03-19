@@ -19,6 +19,7 @@ export default class InsightFacade implements IInsightFacade {
         this.loadDiskDatasets();
         Log.trace("InsightFacadeImpl::init()");
     }
+
     // https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
     // https://stuk.github.io/jszip/documentation/examples.html
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -140,6 +141,7 @@ export default class InsightFacade implements IInsightFacade {
             return Promise.reject(e);
         }
     }
+    
     private validQuery(query: any): boolean {
         let length: number = Object.keys(query).length;
         if (!("WHERE" in query)) {
@@ -163,6 +165,7 @@ export default class InsightFacade implements IInsightFacade {
         let columns: any[] = query.OPTIONS["COLUMNS"];
         return columns.length !== 0;
     }
+
     private getDatasetById(id: string): any[] {
         let retval: any[] = [];
         fs.readdirSync("./data/").forEach((filename) => {
@@ -181,6 +184,7 @@ export default class InsightFacade implements IInsightFacade {
             return retval;
         }
     }
+
     // check lists for Rooms counting rows
     public listDatasets(): Promise<InsightDataset[]> {
         let emptyList: InsightDataset[] = [];
@@ -200,6 +204,7 @@ export default class InsightFacade implements IInsightFacade {
         });
         return bool;
     }
+
     // https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
     private loadDiskDatasets = () => {
         readdir("./data/", (err: any, filenames: any) => {
@@ -332,6 +337,7 @@ export default class InsightFacade implements IInsightFacade {
                     return Promise.reject(new InsightError(err));
                 });
     }
+
     private writeToDisk(id: string, kind: InsightDatasetKind, dataSetArray: string[], addedIds: string[]) {
         let newObj: any = { id: id, kind: kind, data: dataSetArray };
         const str = JSON.stringify(newObj);
