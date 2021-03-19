@@ -6,7 +6,6 @@ let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", 
     , "address", "type", "furniture", "href"];
 
 export function performTransform(sections: object[], transform: any, id: string): any {
-
     let mappedGroup: Map<string, any[]> = new Map<string, any[]>();
     if (!("GROUP" in transform)) {
         throw new InsightError("no group");
@@ -43,6 +42,11 @@ export function performTransform(sections: object[], transform: any, id: string)
             }
             if ((Object.keys(apply1).length) !== 1) {
                 throw new InsightError("apply key should only have 1 key");
+            }
+            let arr = Object.values(applyRule);
+            let unique = [...new Set(arr)];
+            if (!(arr.length  === unique.length)) {
+                throw new InsightError("duplicated apply key");
             }
             groupedSection[applyKey] = executeApply(currGroup, applyRule);
         }

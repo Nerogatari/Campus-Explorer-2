@@ -46,7 +46,7 @@ export function validQuery(query: any): boolean {
         if (!(isObject(transformations))) {
             return false;
         }
-        if (!validTransformations(transformations)) {
+        if (validTransformations(transformations) === false) {
             return false;
         }
     }
