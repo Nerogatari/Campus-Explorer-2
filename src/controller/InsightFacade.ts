@@ -8,6 +8,8 @@ import PerformQueryHelper from "./performQueryHelper";
 import * as fs from "fs";
 import * as parse5 from "parse5";
 import * as http from "http";
+import { file } from "jszip";
+import { promises } from "dns";
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
     private datasetHelper: DatasetHelper;
@@ -55,18 +57,29 @@ export default class InsightFacade implements IInsightFacade {
             //         }
             //     });
             let outtieZip: any;
+            let promisesArr: Array<Promise<string>> = [];
+            let promisesArr2: Array<Promise<any>> = [];
             return newZip.loadAsync(content, { base64: true })
                 .then((zip: any) => {
                     let stuff = zip.folder("rooms");
-                    let promisesArr: Array<Promise<string>> = [];
                     outtieZip = zip;
-                    stuff.forEach((relativePath: any, file: any) => {
+                    // stuff.forEach((relativePath: any, file: any) => {
+                    //     fileName = file.name.replace("rooms/", "");
+                    //     if (fileName === "index.htm") {
+                    //         // return file.async("string");
+                    //         return "no"
+                    //     }
+                    // });
+                    let index = stuff.filter((relativePath: any, file: any) => {
                         fileName = file.name.replace("rooms/", "");
                         if (fileName === "index.htm") {
-                            // return file.async("string");
-                            return "no";
+                            return true;
                         }
                     });
+                    if (index.length < 1) {
+                        return Promise.reject(new InsightError("No index"));
+                    }
+                    return index[0].async("string");
                 })
                 .then((indexData: any) => {
                         return this.parseIndex(indexData);
@@ -74,16 +87,33 @@ export default class InsightFacade implements IInsightFacade {
                 .then((bldgsPaths: any) => {
                     for (const path of bldgsPaths) {
                         let rootPath = path.replace(".", "rooms");
-                        return outtieZip.file(rootPath).async("string");
+                        promisesArr.push(outtieZip.file(rootPath).async("string"));
                     }
                 })
+                .then(() => {
+                    return Promise.all(promisesArr);
+                })
                 .then((fileData: any) => {
-                    let res = parse5.parse(fileData);
-                    return this.parseBuilding(res);
+                    for (const data of fileData) {
+                        let res = parse5.parse(data);
+                        promisesArr2.push(this.parseBuilding(res));
+                    }
                 })
-                .then((rooms) => {
-                    dataSetArray.push(...rooms);
+                .then(() => {
+                    return Promise.all(promisesArr2);
                 })
+                .then((roomsAll) => {
+                    for (const rooms of roomsAll) {
+                        dataSetArray.push(...rooms);
+                    }
+                })
+                // .then((fileData: any) => {
+                //     let res = parse5.parse(fileData);
+                //     return this.parseBuilding(res);
+                // })
+                // .then((rooms) => {
+                //     dataSetArray.push(...rooms);
+                // })
                     // stuff.filter((file: any) =>
                     // fileName = file.name.replace("rooms/", "");
                     // if (fileName === "index.htm") {
