@@ -35,20 +35,32 @@ export default class InsightFacade implements IInsightFacade {
             newZip.loadAsync(content, { base64: true }).then((zip: any) => {
                 let stuff = zip.folder("rooms");
                 let promisesArr: Array<Promise<string>> = [];
-                stuff.forEach(function (relativePath: any, file: any) {
-                    fileName = file.name.replace("rooms/", "");
-                    if (fileName === "index.htm") {
-                        promisesArr.push(file.async("string"));
-                    } 
-                });
-                // let index = stuff.filter((file: any) => file.name.replace("rooms/", "") === "index.htm");
-                // Log.info(index);
                 // stuff.forEach(function (relativePath: any, file: any) {
                 //     fileName = file.name.replace("rooms/", "");
                 //     if (fileName === "index.htm") {
-                //         file.async("string").
+                //         promisesArr.push(file.async("string"));
                 //     } 
                 // });
+                // let index = stuff.filter((file: any) => file.name.replace("rooms/", "") === "index.htm");
+                // Log.info(index);
+                stuff.forEach((relativePath: any, file: any) => {
+                    fileName = file.name.replace("rooms/", "");
+                    if (fileName === "index.htm") {
+                        file.async("string").then((indexData: any) => {
+                            this.parseIndex(indexData).then((bldgsPaths: any) => {
+                                for (const path of bldgsPaths) {
+                                    let rootPath = path.replace(".", "rooms");
+                                    zip.file(rootPath).async("string").then((fileData: any) => {
+                                        let res = parse5.parse(fileData);
+                                        this.parseBuilding(res).then((rooms) => {
+                                            dataSetArray.push(...rooms);
+                                        })
+                                    })
+                                }
+                            })
+                        })
+                    } 
+                });
                     // stuff.filter((file: any) =>
                     // fileName = file.name.replace("rooms/", "");
                     // if (fileName === "index.htm") {
@@ -62,24 +74,24 @@ export default class InsightFacade implements IInsightFacade {
                     //     });
                     // }
             
-                return Promise.all(promisesArr).then((indexData: any) => {
-                    this.parseIndex(indexData).then((bldgsPaths) => {
-                        for (const bldg of bldgsPaths) {
-                            let path = bldg.replace(".", "./test/data/rooms");
-                            let fileData = readFileSync(path).toString();
-                            // this.parseHTML(String(content)).then((parsedData: any) => {
-                            //     Log.info(parsedData);
-                            // })
-                            let res = parse5.parse(fileData);
-                            this.parseBuilding(res).then((rooms) => {
-                                dataSetArray.push(...rooms);
-                                }
-                            );
-                            // let temp = this.parseBuilding(res);
-                            // dataSetArray.push(...temp);
-                        }
-                    });
-                });
+                // return Promise.all(promisesArr).then((indexData: any) => {
+                //     this.parseIndex(indexData).then((bldgsPaths) => {
+                //         for (const bldg of bldgsPaths) {
+                //             let path = bldg.replace(".", "./test/data/rooms");
+                //             let fileData = readFileSync(path).toString();
+                //             // this.parseHTML(String(content)).then((parsedData: any) => {
+                //             //     Log.info(parsedData);
+                //             // })
+                //             let res = parse5.parse(fileData);
+                //             this.parseBuilding(res).then((rooms) => {
+                //                 dataSetArray.push(...rooms);
+                //                 }
+                //             );
+                //             // let temp = this.parseBuilding(res);
+                //             // dataSetArray.push(...temp);
+                //         }
+                //     });
+                // });
             });
         }
         if (kind === InsightDatasetKind.Courses) {
@@ -335,7 +347,7 @@ export default class InsightFacade implements IInsightFacade {
         }
     }
 
-    private parseIndex(content: string): Promise<string[]> {
+    private async parseIndex(content: string): Promise<string[]> {
         let bldgsArr: string[] = [];
         return this.parseHTML(String(content)).then((parsedData: any) => {
             bldgsArr = this.findBuildings(parsedData);
