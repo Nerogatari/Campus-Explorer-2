@@ -20,6 +20,7 @@ export default class InsightFacade implements IInsightFacade {
         this.loadDiskDatasets();
         Log.trace("InsightFacadeImpl::init()");
     }
+
     // https://stackoverflow.com/questions/47746760/js-how-to-solve-this-promise-thing
     // https://stuk.github.io/jszip/documentation/examples.html
     public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -174,6 +175,7 @@ export default class InsightFacade implements IInsightFacade {
         return Promise.resolve(emptyList);
     }
     // should stay
+
     private existingDatasetID(id: string): boolean {
         let bool: boolean = false;
         bool = this.addedMapsArr.some((ele) => {
@@ -182,6 +184,7 @@ export default class InsightFacade implements IInsightFacade {
         return bool;
     }
     // https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
+
     private loadDiskDatasets = () => {
         readdir("./data/", (err: any, filenames: any)  => {
             if (err) {
