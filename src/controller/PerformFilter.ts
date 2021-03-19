@@ -2,11 +2,14 @@ import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 import PerformQueryHelper from "./performQueryHelper";
 
 export function performFilter(sections: object[], filter: object, id: string, dataKind: InsightDatasetKind): object[] {
-
-    let retval = sections.filter((section) => {
-        return this.isSatisfied(section, filter, id, dataKind);
-    });
-    return retval;
+    if (Object.keys(filter).length === 0) {
+        return sections;
+    } else {
+        let retval = sections.filter((section) => {
+            return this.isSatisfied(section, filter, id, dataKind);
+        });
+        return retval;
+    }
 }
 export function isSatisfied(section: any, filter: any, id: string, dataKind: InsightDatasetKind): boolean {
     let helper = new PerformQueryHelper();
