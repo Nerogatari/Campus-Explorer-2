@@ -6,7 +6,8 @@ import DatasetHelper from "./DatasetHelpers";
 import {readdir, readFileSync, readlinkSync, unlinkSync, writeFileSync} from "fs-extra";
 import PerformQueryHelper from "./performQueryHelper";
 import * as fs from "fs";
-// import * as fse from "fs-extra";
+import * as parse5 from "parse5";
+import * as http from "http";
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
     private datasetHelper: DatasetHelper;
@@ -23,52 +24,101 @@ export default class InsightFacade implements IInsightFacade {
         let dataSetArray: string[] = [];
         let fileName: string = "";
         let addedIds: string[] = [];
-        if (kind === InsightDatasetKind.Rooms) {
-            return Promise.reject(new InsightError("Invalid Kind"));
-        }
         if (this.datasetHelper.validId(id) === false) {
             return Promise.reject(new InsightError("Invalid ID"));
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
-        } // TODO check weird, illformed files, weird courses structure
-        // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
-        return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
-            let promisesArr: Array<Promise<string>> = [];
-            zip.folder("courses").forEach(function (relativePath: any, file: any) {
-                fileName = file.name.replace("courses/", "");
-                if (fileName === ".DS_Store") {
-                    return;
-                }
-                promisesArr.push(file.async("string"));
-            });
-            return Promise.all(promisesArr)
-                .then((sectionData: any) => {
-                    let tempArr = [];
-                    for (const section of sectionData) {
-                        tempArr = this.datasetHelper.parseCourseData(id, section);
-                        dataSetArray.push(...tempArr);
-                    }
-                    if (dataSetArray.length === 0) {
-                        return Promise.reject(new InsightError("No valid sections in file"));
-                    }
-                    let newObj: any = {id: id, kind: kind, data: dataSetArray};
-                    const str = JSON.stringify(newObj);
-                    writeFileSync("./data/" + id + ".txt", str);
-                    this.addedMapsArr.push(newObj);
-                    Log.info("Good push"); // return something
+        } // TODO check weird, illformed files, weird courses structure    
+        if (kind === InsightDatasetKind.Rooms) {
+            // validateRooms()
+            newZip.loadAsync(content, { base64: true }).then((zip: any) => {
+                let stuff = zip.folder("rooms");
+                let promisesArr: Array<Promise<string>> = [];
+                stuff.forEach(function (relativePath: any, file: any) {
+                    fileName = file.name.replace("rooms/", "");
+                    if (fileName === "index.htm") {
+                        promisesArr.push(file.async("string"));
+                    } 
                 });
-        }).then(() => {
-            Log.info("MORE SUCCESS");
-            this.addedMapsArr.forEach((ele: any) => {
-                addedIds.push(ele.id);
+                // let index = stuff.filter((file: any) => file.name.replace("rooms/", "") === "index.htm");
+                // Log.info(index);
+                // stuff.forEach(function (relativePath: any, file: any) {
+                //     fileName = file.name.replace("rooms/", "");
+                //     if (fileName === "index.htm") {
+                //         file.async("string").
+                //     } 
+                // });
+                    // stuff.filter((file: any) =>
+                    // fileName = file.name.replace("rooms/", "");
+                    // if (fileName === "index.htm") {
+                    //     file.async("string").then((indexData: any) => {
+                    //         this.parseIndex(indexData).then((bldgsPaths) => {
+                    //             for (const path of bldgsPaths) {
+                    //                 let fileData = zip.file(path).async("string");
+                    //                 Log.info(fileData);
+                    //             }
+                    //         })
+                    //     });
+                    // }
+            
+                return Promise.all(promisesArr).then((indexData: any) => {
+                    this.parseIndex(indexData).then((bldgsPaths) => {
+                        for (const bldg of bldgsPaths) {
+                            let path = bldg.replace(".", "./test/data/rooms");
+                            let fileData = readFileSync(path).toString();
+                            // this.parseHTML(String(content)).then((parsedData: any) => {
+                            //     Log.info(parsedData);
+                            // })
+                            let res = parse5.parse(fileData);
+                            this.parseBuilding(res).then((rooms) => {
+                                dataSetArray.push(...rooms);
+                                }
+                            );
+                            // let temp = this.parseBuilding(res);
+                            // dataSetArray.push(...temp);
+                        }
+                    });
+                });
             });
-            return addedIds;
-        })
-            .catch((err) => {
-                Log.info("UH oH");
-                return Promise.reject(new InsightError(err));
-            });
+        }
+        if (kind === InsightDatasetKind.Courses) {
+            // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
+            return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
+                let promisesArr: Array<Promise<string>> = [];
+                zip.folder("courses").forEach(function (relativePath: any, file: any) {
+                    fileName = file.name.replace("courses/", "");
+                    if (fileName === ".DS_Store") {
+                        return;
+                    }
+                    promisesArr.push(file.async("string"));
+                });
+                return Promise.all(promisesArr)
+                    .then((sectionData: any) => {
+                        let tempArr = [];
+                        for (const section of sectionData) {
+                            tempArr = this.datasetHelper.parseCourseData(id, section);
+                            dataSetArray.push(...tempArr);
+                        }
+                        if (dataSetArray.length === 0) {
+                            return Promise.reject(new InsightError("No valid sections in file"));
+                        }
+                        let newObj: any = { id: id, kind: kind, data: dataSetArray };
+                        const str = JSON.stringify(newObj);
+                        writeFileSync("./data/" + id + ".txt", str);
+                        this.addedMapsArr.push(newObj);
+                    });
+            }).then(() => {
+                Log.info("MORE SUCCESS");
+                this.addedMapsArr.forEach((ele: any) => {
+                    addedIds.push(ele.id);
+                });
+                return addedIds;
+            })
+                .catch((err) => {
+                    return Promise.reject(new InsightError(err));
+                });
+        }
     }
 
     public removeDataset(id: string): Promise<string> {
@@ -184,7 +234,7 @@ export default class InsightFacade implements IInsightFacade {
             return retval;
         }
     }
-
+    // check lists for Rooms counting rows
     public listDatasets(): Promise<InsightDataset[]> {
         let emptyList: InsightDataset[] = [];
         for (const ele of this.addedMapsArr) {
@@ -205,12 +255,12 @@ export default class InsightFacade implements IInsightFacade {
     }
     // https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
     private loadDiskDatasets = () => {
-        readdir("./data/", (err: any, filenames: any)  => {
+        readdir("./data/", (err: any, filenames: any) => {
             if (err) {
                 Log.info("Failed directory read");
                 return;
             }
-            filenames.forEach( (filename: any) => {
+            filenames.forEach((filename: any) => {
                 if (filename === ".DS_Store") {
                     return;
                 }
@@ -249,7 +299,7 @@ export default class InsightFacade implements IInsightFacade {
                     return !this.isSatisfied(section, filter.NOT, id);
 
                 case "AND": // TODO: check empty array
-                    if (filterArr.length === 0 || filter.AND === 0)  {
+                    if (filterArr.length === 0 || filter.AND === 0) {
                         throw new InsightError("empty array");
                     }
                     let resultAND = true;
@@ -270,7 +320,7 @@ export default class InsightFacade implements IInsightFacade {
                         }
                     }
                     return resultOR;
-                case "IS"  :
+                case "IS":
                     return helper.IScomparator(filter, section, id);
                 case "LT":
                     return helper.LTcomparator(filter, section, id);
@@ -283,5 +333,148 @@ export default class InsightFacade implements IInsightFacade {
 
             }
         }
+    }
+
+    private parseIndex(content: string): Promise<string[]> {
+        let bldgsArr: string[] = [];
+        return this.parseHTML(String(content)).then((parsedData: any) => {
+            bldgsArr = this.findBuildings(parsedData);
+            return Promise.resolve(bldgsArr);
+        });
+    }
+    // https://github.students.cs.ubc.ca/falkirks/c2_parsing/blob/master/src/MemeViewer.ts
+    private parseHTML(html: string): Promise<any> {
+        return Promise.resolve(parse5.parse(html));
+    }
+    // https://medium.com/swlh/depth-first-and-breadth-first-dom-traversal-explained-for-real-86244fbf9854
+    private findBuildings(element: any): string[] {
+        let bldgs: string[] = [];
+        let stack = [];
+        stack.push(element);
+
+        while (stack.length > 0) {
+            let curr = stack.pop();
+            if (curr.nodeName === "a" && curr.attrs.filter((e: any) => e.name === "title"
+                && e.value === "Building Details and Map").length > 0) {
+                let str = curr.attrs[0].value;
+                if (bldgs.indexOf(str) === -1) {
+                    bldgs.push(str);
+                }
+                // bldgs.push(str.replace("\n", "").trim());
+            }
+            if (curr.childNodes) {
+                curr.childNodes?.reverse().forEach((child: any) => {
+                    stack.push(child);
+                });
+            }
+        }
+        return bldgs;
+    }
+
+    private parseBuilding(element: any): Promise<any[]> {
+        let buildingInfo: any = {};
+        let bldgsRoomsArr: any[] = [];
+        let stack: any[] = [];
+        stack.push(element);
+
+        while (stack.length > 0) {
+            let curr = stack.pop();
+            if (curr.nodeName === "div" && curr.attrs.filter((e: any) => e.name === "id"
+                && e.value === "building-info").length > 0) {
+                if (curr.childNodes[1] && curr.childNodes[1].childNodes && curr.childNodes[1].childNodes[0].nodeName === "span") {
+                    buildingInfo["fullname"] = curr.childNodes[1].childNodes[0].childNodes[0].value;
+                }
+
+                if (curr.childNodes[3] && curr.childNodes[3].attrs.filter((e: any) => e.value === "building-field").length > 0) {
+                    buildingInfo["address"] = curr.childNodes[3].childNodes[0].childNodes[0].value;
+                }
+            }
+            if (curr.nodeName === "link" && curr.attrs.filter((e: any) => e.name === "rel"
+                && e.value === "canonical").length > 0 &&
+                curr.attrs.filter((e: any) => e.name === "href").length > 0) {
+                buildingInfo["shortname"] = curr.attrs[1].value;
+            }
+
+            if (curr.nodeName === "tbody") {
+                for (const child of curr.childNodes) {
+                    let roomsInfo: any = {};
+                    if (child.nodeName === "tr") {
+                        for (const innerChild of child.childNodes) {
+                            if (innerChild.attrs && innerChild.attrs[0].value === "views-field views-field-field-room-number") {
+                                if (innerChild.childNodes[1].attrs[0].name === "href") {
+                                    roomsInfo["rooms_href"] = innerChild.childNodes[1].attrs[0].value;
+                                    roomsInfo["rooms_number"] = innerChild.childNodes[1].childNodes[0].value;
+                                }
+                            }
+                            if (innerChild.attrs && innerChild.attrs[0].value === "views-field views-field-field-room-capacity") {
+                                roomsInfo["rooms_seats"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            }
+                            if (innerChild.attrs && innerChild.attrs[0].value === "views-field views-field-field-room-furniture") {
+                                roomsInfo["rooms_furniture"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            }
+                            if (innerChild.attrs && innerChild.attrs[0].value === "views-field views-field-field-room-type") {
+                                roomsInfo["rooms_type"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            }
+                        }
+                    }
+                    if (Object.keys(roomsInfo).length > 0) {
+                        // check fields and enforce types
+                        roomsInfo["rooms_fullname"] = buildingInfo["fullname"];
+                        roomsInfo["rooms_shortname"] = buildingInfo["shortname"];
+                        roomsInfo["rooms_name"] = buildingInfo["shortname"] + "_" + roomsInfo["rooms_number"];
+                        bldgsRoomsArr.push(roomsInfo);
+                    }
+                }
+            }
+            if (curr.childNodes) {
+                curr.childNodes?.reverse().forEach((child: any) => {
+                    stack.push(child);
+                });
+            }
+        }
+        if (bldgsRoomsArr.length > 0) {
+            this.requestLatLon(buildingInfo["address"]).then((latlon: any) => {
+                Log.info(latlon);
+                bldgsRoomsArr.forEach((room) => {
+                    room["rooms_lat"] = latlon["lat"];
+                    room["rooms_lon"] = latlon["lon"];
+                });
+                return Promise.resolve(bldgsRoomsArr);
+            });
+        } else {
+            return Promise.resolve(bldgsRoomsArr);
+        }
+    }
+    // https://stackoverflow.com/questions/19539391/how-to-get-data-out-of-a-node-js-http-get-request
+    // https://stackoverflow.com/questions/38533580/nodejs-how-to-promisify-http-request-reject-got-called-two-times
+    private requestLatLon(address: string): Promise<any> {
+        let path = "http://cs310.students.cs.ubc.ca:11316/api/v1/project_team226/";
+        let reqAdd = address.replace(/ /g, "%20");
+        path = path + reqAdd;
+        return new Promise((resolve, reject) => {
+            let req = http.get(path, (res) => {
+                Log.info("inside request");
+                const { statusCode } = res;
+                let error;
+                if (statusCode !== 200) {
+                    return reject(new Error("Bad request"));
+                }
+                let rawData = "";
+                let parsedData: any;
+                res.on("data", (chunk) => { rawData += chunk; });
+                res.on("end", () => {
+                    try {
+                        parsedData = JSON.parse(rawData);
+                    } catch (e) {
+                        reject(e.message);
+                    }
+                    resolve(parsedData);
+                });
+            });
+            req.on("error", (err) => {
+                reject(err);
+            });
+            req.end();
+        });
     }
 }
