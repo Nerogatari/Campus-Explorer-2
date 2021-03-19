@@ -9,9 +9,9 @@ import * as fs from "fs";
 import * as parse5 from "parse5";
 import * as PerformFilter from "./PerformFilter";
 import { performTransform } from "./PerformTransform";
-import {isArray, isObject} from "util";
+import {isArray, isObject, isString} from "util";
 import {sortOrder, sortTransform} from "./SortHelper";
-import {performSelect, validQuery} from "./QueryHelper";
+import {orderHelper, performSelect, validQuery} from "./QueryHelper";
 export default class InsightFacade implements IInsightFacade {
     private addedMapsArr: any[];
     private datasetHelper: DatasetHelper;
@@ -93,6 +93,9 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
+        if (!validQuery(query)) {
+            return Promise.reject(new InsightError("Invalid query!"));
+        }
         let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
         let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
         let sections = this.getDatasetById(datasetID); // let section store dataset id
@@ -101,9 +104,6 @@ export default class InsightFacade implements IInsightFacade {
         let sortedSections: any[];
         let filteredSections = []; // applied filter sections
         let transformedSection;
-        if (!validQuery(query)) {
-            return Promise.reject(new InsightError("Invalid query!"));
-        }
         try {
             if (!Object.keys(filter)) {
                 filteredSections = sections;
@@ -116,17 +116,10 @@ export default class InsightFacade implements IInsightFacade {
                 } else {
                     transformedSection = filteredSections;
                 }
-                // select
                 let selectedSections = performSelect(transformedSection, columns, query);
                 if ("ORDER" in query.OPTIONS) {
                     const orderKey = query.OPTIONS.ORDER;
-                    if (!(Array.isArray(orderKey.keys))) {
-                        throw new InsightError("order keys not array");
-                    }
-                    if (orderKey.keys.length === 0) {
-                        throw new InsightError("keys must not be empty");
-                    }
-                    sortedSections = sortTransform(selectedSections, orderKey);
+                    sortedSections = orderHelper(orderKey, selectedSections, query);
                 } else {
                     sortedSections = selectedSections;
                 }
