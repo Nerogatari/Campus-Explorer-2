@@ -63,15 +63,9 @@ export default class InsightFacade implements IInsightFacade {
                 .then((zip: any) => {
                     let stuff = zip.folder("rooms");
                     outtieZip = zip;
-                    // stuff.forEach((relativePath: any, file: any) => {
-                    //     fileName = file.name.replace("rooms/", "");
-                    //     if (fileName === "index.htm") {
-                    //         // return file.async("string");
-                    //         return "no"
-                    //     }
-                    // });
-                    let index = stuff.filter((relativePath: any, file: any) => {
-                        fileName = file.name.replace("rooms/", "");
+
+                    let index = stuff.filter((relativePath: any, fILE: any) => {
+                        fileName = fILE.name.replace("rooms/", "");
                         if (fileName === "index.htm") {
                             return true;
                         }
@@ -107,46 +101,13 @@ export default class InsightFacade implements IInsightFacade {
                         dataSetArray.push(...rooms);
                     }
                 })
-                // .then((fileData: any) => {
-                //     let res = parse5.parse(fileData);
-                //     return this.parseBuilding(res);
-                // })
-                // .then((rooms) => {
-                //     dataSetArray.push(...rooms);
-                // })
-                    // stuff.filter((file: any) =>
-                    // fileName = file.name.replace("rooms/", "");
-                    // if (fileName === "index.htm") {
-                    //     file.async("string").then((indexData: any) => {
-                    //         this.parseIndex(indexData).then((bldgsPaths) => {
-                    //             for (const path of bldgsPaths) {
-                    //                 let fileData = zip.file(path).async("string");
-                    //                 Log.info(fileData);
-                    //             }
-                    //         })
-                    //     });
-                    // }
-            
-                // return Promise.all(promisesArr).then((indexData: any) => {
-                //     this.parseIndex(indexData).then((bldgsPaths) => {
-                //         for (const bldg of bldgsPaths) {
-                //             let path = bldg.replace(".", "./test/data/rooms");
-                //             let fileData = readFileSync(path).toString();
-                //             // this.parseHTML(String(content)).then((parsedData: any) => {
-                //             //     Log.info(parsedData);
-                //             // })
-                //             let res = parse5.parse(fileData);
-                //             this.parseBuilding(res).then((rooms) => {
-                //                 dataSetArray.push(...rooms);
-                //                 }
-                //             );
-                //             // let temp = this.parseBuilding(res);
-                //             // dataSetArray.push(...temp);
-                //         }
-                //     });
-                // });
-            .then(() => {
+                .then(() => {
+                    let newObj: any = { id: id, kind: kind, data: dataSetArray };
+                    const str = JSON.stringify(newObj);
+                    writeFileSync("./data/" + id + ".txt", str);
+                    this.addedMapsArr.push(newObj);
                 Log.info("MORE SUCCESS");
+                Log.info(dataSetArray);
                 this.addedMapsArr.forEach((ele: any) => {
                     addedIds.push(ele.id);
                 });
@@ -513,8 +474,8 @@ export default class InsightFacade implements IInsightFacade {
                     room["rooms_lat"] = latlon["lat"];
                     room["rooms_lon"] = latlon["lon"];
                 });
-                return Promise.resolve(bldgsRoomsArr);
             });
+            return Promise.resolve(bldgsRoomsArr); 
         } else {
             return Promise.resolve(bldgsRoomsArr);
         }
