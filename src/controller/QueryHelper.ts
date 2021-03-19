@@ -33,23 +33,22 @@ export function validQuery(query: any): boolean {
     if (!isObject(query.OPTIONS)) {
         return false;
     }
-    Object.keys(query.OPTIONS).forEach((val: string) => {
+    for (let val of Object.keys(query.OPTIONS)) {
         if (!optionKeys.includes(val)) {
             return false;
         }
-    });
-    let columns: any[] = query.OPTIONS["COLUMNS"];
-    return columns.length !== 0;
+    }
     if (Object.keys(query).includes("TRANSFORMATIONS")) {
         let transformations: any = query.TRANSFORMATIONS;
         if (!(isObject(transformations))) {
             return false;
         }
-        if (validTransformations(transformations)) {
+        if (!validTransformations(transformations)) {
             return false;
         }
     }
-    return true; // remove this
+    let columns: any[] = query.OPTIONS["COLUMNS"];
+    return columns.length !== 0;
 }
 
 export function validTransformations(transformations: any): boolean {

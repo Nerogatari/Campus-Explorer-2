@@ -13,8 +13,8 @@ export function isSatisfied(section: any, filter: any, id: string, dataKind: Ins
     let operationArr: any[] = Object.keys(filter);
     let filterArr: any[] = filter[operationArr[0]];
     if (operationArr.length === 0) {
-        // return true;
-        throw new InsightError("Number of filter key should  not be 0");
+        return true;
+        // throw new InsightError("Number of filter key should  not be 0");
     } else if (operationArr.length > 1) {
         throw new InsightError("Number of filter key is greater than 1");
     } else {
