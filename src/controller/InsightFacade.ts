@@ -94,7 +94,7 @@ export default class InsightFacade implements IInsightFacade {
 
     public performQuery(query: any): Promise<any[]> {
         if (!validQuery(query)) {
-            return Promise.reject(new InsightError("Invalid query!"));
+            return Promise.reject( new InsightError("Invalid query!"));
         }
         let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
         let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
