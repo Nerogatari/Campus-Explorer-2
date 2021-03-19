@@ -196,8 +196,8 @@ export default class InsightFacade implements IInsightFacade {
         }
         return Promise.resolve(emptyList);
     }
-    // should stay
-    private existingDatasetID(id: string): boolean {
+ 
+    private existingDatasetID(id: string): boolean { // should stay
         let bool: boolean = false;
         bool = this.addedMapsArr.some((ele) => {
             return ele.id === id;
