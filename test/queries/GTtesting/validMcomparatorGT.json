@@ -1,0 +1,220 @@
+{
+    "title": "Select dep, year, with avg> 60",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "GT": {
+                        "courses_avg": 60
+                    }
+                },
+                {
+                    "GT": {
+                        "courses_pass": 10
+                    }
+                },
+                {
+                    "GT": {
+                        "courses_fail": 10
+                    }
+                },
+                {
+                    "GT": {
+                        "courses_audit": 0
+                    }
+                },
+                {
+                    "GT": {
+                        "courses_year": 2012
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_year",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "apsc",
+            "courses_year": 2013,
+            "courses_avg": 63.48
+        },
+        {
+            "courses_dept": "biol",
+            "courses_year": 2014,
+            "courses_avg": 64.08
+        },
+        {
+            "courses_dept": "comm",
+            "courses_year": 2014,
+            "courses_avg": 64.49
+        },
+        {
+            "courses_dept": "math",
+            "courses_year": 2015,
+            "courses_avg": 65.04
+        },
+        {
+            "courses_dept": "phil",
+            "courses_year": 2013,
+            "courses_avg": 65.91
+        },
+        {
+            "courses_dept": "clst",
+            "courses_year": 2014,
+            "courses_avg": 66.22
+        },
+        {
+            "courses_dept": "psyc",
+            "courses_year": 2013,
+            "courses_avg": 66.72
+        },
+        {
+            "courses_dept": "econ",
+            "courses_year": 2013,
+            "courses_avg": 67.26
+        },
+        {
+            "courses_dept": "econ",
+            "courses_year": 2015,
+            "courses_avg": 67.27
+        },
+        {
+            "courses_dept": "asia",
+            "courses_year": 2014,
+            "courses_avg": 68.08
+        },
+        {
+            "courses_dept": "geob",
+            "courses_year": 2015,
+            "courses_avg": 68.31
+        },
+        {
+            "courses_dept": "cpsc",
+            "courses_year": 2015,
+            "courses_avg": 68.33
+        },
+        {
+            "courses_dept": "geog",
+            "courses_year": 2015,
+            "courses_avg": 68.59
+        },
+        {
+            "courses_dept": "psyc",
+            "courses_year": 2013,
+            "courses_avg": 68.98
+        },
+        {
+            "courses_dept": "hist",
+            "courses_year": 2014,
+            "courses_avg": 69.03
+        },
+        {
+            "courses_dept": "math",
+            "courses_year": 2015,
+            "courses_avg": 69.8
+        },
+        {
+            "courses_dept": "psyc",
+            "courses_year": 2015,
+            "courses_avg": 69.92
+        },
+        {
+            "courses_dept": "psyc",
+            "courses_year": 2013,
+            "courses_avg": 69.97
+        },
+        {
+            "courses_dept": "apsc",
+            "courses_year": 2014,
+            "courses_avg": 70
+        },
+        {
+            "courses_dept": "astr",
+            "courses_year": 2015,
+            "courses_avg": 70.83
+        },
+        {
+            "courses_dept": "chem",
+            "courses_year": 2013,
+            "courses_avg": 71.16
+        },
+        {
+            "courses_dept": "econ",
+            "courses_year": 2016,
+            "courses_avg": 71.2
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_year": 2014,
+            "courses_avg": 71.25
+        },
+        {
+            "courses_dept": "stat",
+            "courses_year": 2014,
+            "courses_avg": 71.42
+        },
+        {
+            "courses_dept": "eosc",
+            "courses_year": 2015,
+            "courses_avg": 71.48
+        },
+        {
+            "courses_dept": "biol",
+            "courses_year": 2014,
+            "courses_avg": 71.78
+        },
+        {
+            "courses_dept": "cpsc",
+            "courses_year": 2015,
+            "courses_avg": 72.4
+        },
+        {
+            "courses_dept": "stat",
+            "courses_year": 2015,
+            "courses_avg": 72.5
+        },
+        {
+            "courses_dept": "micb",
+            "courses_year": 2013,
+            "courses_avg": 73.3
+        },
+        {
+            "courses_dept": "phys",
+            "courses_year": 2013,
+            "courses_avg": 73.41
+        },
+        {
+            "courses_dept": "biol",
+            "courses_year": 2015,
+            "courses_avg": 73.7
+        },
+        {
+            "courses_dept": "cpsc",
+            "courses_year": 2014,
+            "courses_avg": 75.81
+        },
+        {
+            "courses_dept": "eosc",
+            "courses_year": 2015,
+            "courses_avg": 77.11
+        },
+        {
+            "courses_dept": "apsc",
+            "courses_year": 2015,
+            "courses_avg": 78.49
+        },
+        {
+            "courses_dept": "phys",
+            "courses_year": 2013,
+            "courses_avg": 79.42
+        }
+    ]
+}

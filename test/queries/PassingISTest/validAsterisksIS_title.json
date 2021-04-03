@@ -1,0 +1,731 @@
+{
+    "title": "valid IS",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_title": "math*"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg",
+                "courses_title"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "math",
+            "courses_avg": 55.64,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 56.76,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 57.12,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 57.26,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 57.33,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 57.98,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 58.28,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 58.6,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 58.64,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 58.96,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 59.33,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 59.33,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 59.64,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 59.64,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 60.04,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 60.17,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 60.22,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 60.22,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 60.84,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 61.21,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 61.21,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 61.28,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 61.63,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 61.8,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 62.29,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 63.12,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 63.25,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 63.6,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 63.79,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 64.24,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 64.45,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 64.45,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 64.5,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 64.78,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 65.04,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 65.29,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 65.4,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 65.74,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 66.55,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 66.7,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 67.02,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 67.05,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 67.08,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 67.36,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 67.83,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.38,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.46,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.51,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 68.73,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 70.39,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 70.39,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 70.59,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 71.08,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 71.78,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 72.32,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 72.79,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 73.16,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 73.16,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 73.98,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 74.59,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 74.67,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 74.67,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 75.41,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 75.79,
+            "courses_title": "math proof"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.24,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.24,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.44,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 76.44,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 77.23,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 77.23,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 78.15,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 78.15,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.65,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.65,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.73,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.73,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.89,
+            "courses_title": "math rsrch&writn"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 80.89,
+            "courses_title": "math rsrch&writn"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 81.67,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 81.67,
+            "courses_title": "math modl in sci"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 82.04,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 82.04,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 82.06,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 82.06,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 82.36,
+            "courses_title": "math rsrch&writn"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 82.36,
+            "courses_title": "math rsrch&writn"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 82.51,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 82.51,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 82.78,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 82.78,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 82.92,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 82.92,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 83.36,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 83.36,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 84.33,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 84.33,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.4,
+            "courses_title": "math electrophys"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.4,
+            "courses_title": "math electrophys"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.5,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.5,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.72,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.72,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.8,
+            "courses_title": "math rsrch&writn"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 84.8,
+            "courses_title": "math rsrch&writn"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 85.94,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 85.94,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 86.52,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 86.67,
+            "courses_title": "math electrophys"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 86.67,
+            "courses_title": "math electrophys"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 86.73,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 86.73,
+            "courses_title": "math demonstrtns"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 86.8,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "econ",
+            "courses_avg": 86.8,
+            "courses_title": "math for econmic"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 87.5,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 87.5,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 88.5,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 88.5,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 88.64,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 89.25,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 89.25,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 90.21,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 90.21,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 90.54,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 90.54,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 90.95,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 91.31,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 91.31,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 91.38,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 91.38,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 92.05,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 92.18,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 92.18,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 92.33,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 92.5,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 92.5,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "edcp",
+            "courses_avg": 92.96,
+            "courses_title": "math prblm slvng"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 93.63,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 93.63,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 95.31,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "chbe",
+            "courses_avg": 95.31,
+            "courses_title": "math operations"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 95.75,
+            "courses_title": "math mdl com dis"
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 95.75,
+            "courses_title": "math mdl com dis"
+        }
+    ]
+}

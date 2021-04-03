@@ -172,11 +172,10 @@ export default class PerformQueryHelper {
             } else if (queryValue.endsWith("*") && (!queryValue.startsWith("*"))) {
                 return (sectionValue.includes(modifiedQuery2) && sectionValue.startsWith(modifiedQuery2));
             } else if (queryValue.startsWith("*") && (queryValue.endsWith("*"))) {
-                return (sectionValue.substring(1, sectLength - 1)).includes(queryValue.substring(1, queryLength - 1));
+                return sectionValue.includes(queryValue.substring(1, queryLength - 1));
             } else {
                 throw new InsightError("* is in the middle");
             }
-            // TODO check * in the middle,
         } else {
             throw new InsightError("compared value is not string");
         }
