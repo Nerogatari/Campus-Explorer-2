@@ -1,0 +1,41 @@
+{
+    "title": "Column not in group keys",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "GT": {
+                        "rooms_seats": 10
+                    }
+                },
+                {
+                    "LT": {
+                        "rooms_seats": 100
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "rooms_shortname",
+                "rooms_seats",
+                "countSeats"
+            ],
+            "ORDER": "rooms_shortname"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "rooms_shortname"
+            ],
+            "APPLY": [
+                {
+                    "countSeats": {
+                        "SUM": "rooms_seats"
+                    }
+                }
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

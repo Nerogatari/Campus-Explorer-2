@@ -5,6 +5,31 @@ let mKeys: string[] = ["avg", "pass", "fail", "audit", "year", "lat", "lon", "se
 let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", "shortname", "number", "name"
     , "address", "type", "furniture", "href"];
 
+function validApplys(transform: any) {
+    if (transform.APPLY === null) {
+        return false;
+    }
+    if (!(Array.isArray(transform.APPLY))) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validApply(applyKey: string, applyRule: any) {
+    if (!applyKey) {
+        return false;
+    }
+    if (applyRule === null) {
+        return false;
+    }
+    if (applyKey.includes("_")) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 export function performTransform(sections: object[], transform: any, id: string): any {
     let mappedGroup: Map<string, any[]> = new Map<string, any[]>();
     if (!("GROUP" in transform)) {
@@ -28,17 +53,14 @@ export function performTransform(sections: object[], transform: any, id: string)
         for (let groupKey of transform.GROUP) {
             groupedSection[groupKey] = currGroup[0][groupKey];
         }
-        if (transform.APPLY === null) {
-            throw new InsightError("empty APPLY");
-        }
-        if (!(Array.isArray(transform.APPLY))) {
-            throw new InsightError("apply not array");
+        if (!(validApplys(transform))) {
+            throw new InsightError("invalaid apply");
         }
         for (let apply1 of transform.APPLY) {
             let applyKey = Object.keys(apply1)[0];
             let applyRule = apply1[applyKey];
-            if (applyKey.includes("_")) {
-                throw new InsightError("apply key should not contain _");
+            if (!(validApply(applyKey, applyRule))) {
+                throw new InsightError("invalid applyKey/rule");
             }
             if ((Object.keys(apply1).length) !== 1) {
                 throw new InsightError("apply key should only have 1 key");

@@ -84,7 +84,6 @@ export default class PerformQueryHelper {
                 throw new InsightError("filter  key is not a m key");
             }
         }
-
         if (typeof queryValue === "number") {
             return (sectionValue > queryValue);
         } else {

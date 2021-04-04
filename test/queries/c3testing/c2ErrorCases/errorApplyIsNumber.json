@@ -1,0 +1,25 @@
+{
+    "title": "Error apply is int",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "cp*"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_title",
+                "titleCnt"
+            ]
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_dept",
+                "courses_title"
+            ],
+            "APPLY": 8
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}
