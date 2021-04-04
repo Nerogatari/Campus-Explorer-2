@@ -1,6 +1,8 @@
 import Log from "../Util";
 import {Decimal} from "decimal.js";
 import {InsightError} from "./IInsightFacade";
+import {isString} from "util";
+import apply = Reflect.apply;
 let mKeys: string[] = ["avg", "pass", "fail", "audit", "year", "lat", "lon", "seats"];
 let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", "shortname", "number", "name"
     , "address", "type", "furniture", "href"];
@@ -16,7 +18,7 @@ function validApplys(transform: any) {
     }
 }
 
-function validApply(applyKey: string, applyRule: any) {
+function validApply(apply1: any, applyKey: string, applyRule: any) {
     if (!applyKey) {
         return false;
     }
@@ -24,6 +26,9 @@ function validApply(applyKey: string, applyRule: any) {
         return false;
     }
     if (applyKey.includes("_")) {
+        return false;
+    }
+    if ((Object.keys(apply1).length) !== 1) {
         return false;
     } else {
         return true;
@@ -54,16 +59,19 @@ export function performTransform(sections: object[], transform: any, id: string)
             groupedSection[groupKey] = currGroup[0][groupKey];
         }
         if (!(validApplys(transform))) {
-            throw new InsightError("invalaid apply");
+            throw new InsightError("invalid apply");
         }
+        let compareKey = "";
         for (let apply1 of transform.APPLY) {
             let applyKey = Object.keys(apply1)[0];
-            let applyRule = apply1[applyKey];
-            if (!(validApply(applyKey, applyRule))) {
-                throw new InsightError("invalid applyKey/rule");
+            if (applyKey !== compareKey) {
+                compareKey = applyKey;
+            } else {
+                throw new InsightError("should not have identical apply key");
             }
-            if ((Object.keys(apply1).length) !== 1) {
-                throw new InsightError("apply key should only have 1 key");
+            let applyRule = apply1[applyKey];
+            if (!(validApply(apply1, applyKey, applyRule))) {
+                throw new InsightError("invalid applyKey/rule");
             }
             let arr = Object.values(applyRule);
             let unique = [...new Set(arr)];
@@ -76,24 +84,8 @@ export function performTransform(sections: object[], transform: any, id: string)
     }
     return groupedSections;
 }
-const executeApply = (currGroup: any, applyRule: any): number => {
-    if ((Object.keys(applyRule).length) !== 1 || applyRule === undefined) {
-        throw new InsightError("invalid apply rule");
-    }
-    let applyToken = Object.keys(applyRule)[0];
-    let key = applyRule[applyToken];
-    let mainKey = key.split("_")[1];
-    let dataArray = currGroup.map((section: any) => {
-        return section[key];
-    });
-    if ((!(mKeys.includes(mainKey))) && (!(sKeys.includes(mainKey)))) {
-        throw new InsightError("target string is not valid");
-    }
-    if (applyToken !== "COUNT") {
-        if (!(mKeys.includes(mainKey))) {
-            throw new InsightError("should only act on numbers");
-        }
-    }
+
+function performApply(applyToken: string, dataArray: any) {
     switch (applyToken) {
         case "SUM":
             let sum = dataArray.reduce((retval: any, value: any) => {
@@ -115,11 +107,40 @@ const executeApply = (currGroup: any, applyRule: any): number => {
             let unique = [...new Set(dataArray)];
             return unique.length;
         case "MAX":
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max
             return Math.max(... dataArray);
         case "MIN":
             return Math.min(... dataArray);
         default:
             throw new InsightError("Invalid token name");
     }
+}
+
+const executeApply = (currGroup: any, applyRule: any): number => {
+    if ((Object.keys(applyRule).length) !== 1 || applyRule === undefined) {
+        throw new InsightError("invalid apply rule");
+    }
+    let applyToken = Object.keys(applyRule)[0];
+    let key = applyRule[applyToken];
+    if (!isString(key)) {
+        throw new InsightError("invlaid key");
+    }
+    let dataKey = key.split("_")[0];
+    let data = Object.keys(currGroup[0])[0].split("_")[0];
+    if  (data !== dataKey) {
+        throw new InsightError("cross dataset");
+    }
+    let mainKey = key.split("_")[1];
+    let dataArray = currGroup.map((section: any) => {
+        return section[key];
+    });
+    if ((!(mKeys.includes(mainKey))) && (!(sKeys.includes(mainKey)))) {
+        throw new InsightError("target string is not valid");
+    }
+    if (applyToken !== "COUNT") {
+        if (!(mKeys.includes(mainKey))) {
+            throw new InsightError("should only act on numbers");
+        }
+    }
+    return performApply(applyToken, dataArray);
 };

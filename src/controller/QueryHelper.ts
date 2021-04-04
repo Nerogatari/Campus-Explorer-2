@@ -46,7 +46,7 @@ export function validQuery(query: any): boolean {
         if (!(isObject(transformations))) {
             return false;
         }
-        if (validTransformations(transformations) === false) {
+        if (validTransformations(transformations, query) === false) {
             return false;
         }
     }
@@ -54,30 +54,80 @@ export function validQuery(query: any): boolean {
     return columns.length !== 0;
 }
 
-export function validTransformations(transformations: any): boolean {
+function validApply(transformations: any, query: any, groups: any) {
+    let data;
+    let actual;
+    if (!("APPLY" in transformations)) {
+        return false;
+    }
+    if (!isObject(transformations.APPLY)) {
+        return false;
+    }
+    if (!transformations.APPLY) {
+        return false;
+    }
+    if (transformations.APPLY.length  === 0) {
+        return true;
+    }
+    if (!isObject(transformations.APPLY[0])) {
+        return false;
+    }
+    if (!isObject(Object.values(query.TRANSFORMATIONS.APPLY[0])[0])) {
+        return false;
+    }
+    if (! Object.values(Object.values(query.TRANSFORMATIONS.APPLY[0])[0])[0]) {
+        return false;
+    }
+    if (!isString(Object.values(Object.values(query.TRANSFORMATIONS.APPLY[0])[0])[0])) {
+        return false;
+    }
+    for (let groupKey of groups) {
+        data = Object.values(Object.values(query.TRANSFORMATIONS.APPLY[0])[0])[0].split("_")[0];
+        actual = groupKey.split("_")[0];
+        if (data !== actual) {
+            return false;
+        }
+    }
+    return true;
+}
+
+export function validTransformations(transformations: any, query: any): boolean {
     let keys: any[] = Object.keys(transformations);
     let groups: any[] = transformations["GROUP"];
     if (keys.length === 0) {
         return false;
     }
+    let data = "";
+    let actual = "";
     if (keys.length > 2) {
         return false;
     }
     if (!("GROUP" in transformations)) {
         return false;
     }
+    if (!(isObject(groups))) {
+        return false;
+    }
+    if (!groups) {
+        return false;
+    }
     if (groups.length === 0) {
         return false;
     }
     for (let groupKey of groups) {
-        let checkKey = groupKey.split("_")[1];
-        if ((!(mKeys.includes(checkKey))) && (!(sKeys.includes(checkKey)))) {
+        if (!isString(groupKey)) {
             return false;
+        } else {
+            let checkKey = groupKey.split("_")[1];
+            if ((!(mKeys.includes(checkKey))) && (!(sKeys.includes(checkKey)))) {
+                return false;
+            }
         }
     }
-    if (!("APPLY" in transformations)) {
+    if (!(validApply(transformations, query, groups))) {
         return false;
     }
+    return true;
 }
 
 export function performSelect(transformedSection: any[], columns: any[], query: any) {
@@ -109,17 +159,19 @@ export function orderHelper(orderKey: any, selectedSections: any[], query: any):
         } else {
             throw new InsightError("invalid key types");
         }
-    } else if (typeof(orderKey.keys) === "object" || (orderKey.keys) !== null) {
+    } else if (typeof(orderKey.keys) === "object" && (orderKey.keys) !== null) {
         let dir: any = orderKey["dir"];
         let orderkeys: any[] = orderKey["keys"];
-        if (orderkeys === undefined) {
+        if (!orderkeys) {
             throw new InsightError("invalid orderkey");
-        }
-        if (!(query.OPTIONS["COLUMNS"].includes(orderkeys[0]))) {
-            throw new InsightError("invalid orderkeys");
         }
         if (!(Array.isArray(orderkeys))) {
             throw new InsightError("order keys not array");
+        }
+        for (let key of orderkeys) {
+            if (!(query.OPTIONS["COLUMNS"].includes(key))) {
+                throw new InsightError("invalid orderkeys");
+            }
         }
         let i: number = orderkeys.length;
         if (dir !== "UP" && dir !== "DOWN") {
