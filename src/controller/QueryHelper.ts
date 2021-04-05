@@ -1,4 +1,4 @@
-import {isObject, isString} from "util";
+import {isArray, isObject, isString} from "util";
 import {InsightError} from "./IInsightFacade";
 import Log from "../Util";
 import {sortOrder, sortTransform} from "./SortHelper";
@@ -8,6 +8,9 @@ let sKeys: string[] = ["dept", "title", "instructor", "uuid", "id", "fullname", 
     , "address", "type", "furniture", "href"];
 let optionKeys: string [] = ["COLUMNS", "ORDER"];
 export function validQuery(query: any): boolean {
+    if (!query) {
+        return false;
+    }
     let length: number = Object.keys(query).length;
     if (!("OPTIONS" in query)) {
         return false;
@@ -15,7 +18,7 @@ export function validQuery(query: any): boolean {
     if (!("WHERE" in query)) {
         return false;
     }
-    if (!(isObject(query.WHERE))) {
+    if ((!(isObject(query.WHERE))) || isArray(query.WHERE)) {
         return false;
     }
     if (Object.keys(query.OPTIONS).length > 2) {
@@ -149,6 +152,9 @@ export function performSelect(transformedSection: any[], columns: any[], query: 
 }
 
 export function orderHelper(orderKey: any, selectedSections: any[], query: any): any[] {
+    if (orderKey === null) {
+        throw new InsightError("orderKey should not be null");
+    }
     if ((isString(orderKey)) && (!(orderKey === null))) {
         if (!query.OPTIONS["COLUMNS"].includes(orderKey)) {
             throw new InsightError("order keys not in the column");
@@ -159,7 +165,7 @@ export function orderHelper(orderKey: any, selectedSections: any[], query: any):
         } else {
             throw new InsightError("invalid key types");
         }
-    } else if (typeof(orderKey.keys) === "object" && (orderKey.keys) !== null) {
+    } else if (typeof(orderKey.keys) === "object"  && (orderKey.keys) !== null) {
         let dir: any = orderKey["dir"];
         let orderkeys: any[] = orderKey["keys"];
         if (!orderkeys) {

@@ -107,12 +107,12 @@ export default class InsightFacade implements IInsightFacade {
             }
         }
         let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
-        let sections = this.getDatasetById(datasetID); // let section store dataset id
-        let dataKind = this.getKindById(datasetID);
         let sortedSections: any[];
         let filteredSections = []; // applied filter sections
         let transformedSection;
         try {
+            let sections = this.getDatasetById(datasetID); // let section store dataset id
+            let dataKind = this.getKindById(datasetID);
             if (!Object.keys(filter)) {
                 filteredSections = sections;
             } else if (Object.keys(filter).length <= 1) {
@@ -155,7 +155,7 @@ export default class InsightFacade implements IInsightFacade {
                 }
             }
         });
-        if (retval === []) {
+        if (retval.length === 0) {
             throw new InsightError("Nothing in dataset");
         } else {
             return retval;
