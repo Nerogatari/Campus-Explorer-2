@@ -6,7 +6,16 @@
  */
 CampusExplorer.sendQuery = (query) => {
     return new Promise((resolve, reject) => {
-        // TODO: implement!
-        console.log("CampusExplorer.sendQuery not implemented yet.");
+        const http = new XMLHttpRequest();
+        http.open("POST","/query", true);
+        http.setRequestHeader("Content-Type", "application/json");
+        http.send(JSON.stringify(query));
+        http.onload = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                resolve(JSON.parse(http.responseText));
+            } else {
+                reject(JSON.parse(http.responseText));
+            }
+        }
     });
 };
