@@ -35,7 +35,7 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
-        } // TODO check weird, illformed files, weird courses structure
+        } // TODO check weird, illformed files, weird courses structure, NOT AN ENum error?
         let promisesArr: Array<Promise<string>> = [];
         let promisesArr2: Array<Promise<any>> = [];
         if (kind === InsightDatasetKind.Rooms) {
@@ -70,6 +70,8 @@ export default class InsightFacade implements IInsightFacade {
                 .catch((err) => {
                     return Promise.reject(new InsightError(err));
                 });
+        } else {
+            return Promise.reject(new InsightError("Invalid Data Kind"));
         }
     }
 

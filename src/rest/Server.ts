@@ -4,7 +4,10 @@
 
 import fs = require("fs");
 import restify = require("restify");
+import { InsightDatasetKind, InsightError, NotFoundError } from "../controller/IInsightFacade";
 import Log from "../Util";
+import InsightFacade from "../controller/InsightFacade";
+import { exception } from "console";
 
 /**
  * This configures the REST endpoints for the server.
@@ -13,10 +16,12 @@ export default class Server {
 
     private port: number;
     private rest: restify.Server;
+    private static insightFacade: InsightFacade;
 
     constructor(port: number) {
         Log.info("Server::<init>( " + port + " )");
         this.port = port;
+        Server.insightFacade = new InsightFacade();
     }
 
     /**
@@ -64,7 +69,10 @@ export default class Server {
                 that.rest.get("/echo/:msg", Server.echo);
 
                 // NOTE: your endpoints should go here
+                that.rest.put("/dataset/:id/:kind", Server.putDataset);
 
+                that.rest.del("/dataset/:id", Server.deleteDataset);
+                that.rest.get("/datasets", Server.getDatasets);
                 // This must be the last endpoint!
                 that.rest.get("/.*", Server.getStatic);
 
@@ -127,6 +135,93 @@ export default class Server {
             res.write(file);
             res.end();
             return next();
+        });
+    }
+
+    private static putDataset = (req: restify.Request, res: restify.Response, next: restify.Next) => {
+        try {
+            Server.performPutDataset(req.params.id, req.body, req.params.kind).then((resp: any) => {
+                const response = resp;
+                Log.info("Server::echo(..) - responding " + 200);
+                res.json(200, { result: response });
+            }).catch((err: any) => {
+                Log.error("Server::echo(..) - responding 400");
+                res.json(400, { error: err.message });
+            });
+        } catch (err) {
+            Log.error("Server::echo(..) - responding 400");
+            res.json(400, { error: err });
+        }
+        return next();
+    }
+
+    private static performPutDataset = (id: string, buffer: any, kind: string): any => {
+        let kindEnum: InsightDatasetKind = kind.toLowerCase() as InsightDatasetKind;
+        let strData = buffer.toString("base64");
+        return Server.insightFacade.addDataset(id, strData, kindEnum).then((result: any) => {
+            let resu = result;
+            Log.info(resu);
+            return resu;
+        }).catch((err) => {
+            if (err instanceof InsightError) {
+                throw err;
+            }
+        });
+    }
+
+    private static deleteDataset = (req: restify.Request, res: restify.Response, next: restify.Next) => {
+        try {
+            Server.performDeleteDataset(req.params.id).then((resp: any) => {
+                const response = resp;
+                Log.info("Server::echo(..) - responding " + 200);
+                res.json(200, { result: response });
+            }).catch((err: any) => {
+                if (err instanceof InsightError) {
+                    Log.error("Server::echo(..) - responding 400");
+                    res.json(400, { error: err.message });
+                } else if (err instanceof NotFoundError) {
+                    Log.error("Server::echo(..) - responding 404");
+                    res.json(404, { error: err.message });
+                }
+            });
+        } catch (err) {
+            Log.error("Server::echo(..) - responding 400");
+            res.json(400, {error: err});
+        }
+        return next();
+    }
+
+    private static performDeleteDataset = (id: string): any => {
+        return Server.insightFacade.removeDataset(id).then((result: any) => {
+            let resu = result;
+            Log.info(resu);
+            return resu;
+        }).catch((err) => {
+            throw err;
+        });
+    }
+
+    private static getDatasets = (req: restify.Request, res: restify.Response, next: restify.Next) => {
+        try {
+            Server.performGetDatasets().then((resp: any) => {
+                const response = resp;
+                Log.info("Server::echo(..) - responding " + 200);
+                res.json(200, { result: response });
+            });
+        } catch (err) {
+            Log.error("Server::echo(..) - responding 400");
+            res.json(400, {error: err});
+        }
+        return next();
+    }
+
+    private static performGetDatasets = (): any => {
+        return Server.insightFacade.listDatasets().then((result: any) => {
+            let resu = result;
+            Log.info(resu);
+            return resu;
+        }).catch((err) => {
+            // throw err
         });
     }
 
