@@ -213,23 +213,22 @@ export default class DatasetHelper {
             for (const child of curr.childNodes) {
                 let roomsInfo: any = {};
                 if (child.nodeName === "tr") {
-                    for (const innerChild of child.childNodes) {
-                        if (innerChild.attrs) {
-                            if (innerChild.attrs[0].value === "views-field views-field-field-room-number") {
-                                if (innerChild.childNodes[1].attrs[0].name === "href") {
-                                    roomsInfo["rooms_href"] = innerChild.childNodes[1].attrs[0].value;
-                                    roomsInfo["rooms_number"] = innerChild.childNodes[1].childNodes[0].value;
+                    for (const inner of child.childNodes) {
+                        if (inner.attrs) {
+                            if (inner.attrs[0].value === "views-field views-field-field-room-number") {
+                                if (inner.childNodes[1].attrs[0].name === "href") {
+                                    roomsInfo["rooms_href"] = inner.childNodes[1].attrs[0].value;
+                                    roomsInfo["rooms_number"] = inner.childNodes[1].childNodes[0].value;
                                 }
                             }
-                            if (innerChild.attrs[0].value === "views-field views-field-field-room-capacity") {
-                                roomsInfo["rooms_seats"] =
-                                    Number(innerChild.childNodes[0].value.replace("\n", "").trim());
+                            if (inner.attrs[0].value === "views-field views-field-field-room-capacity") {
+                                roomsInfo["rooms_seats"] = Number(inner.childNodes[0].value.replace("\n", "").trim());
                             } // TODO weird 0 and check for thrown/all fields
-                            if (innerChild.attrs[0].value === "views-field views-field-field-room-furniture") {
-                                roomsInfo["rooms_furniture"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            if (inner.attrs[0].value === "views-field views-field-field-room-furniture") {
+                                roomsInfo["rooms_furniture"] = inner.childNodes[0].value.replace("\n", "").trim();
                             }
-                            if (innerChild.attrs[0].value === "views-field views-field-field-room-type") {
-                                roomsInfo["rooms_type"] = innerChild.childNodes[0].value.replace("\n", "").trim();
+                            if (inner.attrs[0].value === "views-field views-field-field-room-type") {
+                                roomsInfo["rooms_type"] = inner.childNodes[0].value.replace("\n", "").trim();
                             }
                         }
                     }
@@ -238,6 +237,7 @@ export default class DatasetHelper {
                     roomsInfo["rooms_fullname"] = buildingInfo["fullname"];
                     roomsInfo["rooms_shortname"] = buildingInfo["shortname"];
                     roomsInfo["rooms_name"] = buildingInfo["shortname"] + "_" + roomsInfo["rooms_number"];
+                    roomsInfo["rooms_address"] = buildingInfo["address"];
                     bldgsRoomsArr.push(roomsInfo);
                 }
             }

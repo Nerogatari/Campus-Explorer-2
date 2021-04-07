@@ -93,26 +93,33 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
+        let datasetID = "";
         if (!validQuery(query)) {
             return Promise.reject( new InsightError("Invalid query!"));
         }
+        if (!(Object.keys(query).includes("TRANSFORMATIONS"))) {
+            datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
+        } else {
+            if (query.TRANSFORMATIONS.APPLY.length === 0) {
+                datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
+            } else {
+                datasetID = Object.values(Object.values(query.TRANSFORMATIONS.APPLY[0])[0])[0].split("_")[0];
+            }
+        }
         let filter = query.WHERE;  // TODO check query missing where, missing options, more than 2 fields
-        let datasetID = query.OPTIONS.COLUMNS[0].split("_")[0];
-        let sections = this.getDatasetById(datasetID); // let section store dataset id
-        let dataKind = this.getKindById(datasetID);
-        let transform = query.TRANSFORMATIONS;
         let sortedSections: any[];
         let filteredSections = []; // applied filter sections
         let transformedSection;
         try {
+            let sections = this.getDatasetById(datasetID); // let section store dataset id
+            let dataKind = this.getKindById(datasetID);
             if (!Object.keys(filter)) {
                 filteredSections = sections;
             } else if (Object.keys(filter).length <= 1) {
-                // pass dataset and filter and return sections
                 let columns = query.OPTIONS.COLUMNS;
                 filteredSections = PerformFilter.performFilter(sections, filter, datasetID, dataKind);
-                if (transform) {
-                    transformedSection = performTransform(filteredSections, transform, datasetID);
+                if (query.TRANSFORMATIONS) {
+                    transformedSection = performTransform(filteredSections, query.TRANSFORMATIONS, datasetID);
                 } else {
                     transformedSection = filteredSections;
                 }
@@ -148,7 +155,7 @@ export default class InsightFacade implements IInsightFacade {
                 }
             }
         });
-        if (retval === []) {
+        if (retval.length === 0) {
             throw new InsightError("Nothing in dataset");
         } else {
             return retval;

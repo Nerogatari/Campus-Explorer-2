@@ -25,7 +25,7 @@ export function isSatisfied(section: any, filter: any, id: string, dataKind: Ins
             case "NOT":
                 return !this.isSatisfied(section, filter.NOT, id, dataKind);
             case "AND": // TODO: check empty array
-                if (filterArr.length === 0 || filter.AND === 0 || !Array.isArray(filter.AND))  {
+                if (!filterArr || filterArr.length === 0 || filter.AND === 0 || !Array.isArray(filter.AND))  {
                     throw new InsightError("empty array");
                 }
                 let resultAND = true;
@@ -36,7 +36,7 @@ export function isSatisfied(section: any, filter: any, id: string, dataKind: Ins
                 }
                 return resultAND;
             case "OR":
-                if (filterArr.length === 0 || filter.OR === 0 || !Array.isArray(filter.OR)) {
+                if (!filterArr  || filterArr.length === 0 || filter.OR === 0 || !Array.isArray(filter.OR)) {
                     throw new InsightError("empty array");
                 }
                 let resultOR = false;

@@ -1,0 +1,32 @@
+{
+    "title": "Invalid keys in OPTIONS.",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "MATH"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "maxAvg"
+            ],
+            "ORDER": "maxAvg",
+            "FORM": "TABLE"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_dept"
+            ],
+            "APPLY": [
+                {
+                    "maxAvg": {
+                        "MAX": "courses_lol"
+                    }
+                }
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}
