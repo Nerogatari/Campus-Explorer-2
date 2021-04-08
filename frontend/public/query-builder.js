@@ -126,9 +126,9 @@ function buildORDER(datasetId, form){
             retOrderKeys.push(orderKey.value)
         }
     }
-    if (retOrderKeys.length === 1) {
-        return retOrderKeys[0]
-    } else {
+    // if (retOrderKeys.length === 1) {
+    //     return retOrderKeys[0]
+    // } else {
         if (descending) {
             return {
                 // retOrderKeys may be empty
@@ -141,16 +141,16 @@ function buildORDER(datasetId, form){
                 "keys":  retOrderKeys
             }
         }
-
-    }
+    //
+    // }
 }
 function buildOPTIONS(columns, order) {
-    if (typeof order ==="string") {
-        return {
-            "COLUMNS": columns,
-            "ORDER": order
-        }
-    } else {
+    // if (typeof order ==="string") {
+    //     return {
+    //         "COLUMNS": columns,
+    //         "ORDER": order
+    //     }
+    // } else {
         if (order.keys.length === 0) {
             return {
                 "COLUMNS": columns
@@ -161,7 +161,7 @@ function buildOPTIONS(columns, order) {
                 "ORDER": order
             }
         }
-    }
+    // }
 }
 function buildGROUP(datasetId, form) {
     let groups = form.querySelector(".form-group.groups .control-group").children
