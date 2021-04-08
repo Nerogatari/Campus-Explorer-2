@@ -70,8 +70,8 @@ export default class Server {
 
                 // NOTE: your endpoints should go here
                 that.rest.put("/dataset/:id/:kind", Server.putDataset);
-
                 that.rest.del("/dataset/:id", Server.deleteDataset);
+                that.rest.post("/query", Server.queryDataset);
                 that.rest.get("/datasets", Server.getDatasets);
                 // This must be the last endpoint!
                 that.rest.get("/.*", Server.getStatic);
@@ -222,6 +222,33 @@ export default class Server {
             return resu;
         }).catch((err) => {
             // throw err
+        });
+    }
+
+    private static queryDataset = (req: restify.Request, res: restify.Response, next: restify.Next) => {
+        try {
+            Server.performQueryDataset(req.body).then((resp: any) => {
+                const response = resp;
+                Log.info("Server::echo(..) - responding " + 200);
+                res.json(200, { result: response });
+            }).catch((err: any) => {
+                Log.error("Server::echo(..) - responding 400");
+                res.json(400, { error: err.message });
+            });
+        } catch (err) {
+            Log.error("Server::echo(..) - responding 400");
+            res.json(400, {error: err});
+        }
+        return next();
+    }
+
+    private static performQueryDataset = (query: any): any => {
+        return Server.insightFacade.performQuery(query).then((result: any) => {
+            let resu = result;
+            Log.info(resu);
+            return resu;
+        }).catch((err) => {
+            throw err;
         });
     }
 

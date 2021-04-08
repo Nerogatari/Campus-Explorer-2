@@ -19,6 +19,8 @@ describe("Facade D3", function () {
     let ZIP_ROOMS_DATA: any;
     let ENDPOINT_URL = "/dataset/coursesZZZ/courses";
     let ROOMS_URL = "/dataset/r00mba/rOOms";
+    // let simpleJSON = {"WHERE": {"GT": {"courses_avg": 97}},
+    // "OPTIONS": { "COLUMNS": ["courses_dept", "courses_avg"], "ORDER": "courses_avg" }};
 
     chai.use(chaiHttp);
 
@@ -101,7 +103,7 @@ describe("Facade D3", function () {
     //     }
     // });
 
-    // it("PUT test for courses dataset", function () {
+    // it("PUT test for rooms dataset", function () {
     //     try {
     //         return chai.request(SERVER_URL)
     //             .put(ROOMS_URL)
@@ -162,16 +164,36 @@ describe("Facade D3", function () {
     //     }
     // });
 
-    // it("test for echo", function () {
+    it("test for echo", function () {
+        try {
+            return chai.request("http://localhost:4321")
+                .get("/echo/helllloooo")
+                .then(function (res: Response) {
+                    // some logging here please!
+                    expect(res.status).to.be.equal(200);
+                })
+                .catch(function (err) {
+                    // some logging here please!
+                    expect.fail();
+                });
+        } catch (err) {
+            // and some more logging here!
+        }
+    });
+
+    // it("query test for courses dataset", function () {
     //     try {
-    //         return chai.request("http://localhost:4321")
-    //             .get("/echo/helllloooo")
+    //         return chai.request(SERVER_URL)
+    //             .post("/query")
+    //             .send(simpleJSON)
     //             .then(function (res: Response) {
     //                 // some logging here please!
+    //                 Log.info(res.text);
     //                 expect(res.status).to.be.equal(200);
     //             })
     //             .catch(function (err) {
     //                 // some logging here please!
+    //                 Log.info(err.message);
     //                 expect.fail();
     //             });
     //     } catch (err) {
