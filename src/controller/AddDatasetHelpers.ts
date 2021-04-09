@@ -1,3 +1,4 @@
+import { file } from "jszip";
 import * as parse5 from "parse5";
 
 export default class AddDatasetHelper {
@@ -40,12 +41,18 @@ export default class AddDatasetHelper {
     }
 
     public filterIndex(unzip: any): any {
-        let index = unzip.filter((relativePath: any, fILE: any) => {
-            let fileName = fILE.name.replace("rooms/", "");
-            if (fileName === "index.htm") {
+        let index = unzip.filter((zipObj: any) => {
+            if (zipObj.name.includes("rooms/index.htm")) {
                 return true;
             }
         });
+        return index;
+        // let index = unzip.filter((relativePath: any, fILE: any) => {
+        //     let fileName = fILE.name.replace("rooms/", "");
+        //     if (fileName === "index.htm") {
+        //         return true;
+        //     }
+        // });
         return index;
     }
 }

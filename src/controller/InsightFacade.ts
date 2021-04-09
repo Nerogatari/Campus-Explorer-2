@@ -35,7 +35,7 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (this.existingDatasetID(id) === true) {
             return Promise.reject(new InsightError("Existing ID"));
-        } // TODO check weird, illformed files, weird courses structure, NOT AN ENum error?
+        } // TODO check weird, illformed files, weird courses structure
         let promisesArr: Array<Promise<string>> = [];
         let promisesArr2: Array<Promise<any>> = [];
         if (kind === InsightDatasetKind.Rooms) {
@@ -45,13 +45,19 @@ export default class InsightFacade implements IInsightFacade {
             // https://stackoverflow.com/questions/39322964/extracting-zipped-files-using-jszip-in-javascript
             let fileName: string = "";
             return newZip.loadAsync(content, { base64: true }).then((zip: any) => {
-                zip.folder("courses").forEach(function (relativePath: any, filee: any) {
-                    fileName = filee.name.replace("courses/", "");
-                    if (fileName === ".DS_Store") {
+                zip.file(/courses\//).forEach(function (file: any) {
+                    if (file.name.includes(".DS_Store") || file.name.includes("._")) {
                         return;
                     }
-                    promisesArr.push(filee.async("string"));
+                    promisesArr.push(file.async("string"));
                 });
+                // zip.folder("courses").forEach(function (relativePath: any, filee: any) {
+                //     fileName = filee.name.replace("courses/", "");
+                //     if (fileName === ".DS_Store") {
+                //         return;
+                //     }
+                //     promisesArr.push(filee.async("string"));
+                // });
                 return Promise.all(promisesArr)
                     .then((sectionData: any) => {
                         let tempArr = [];
@@ -231,7 +237,7 @@ export default class InsightFacade implements IInsightFacade {
         let addedIds: string[] = [];
         return newZip.loadAsync(content, { base64: true })
                 .then((zip: any) => {
-                    let unzip = zip.folder("rooms");
+                    let unzip = zip.file(/rooms\//);
                     outtieZip = zip;
                     let index = this.addDatasetHelper.filterIndex(unzip);
                     if (index.length < 1) {
@@ -244,7 +250,8 @@ export default class InsightFacade implements IInsightFacade {
                 })
                 .then((bldgsPaths: any) => {
                     for (const path of bldgsPaths) {
-                        promisesArr.push(outtieZip.file(path.replace(".", "rooms")).async("string"));
+                        let zipObj = outtieZip.file(new RegExp(path.replace(".", "rooms")));
+                        promisesArr.push(zipObj[0].async("string"));
                     }
                 })
                 .then(() => {
@@ -252,8 +259,7 @@ export default class InsightFacade implements IInsightFacade {
                 })
                 .then((fileData: any) => {
                     for (const data of fileData) {
-                        let res = parse5.parse(data);
-                        promisesArr2.push(this.datasetHelper.parseBuilding(res));
+                        promisesArr2.push(this.datasetHelper.parseBuilding(parse5.parse(data), id));
                     }
                 })
                 .then(() => {
