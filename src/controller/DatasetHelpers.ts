@@ -230,7 +230,7 @@ export default class DatasetHelper {
                                 }
                             }
                             if (inner.attrs[0].value === "views-field views-field-field-room-capacity") {
-                                roomsInfo[id + "_seats"] = Number(inner.childNodes[0].value.replace("\n", "").trim());
+                                roomsInfo[id + "_seats"] = this.determineRoomsSeats(inner);
                             } // TODO weird 0 and check for thrown/all fields
                             if (inner.attrs[0].value === "views-field views-field-field-room-furniture") {
                                 roomsInfo[id + "_furniture"] = inner.childNodes[0].value.replace("\n", "").trim();
@@ -249,6 +249,14 @@ export default class DatasetHelper {
                     bldgsRoomsArr.push(roomsInfo);
                 }
             }
+        }
+    }
+
+    private determineRoomsSeats(capacity: any): number {
+        if (capacity.childNodes.length > 0) {
+            return Number(capacity.childNodes[0].value.replace("\n", "").trim());
+        } else {
+            return 0;
         }
     }
 }
