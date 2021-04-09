@@ -1,4 +1,5 @@
 import * as http from "http";
+import { InsightError } from "./IInsightFacade";
 export default class DatasetHelper {
     public validateSections(data: any, keys: string[]): boolean {
         // has all needed categories TODO TEST
@@ -22,6 +23,9 @@ export default class DatasetHelper {
             case "Audit":
             case "Year":
                 newVal = Number(val);
+                if (isNaN(newVal)) {
+                    throw new InsightError("NaN type conversion");
+                }
                 break;
             case "Subject":
             case "id":
@@ -120,8 +124,12 @@ export default class DatasetHelper {
                     if (key === "Year") {
                         newYearKey = newKey;
                     }
-                    let newVal = this.enforceTypes(key, ele[key]);
-                    newJSON[newKey] = newVal;
+                    try {
+                        let newVal = this.enforceTypes(key, ele[key]);
+                        newJSON[newKey] = newVal;
+                    } catch (err) {
+                        throw err;
+                    }
                 }
             });
             if (sectionOverall) {
