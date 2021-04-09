@@ -259,7 +259,7 @@ export default class InsightFacade implements IInsightFacade {
                 })
                 .then((fileData: any) => {
                     for (const data of fileData) {
-                        promisesArr2.push(this.datasetHelper.parseBuilding(parse5.parse(data)));
+                        promisesArr2.push(this.datasetHelper.parseBuilding(parse5.parse(data), id));
                     }
                 })
                 .then(() => {

@@ -165,7 +165,7 @@ export default class DatasetHelper {
         });
     }
 
-    public parseBuilding(element: any): Promise<any[]> {
+    public parseBuilding(element: any, id: any): Promise<any[]> {
         let buildingInfo: any = {};
         let bldgsRoomsArr: any[] = [];
         let stack: any[] = [];
@@ -173,7 +173,7 @@ export default class DatasetHelper {
 
         while (stack.length > 0) {
             let curr = stack.pop();
-            this.mapRoomValues(curr, buildingInfo, bldgsRoomsArr);
+            this.mapRoomValues(curr, buildingInfo, bldgsRoomsArr, id);
             if (curr.childNodes) {
                 curr.childNodes?.reverse().forEach((child: any) => {
                     stack.push(child);
@@ -183,8 +183,8 @@ export default class DatasetHelper {
         if (bldgsRoomsArr.length > 0) {
             return this.requestLatLon(buildingInfo["address"]).then((latlon: any) => {
                 bldgsRoomsArr.forEach((room) => {
-                    room["rooms_lat"] = latlon["lat"];
-                    room["rooms_lon"] = latlon["lon"];
+                    room[id + "_lat"] = latlon["lat"];
+                    room[id + "_lon"] = latlon["lon"];
                 });
                 return Promise.resolve(bldgsRoomsArr);
             });
@@ -193,7 +193,7 @@ export default class DatasetHelper {
         }
     }
 
-    private mapRoomValues(curr: any, buildingInfo: any, bldgsRoomsArr: any[]) {
+    private mapRoomValues(curr: any, buildingInfo: any, bldgsRoomsArr: any[], id: any) {
         if (curr.nodeName === "div" && curr.attrs.filter((e: any) => e.name === "id"
             && e.value === "building-info").length > 0) {
                 if (curr.childNodes[1] && curr.childNodes[1].childNodes
@@ -217,27 +217,27 @@ export default class DatasetHelper {
                         if (inner.attrs) {
                             if (inner.attrs[0].value === "views-field views-field-field-room-number") {
                                 if (inner.childNodes[1].attrs[0].name === "href") {
-                                    roomsInfo["rooms_href"] = inner.childNodes[1].attrs[0].value;
-                                    roomsInfo["rooms_number"] = inner.childNodes[1].childNodes[0].value;
+                                    roomsInfo[id + "_href"] = inner.childNodes[1].attrs[0].value;
+                                    roomsInfo[id + "_number"] = inner.childNodes[1].childNodes[0].value;
                                 }
                             }
                             if (inner.attrs[0].value === "views-field views-field-field-room-capacity") {
-                                roomsInfo["rooms_seats"] = Number(inner.childNodes[0].value.replace("\n", "").trim());
+                                roomsInfo[id + "_seats"] = Number(inner.childNodes[0].value.replace("\n", "").trim());
                             } // TODO weird 0 and check for thrown/all fields
                             if (inner.attrs[0].value === "views-field views-field-field-room-furniture") {
-                                roomsInfo["rooms_furniture"] = inner.childNodes[0].value.replace("\n", "").trim();
+                                roomsInfo[id + "_furniture"] = inner.childNodes[0].value.replace("\n", "").trim();
                             }
                             if (inner.attrs[0].value === "views-field views-field-field-room-type") {
-                                roomsInfo["rooms_type"] = inner.childNodes[0].value.replace("\n", "").trim();
+                                roomsInfo[id + "_type"] = inner.childNodes[0].value.replace("\n", "").trim();
                             }
                         }
                     }
                 }
                 if (Object.keys(roomsInfo).length > 0) {
-                    roomsInfo["rooms_fullname"] = buildingInfo["fullname"];
-                    roomsInfo["rooms_shortname"] = buildingInfo["shortname"];
-                    roomsInfo["rooms_name"] = buildingInfo["shortname"] + "_" + roomsInfo["rooms_number"];
-                    roomsInfo["rooms_address"] = buildingInfo["address"];
+                    roomsInfo[id + "_fullname"] = buildingInfo["fullname"];
+                    roomsInfo[id + "_shortname"] = buildingInfo["shortname"];
+                    roomsInfo[id + "_name"] = buildingInfo["shortname"] + "_" + roomsInfo[id + "_number"];
+                    roomsInfo[id + "_address"] = buildingInfo["address"];
                     bldgsRoomsArr.push(roomsInfo);
                 }
             }
