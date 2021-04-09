@@ -74,7 +74,7 @@ export default class InsightFacade implements IInsightFacade {
                 return addedIds;
             })
                 .catch((err) => {
-                    return Promise.reject(err);
+                    return Promise.reject(new InsightError(err));
                 });
         } else {
             return Promise.reject(new InsightError("Invalid Data Kind"));
@@ -275,7 +275,7 @@ export default class InsightFacade implements IInsightFacade {
                     return addedIds;
                 })
                 .catch((err) => {
-                    return Promise.reject(err);
+                    return Promise.reject(new InsightError(err));
                 });
     }
 
