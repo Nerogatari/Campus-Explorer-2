@@ -242,10 +242,10 @@ export default class DatasetHelper {
                     }
                 }
                 if (Object.keys(roomsInfo).length > 0) {
-                    roomsInfo[id + "_fullname"] = buildingInfo["fullname"];
-                    roomsInfo[id + "_shortname"] = buildingInfo["shortname"];
-                    roomsInfo[id + "_name"] = buildingInfo["shortname"] + "_" + roomsInfo[id + "_number"];
-                    roomsInfo[id + "_address"] = buildingInfo["address"];
+                    this.setRoomsBuildingInfo(roomsInfo, buildingInfo, id);
+                    if (!(id + "_seats" in roomsInfo)) {
+                        roomsInfo[id + "_seats"] = 0;
+                    }
                     bldgsRoomsArr.push(roomsInfo);
                 }
             }
@@ -258,5 +258,12 @@ export default class DatasetHelper {
         } else {
             return 0;
         }
+    }
+
+    private setRoomsBuildingInfo(roomsInfo: any, buildingInfo: any, id: any) {
+        roomsInfo[id + "_fullname"] = buildingInfo["fullname"];
+        roomsInfo[id + "_shortname"] = buildingInfo["shortname"];
+        roomsInfo[id + "_name"] = buildingInfo["shortname"] + "_" + roomsInfo[id + "_number"];
+        roomsInfo[id + "_address"] = buildingInfo["address"];
     }
 }
