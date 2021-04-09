@@ -243,10 +243,9 @@ export default class DatasetHelper {
                 }
                 if (Object.keys(roomsInfo).length > 0) {
                     this.setRoomsBuildingInfo(roomsInfo, buildingInfo, id);
-                    if (!(id + "_seats" in roomsInfo)) {
-                        roomsInfo[id + "_seats"] = 0;
+                    if (this.checkRoomsFields(roomsInfo, id)) {
+                        bldgsRoomsArr.push(roomsInfo);
                     }
-                    bldgsRoomsArr.push(roomsInfo);
                 }
             }
         }
@@ -254,7 +253,11 @@ export default class DatasetHelper {
 
     private determineRoomsSeats(capacity: any): number {
         if (capacity.childNodes.length > 0) {
-            return Number(capacity.childNodes[0].value.replace("\n", "").trim());
+            let num = Number(capacity.childNodes[0].value.replace("\n", "").trim());
+            if (isNaN(num)) {
+                throw new InsightError("NaN type conversion");
+            }
+            return num;
         } else {
             return 0;
         }
@@ -265,5 +268,16 @@ export default class DatasetHelper {
         roomsInfo[id + "_shortname"] = buildingInfo["shortname"];
         roomsInfo[id + "_name"] = buildingInfo["shortname"] + "_" + roomsInfo[id + "_number"];
         roomsInfo[id + "_address"] = buildingInfo["address"];
+    }
+
+    private checkRoomsFields(roomsInfo: any, id: any): boolean {
+        if ((id + "_seats" in roomsInfo) && (id + "_href" in roomsInfo) && (id + "_number" in roomsInfo)
+            && (id + "_furniture" in roomsInfo) && (id + "_type" in roomsInfo)
+                && (id + "_fullname" in roomsInfo) && (id + "_shortname" in roomsInfo) && (id + "_name" in roomsInfo)
+            && (id + "_address" in roomsInfo)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
