@@ -18,3 +18,4 @@ function listener () {
     })
 
 }
+document.getElementById("submit-button").addEventListener("click", listener);

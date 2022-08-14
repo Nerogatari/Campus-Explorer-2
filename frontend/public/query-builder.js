@@ -10,13 +10,17 @@ CampusExplorer.buildQuery = () => {
     //get active panel= get dataset ID
     const datasetId = document.getElementsByClassName("tab-panel active")[0].getAttribute("data-type")
     let form = document.querySelector(`.tab-panel.active form`);
+
     // Condition=> WHERE
     query.WHERE = buildWHERE(datasetId, form)
+    console.log(query)
+
     //Columns , Order =>OPTIONS
     let columns = buildCOLUMNS(datasetId, form)
     let order = buildORDER(datasetId, form)
     query.OPTIONS = buildOPTIONS(columns, order)
-    // console.log(columns)
+    console.log(columns)
+
     //GROUPS, TRANSFORMATION =>TRANSFORMATION
     let group = buildGROUP(datasetId, form)
     let apply = buildAPPLY(datasetId, form)
@@ -25,40 +29,41 @@ CampusExplorer.buildQuery = () => {
     }else {
         query.TRANSFORMATIONS = buildTRANSFORMATIONS(group, apply)
     }
+    console.log("CampusExplorer.buildQuery not implemented yet.");
     return query;
 };
+
 function buildWHERE(datasetId, form) {
     const all = form.querySelector(".control.conditions-all-radio input").checked
     const any = form.querySelector(".control.conditions-any-radio input").checked
     const none = form.querySelector(".control.conditions-none-radio input").checked
+
     let conditions = buildCondition(datasetId, form)
+
     //check  cond size length = 0 / 1
     if (conditions.length === 0) {
         return {}
     } else if (conditions.length === 1) {
-        if (all) {
-            return conditions[0]
-        } else if (any) {
-            return conditions[0]
-        } else if (none) {
+        if (none) {
             return {
                 "NOT": conditions[0]
             }
+        } else {
+            return conditions[0]
         }
-    } else {
-        if (all) {
-            return {
-                "AND": conditions
-            }
-        } else if (any) {
-            return {
+    }
+    if (all) {
+        return {
+            "AND": conditions
+        }
+    } else if (any) {
+        return {
+            "OR": conditions
+        }
+    } else if (none) {
+        return {
+            "NOT": {
                 "OR": conditions
-            }
-        } else if (none) {
-            return {
-                "NOT": {
-                    "OR": conditions
-                }
             }
         }
     }
@@ -74,10 +79,8 @@ function buildCondition(datasetId, form) {
         const key = datasetId + "_" + field
         const operator = condition.querySelector(".control.operators [selected=\"selected\"]").value
         let term = condition.querySelector(".control.term input").value || ""
-        if (term !== "") {
-            if (operator !== "IS") {
-                term = Number(term)
-            }
+        if (term !== "" && operator !== "IS") {
+            term = Number(term)
         }
         let filter = {
             [operator]: {
@@ -94,6 +97,7 @@ function buildCondition(datasetId, form) {
 
     }
     return retFilter;
+
 }
 
 function buildCOLUMNS(datasetId, form) {
@@ -101,17 +105,14 @@ function buildCOLUMNS(datasetId, form) {
     let retColumns =[]
     for (let column of columns) {
         let check = column.querySelector("input").checked
-        if (column.className === "control field") {
-            if (check) {
-                retColumns.push(datasetId + "_" + column.querySelector("input").value)
-            }
-        } else if (column.className === "control transformation") {
-            if (check) {
-                retColumns.push(column.querySelector("input").value)
-            }
+        if (column.className === "control field" && check) {
+            retColumns.push(datasetId + "_" + column.querySelector("input").value)
+        } else if (column.className === "control transformation" && check) {
+            retColumns.push(column.querySelector("input").value)
         }
     }
     return retColumns
+
 }
 
 function buildORDER(datasetId, form){
@@ -119,26 +120,29 @@ function buildORDER(datasetId, form){
     let retOrderKeys = []
     let descending = form.querySelector(".control.descending input").checked
     for (let orderKey of orderKeys) {
-        if (orderKey.selected) {
-            if  (orderKey.className === "transformation") {
-                retOrderKeys.push(orderKey.value)
-            } else {
-                retOrderKeys.push(datasetId + "_" + orderKey.value)
+        if (orderKey.className !== "transformation" && orderKey.selected) {
+            retOrderKeys.push(datasetId + "_" + orderKey.value)
+        } else if (orderKey.selected) {
+            retOrderKeys.push(orderKey.value)
+        }
+    }
+    // if (retOrderKeys.length === 1) {
+    //     return retOrderKeys[0]
+    // } else {
+        if (descending) {
+            return {
+                // retOrderKeys may be empty
+                "dir" : "DOWN",
+                "keys": retOrderKeys
+            }
+        } else {
+            return {
+                "dir" : "UP",
+                "keys":  retOrderKeys
             }
         }
-    }
-    if (descending) {
-        return {
-            // retOrderKeys may be empty
-            "dir" : "DOWN",
-            "keys": retOrderKeys
-        }
-    } else {
-        return {
-            "dir" : "UP",
-            "keys":  retOrderKeys
-        }
-    }
+    //
+    // }
 }
 function buildOPTIONS(columns, order) {
     // if (typeof order ==="string") {
@@ -147,16 +151,16 @@ function buildOPTIONS(columns, order) {
     //         "ORDER": order
     //     }
     // } else {
-    if (order.keys.length === 0) {
-        return {
-            "COLUMNS": columns
+        if (order.keys.length === 0) {
+            return {
+                "COLUMNS": columns
+            }
+        } else {
+            return {
+                "COLUMNS": columns,
+                "ORDER": order
+            }
         }
-    } else {
-        return {
-            "COLUMNS": columns,
-            "ORDER": order
-        }
-    }
     // }
 }
 function buildGROUP(datasetId, form) {
